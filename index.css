@@ -431,7 +431,7 @@ margin-bottom: 20px;
 .item_title1{
     width: 100%;
     height: 45px;
-font-size: 24px;
+font-size: 20px;
 font-family: Roboto-Bold;
 display: flex;
 align-items: end;
@@ -517,7 +517,7 @@ color: var(--point-color1);
     .item_title2{
         width: 100%;
         height: 45px;
-    font-size: 24px;
+    font-size: 20px;
     font-family: Roboto-Bold;
     display: flex;
     align-items: end;
@@ -602,7 +602,7 @@ color: var(--point-color1);
     .item_title3{
         width: 100%;
         height: 45px;
-    font-size: 24px;
+    font-size: 20px;
     font-family: Roboto-Bold;
     display: flex;
     align-items: end;
@@ -688,7 +688,7 @@ color: var(--point-color1);
     .item_title4{
         width: 100%;
         height: 45px;
-    font-size: 24px;
+    font-size: 20px;
     font-family: Roboto-Bold;
     display: flex;
     align-items: end;

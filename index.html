@@ -18,7 +18,8 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
         <div class="top_bar">
             <div class="logo"><a href="/index.html">EAST</a></div>
             <div class="menu">
-                <div class="menu_item active">HOME</div>
+                <div class="menu_item active" onclick="window.location.href='/index.html'">HOME</div>
+                <div class="menu_item" onclick="window.location.href='/tracking.html'">공정 추적</div>
                 <div class="menu_item">공정 그래프</div>
                 <div class="menu_item">월별 통계</div>
                 <div class="menu_item">일별 통계</div>
@@ -40,15 +41,15 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                     </div>
                     <div class="info info_left">
                         <div class="info_title">제품명</div>
-                        <div class="info_text">V GEN 1</div>
+                        <div class="info_text" id="data1"></div>
                     </div>
                     <div class="info info_left">
                         <div class="info_title">양품 수량</div>
-                        <div class="info_text">9999</div>
+                        <div class="info_text" id="data3"></div>
                     </div>
                     <div class="info info_left">
                         <div class="info_title">최근 투입시간</div>
-                        <div class="info_text">14:20:21</div>
+                        <div class="info_text" id="data5"></div>
                     </div>
                     <div class="info info_right">
                         <div class="info_title">시간</div>
@@ -56,15 +57,15 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                     </div>
                     <div class="info info_right">
                         <div class="info_title">총 생산 수량</div>
-                        <div class="info_text">99999</div>
+                        <div class="info_text" id="data2"></div>
                     </div>
                     <div class="info info_right">
                         <div class="info_title">불량 수량</div>
-                        <div class="info_text">2132</div>
+                        <div class="info_text" id="data4"></div>
                     </div>
                     <div class="info info_right">
                         <div class="info_title">시간당 생산량</div>
-                        <div class="info_text">50%</div>
+                        <div class="info_text" id="data6"></div>
                     </div>
                 </div>
                 <div class="top_right">
@@ -334,67 +335,67 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                                     <div class="item_position1">A-19</div>
                                     <div class="line_box1">
                                         <div class="item_title1">S01</div>
-                                        <div class="item_text1">OK</div>
+                                        <div class="item_text1" id="data7"></div>
                                     </div>
                                 </div>
                                 <div class="line_item1">
                                     <div class="item_position1">A-18</div>
                                     <div class="line_box1">
                                         <div class="item_title1">S02</div>
-                                        <div class="item_text1">OK</div>
+                                        <div class="item_text1" id="data8"></div>
                                     </div>
                                 </div>
                                 <div class="line_item1">
                                     <div class="item_position1">A-17</div>
                                     <div class="line_box1">
                                         <div class="item_title1">S03</div>
-                                        <div class="item_text1">OK</div>
+                                        <div class="item_text1" id="data9"></div>
                                     </div>
                                 </div>
                                 <div class="line_item1">
                                     <div class="item_position1">A-16</div>
                                     <div class="line_box1">
                                         <div class="item_title1">S04</div>
-                                        <div class="item_text1">OK</div>
+                                        <div class="item_text1" id="data10"></div>
                                     </div>
                                 </div>
                                 <div class="line_item1">
                                     <div class="item_position1">A-15</div>
                                     <div class="line_box1">
                                         <div class="item_title1">S05</div>
-                                        <div class="item_text1">OK</div>
+                                        <div class="item_text1" id="data11"></div>
                                     </div>
                                 </div>
                                 <div class="line_item1">
                                     <div class="item_position1">A-14</div>
                                     <div class="line_box1">
                                         <div class="item_title1">S06</div>
-                                        <div class="item_text1">OK</div>
+                                        <div class="item_text1" id="data12"></div>
                                     </div>
                                 </div>
                                 <div class="line_item1">
                                     <div class="item_position1">A-13</div>
                                     <div class="line_box1">
                                         <div class="item_title1">S07</div>
-                                        <div class="item_text1">OK</div>
+                                        <div class="item_text1" id="data13"></div>
                                     </div>
                                 </div>
                                 <div class="line_item1">
                                     <div class="item_position1">A-12</div>
                                     <div class="line_box1">
                                         <div class="item_title1">S08</div>
-                                        <div class="item_text1">OK</div>
+                                        <div class="item_text1" id="data14"></div>
                                     </div>
                                 </div>
                                 <div class="line_item1">
                                     <div class="item_position1">A-11</div>
                                     <div class="line_box1">
                                         <div class="item_title1">S09</div>
-                                        <div class="item_text1">OK</div>
+                                        <div class="item_text1" id="data15"></div>
                                     </div>
                                 </div>
                                 <div class="line_item1">
-                                <div class="item_position1 line_disabled">ㅡ</div>
+                                    <div class="item_position1 line_disabled">ㅡ</div>
                                     <div class="line_box1 line_disabled">
                                         <div class="item_title1"></div>
                                         <div class="item_text1"></div>
@@ -409,70 +410,70 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                                     <div class="item_position2">A-10</div>
                                     <div class="line_box2">
                                         <div class="item_title2">S10</div>
-                                        <div class="item_text2">OK</div>
+                                        <div class="item_text2" id="data16"></div>
                                     </div>
                                 </div>
                                 <div class="line_item2">
                                     <div class="item_position2">A-09</div>
                                     <div class="line_box2">
                                         <div class="item_title2">S11</div>
-                                        <div class="item_text2">OK</div>
+                                        <div class="item_text2" id="data17"></div>
                                     </div>
                                 </div>
                                 <div class="line_item2">
                                     <div class="item_position2">A-08</div>
                                     <div class="line_box2">
                                         <div class="item_title2">S12</div>
-                                        <div class="item_text2">OK</div>
+                                        <div class="item_text2" id="data18"></div>
                                     </div>
                                 </div>
                                 <div class="line_item2">
                                     <div class="item_position2">A-07</div>
                                     <div class="line_box2">
                                         <div class="item_title2">S13</div>
-                                        <div class="item_text2">OK</div>
+                                        <div class="item_text2" id="data19"></div>
                                     </div>
                                 </div>
                                 <div class="line_item2">
                                     <div class="item_position2">A-06</div>
                                     <div class="line_box2">
                                         <div class="item_title2">S14</div>
-                                        <div class="item_text2">OK</div>
+                                        <div class="item_text2" id="data20"></div>
                                     </div>
                                 </div>
                                 <div class="line_item2 line_active2">
                                     <div class="item_position2">A-05</div>
                                     <div class="line_box2">
                                         <div class="item_title2">S15</div>
-                                        <div class="item_text2">OK</div>
+                                        <div class="item_text2" id="data21"></div>
                                     </div>
                                 </div>
                                 <div class="line_item2">
                                     <div class="item_position2">A-04</div>
                                     <div class="line_box2">
                                         <div class="item_title2">S16</div>
-                                        <div class="item_text2">OK</div>
+                                        <div class="item_text2" id="data22"></div>
                                     </div>
                                 </div>
                                 <div class="line_item2">
                                     <div class="item_position2">A-03</div>
                                     <div class="line_box2">
                                         <div class="item_title2">S17</div>
-                                        <div class="item_text2">OK</div>
+                                        <div class="item_text2" id="data23"></div>
                                     </div>
                                 </div>
                                 <div class="line_item2">
                                     <div class="item_position2">A-02</div>
                                     <div class="line_box2">
                                         <div class="item_title2">S18</div>
-                                        <div class="item_text2">OK</div>
+                                        <div class="item_text2" id="data24"></div>
                                     </div>
                                 </div>
                                 <div class="line_item2">
                                     <div class="item_position2">A-01</div>
                                     <div class="line_box2">
                                         <div class="item_title2">S09</div>
-                                        <div class="item_text2">OK</div>
+                                        <div class="item_text2" id="data25"></div>
                                     </div>
                                 </div>
                             </div>
@@ -485,71 +486,71 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                                 <div class="line_item3">
                                     <div class="item_position3">AA-8</div>
                                     <div class="line_box3">
-                                        <div class="item_title3">S10</div>
-                                        <div class="item_text3">OK</div>
+                                        <div class="item_title3">W01</div>
+                                        <div class="item_text3" id="data26"></div>
                                     </div>
                                 </div>
                                 <div class="line_item3">
                                     <div class="item_position3">AA-7</div>
                                     <div class="line_box3">
-                                        <div class="item_title3">S11</div>
-                                        <div class="item_text3">OK</div>
+                                        <div class="item_title3">W02-A</div>
+                                        <div class="item_text3" id="data27"></div>
                                     </div>
                                 </div>
                                 <div class="line_item3">
                                     <div class="item_position3">AA-6</div>
                                     <div class="line_box3">
-                                        <div class="item_title3">S13</div>
-                                        <div class="item_text3">OK</div>
+                                        <div class="item_title3">W02-B</div>
+                                        <div class="item_text3" id="data28"></div>
                                     </div>
                                 </div>
                                 <div class="line_item3">
                                     <div class="item_position3">AA-5</div>
                                     <div class="line_box3">
-                                        <div class="item_title3">S13</div>
-                                        <div class="item_text3">OK</div>
+                                        <div class="item_title3">W03</div>
+                                        <div class="item_text3" id="data29"></div>
                                     </div>
                                 </div>
                                 <div class="line_item3">
                                     <div class="item_position3">AA-4</div>
                                     <div class="line_box3">
-                                        <div class="item_title3">S14</div>
-                                        <div class="item_text3">OK</div>
+                                        <div class="item_title3">W03-1</div>
+                                        <div class="item_text3" id="data30"></div>
                                     </div>
                                 </div>
                                 <div class="line_item3 line_active3">
                                     <div class="item_position3">AA-3</div>
                                     <div class="line_box3">
-                                        <div class="item_title3">S15</div>
-                                        <div class="item_text3">OK</div>
+                                        <div class="item_title3">W04</div>
+                                        <div class="item_text3" id="data31"></div>
                                     </div>
                                 </div>
                                 <div class="line_item3">
                                     <div class="item_position3">AA-2</div>
                                     <div class="line_box3">
-                                        <div class="item_title3">S16</div>
-                                        <div class="item_text3">OK</div>
+                                        <div class="item_title3">W05</div>
+                                        <div class="item_text3" id="data32"></div>
                                     </div>
                                 </div>
                                 <div class="line_item3">
                                     <div class="item_position3">AA-1</div>
                                     <div class="line_box3">
-                                        <div class="item_title3">S17</div>
-                                        <div class="item_text3">OK</div>
+                                        <div class="item_title3">W06</div>
+                                        <div class="item_text3" id="data33"></div>
                                     </div>
                                 </div>
                                 <div class="line_item3">
-                                <div class="item_position3 line_disabled">ㅡ</div>
-                                    <div class="line_box3 line_disabled">
-                                        <div class="item_title3"></div>
-                                        <div class="item_text3"></div>
+                                    <div class="item_position3">ㅡ</div>
+                                    <div class="line_box3">
+                                        <div class="item_title3">Pallet</div>
+                                        <div class="item_text3" id="data34"></div>
                                     </div>
                                 </div>
                                 <div class="line_item3">
-                                <div class="item_position3 line_disabled">ㅡ</div>
-                                    <div class="line_box3 line_disabled">
-                                        <div class="item_title3"></div>
-                                        <div class="item_text3"></div>
+                                    <div class="item_position3">ㅡ</div>
+                                    <div class="line_box3">
+                                        <div class="item_title3">Paint</div>
+                                        <div class="item_text3" id="data35"></div>
                                     </div>
                                 </div>
                             </div>
@@ -560,80 +561,68 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                                 <div class="line_item4">
                                     <div class="item_position4">AA-8</div>
                                     <div class="line_box4">
-                                        <div class="item_title4">S10</div>
-                                        <div class="item_text4">OK</div>
-                                        <div class="item_text4">OK</div>
-                                        <div class="item_text4">OK</div>
+                                        <div class="item_title4">Paint</div>
+                                        <div class="item_text4" id="data36"></div>
                                     </div>
                                 </div>
                                 <div class="line_item4">
                                     <div class="item_position4">AA-7</div>
                                     <div class="line_box4">
-                                        <div class="item_title4">S11</div>
-                                        <div class="item_text4">OK</div>
-                                        <div class="item_text4">OK</div>
-                                        <div class="item_text4">OK</div>
+                                        <div class="item_title4">AS01</div>
+                                        <div class="item_text4" id="data37"></div>
                                     </div>
                                 </div>
                                 <div class="line_item4">
                                     <div class="item_position4">AA-6</div>
                                     <div class="line_box4">
-                                        <div class="item_title4">S14</div>
-                                        <div class="item_text4">OK</div>
-                                        <div class="item_text4">OK</div>
-                                        <div class="item_text4">OK</div>
+                                        <div class="item_title4">Vision</div>
+                                        <div class="item_text4" id="data38"></div>
                                     </div>
                                 </div>
                                 <div class="line_item4">
                                     <div class="item_position4">AA-5</div>
                                     <div class="line_box4">
-                                        <div class="item_title4">S14</div>
-                                        <div class="item_text4">OK</div>
-                                        <div class="item_text4">OK</div>
-                                        <div class="item_text4">OK</div>
+                                        <div class="item_title4">AS02</div>
+                                        <div class="item_text4" id="data39"></div>
                                     </div>
                                 </div>
                                 <div class="line_item4">
                                     <div class="item_position4">AA-4</div>
                                     <div class="line_box4">
-                                        <div class="item_title4">S14</div>
-                                        <div class="item_text4">OK</div>
-                                        <div class="item_text4">OK</div>
-                                        <div class="item_text4">OK</div>
+                                        <div class="item_title4">A01</div>
+                                        <div class="item_text4" id="data40"></div>
                                     </div>
                                 </div>
                                 <div class="line_item4">
                                     <div class="item_position4">AA-3</div>
                                     <div class="line_box4">
-                                        <div class="item_title4">S15</div>
-                                        <div class="item_text4">OK</div>
-                                        <div class="item_text4">OK</div>
-                                        <div class="item_text4">OK</div>
+                                        <div class="item_title4">A02</div>
+                                        <div class="item_text4" id="data41"></div>
                                     </div>
                                 </div>
                                 <div class="line_item4">
-                                <div class="item_position4 line_disabled">ㅡ</div>
+                                    <div class="item_position4">ㅡ</div>
+                                    <div class="line_box4">
+                                        <div class="item_title4">A03</div>
+                                        <div class="item_text4" id="data42"></div>
+                                    </div>
+                                </div>
+                                <div class="line_item4">
+                                    <div class="item_position4">ㅡ</div>
+                                    <div class="line_box4">
+                                        <div class="item_title4">Pallet</div>
+                                        <div class="item_text4" id="data43"></div>
+                                    </div>
+                                </div>
+                                <div class="line_item4">
+                                    <div class="item_position4 line_disabled">ㅡ</div>
                                     <div class="line_box4 line_disabled">
                                         <div class="item_title4"></div>
                                         <div class="item_text4"></div>
                                     </div>
                                 </div>
                                 <div class="line_item4">
-                                <div class="item_position4 line_disabled">ㅡ</div>
-                                    <div class="line_box4 line_disabled">
-                                        <div class="item_title4"></div>
-                                        <div class="item_text4"></div>
-                                    </div>
-                                </div>
-                                <div class="line_item4">
-                                <div class="item_position4 line_disabled">ㅡ</div>
-                                    <div class="line_box4 line_disabled">
-                                        <div class="item_title4"></div>
-                                        <div class="item_text4"></div>
-                                    </div>
-                                </div>
-                                <div class="line_item4">
-                                <div class="item_position4 line_disabled">ㅡ</div>
+                                    <div class="item_position4 line_disabled">ㅡ</div>
                                     <div class="line_box4 line_disabled">
                                         <div class="item_title4"></div>
                                         <div class="item_text4"></div>
@@ -646,7 +635,31 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
             </div>
         </div>
     </div>
+    <script src="/jquery/jquery.min.js"></script>
     <script>
+        $(document).ready(function() {
+            updateData();
+        });
+
+        function updateData() {
+            $.ajax({
+                url: "/get_data.php",
+                type: "post",
+                cache: false,
+                success: function(data) {
+
+                    var array = JSON.parse(data);
+
+                    for (let count = 1; count <= array.length; count++) {
+                        $('#data' + count).html(array[count - 1]);
+                    }
+
+                }
+            });
+            timerID = setTimeout("updateData()", 1000); // 1초 단위로 갱신 처리
+
+        }
+
         var data1_1 = {
             labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
             datasets: [{
@@ -1564,16 +1577,16 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
         ////////////////////////////////////////////////////////시계
         const clock = document.querySelector("#clock");
 
-function getClock(){
-  const d = new Date();
-  const h = String(d.getHours()).padStart(2,"0");
-  const m = String(d.getMinutes()).padStart(2,"0");
-  const s = String(d.getSeconds()).padStart(2,"0");
-  clock.innerText = `${h}:${m}:${s}`;
-}
+        function getClock() {
+            const d = new Date();
+            const h = String(d.getHours()).padStart(2, "0");
+            const m = String(d.getMinutes()).padStart(2, "0");
+            const s = String(d.getSeconds()).padStart(2, "0");
+            clock.innerText = `${h}:${m}:${s}`;
+        }
 
-getClock(); //맨처음에 한번 실행
-setInterval(getClock, 1000); //1초 주기로 새로실행
+        getClock(); //맨처음에 한번 실행
+        setInterval(getClock, 1000); //1초 주기로 새로실행
     </script>
 </body>
 

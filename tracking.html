@@ -1,0 +1,164 @@
+<?php
+session_start();
+$conn = mysqli_connect("localhost", "server", "00000000", "dataset");
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>신독 | 메인화면</title>
+    <link rel="stylesheet" href="/tracking.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="top_bar">
+            <div class="logo"><a href="/index.html">EAST</a></div>
+            <div class="menu">
+                <div class="menu_item" onclick="window.location.href='/index.html'">HOME</div>
+                <div class="menu_item active" onclick="window.location.href='/tracking.html'">공정 추적</div>
+                <div class="menu_item">공정 그래프</div>
+                <div class="menu_item">월별 통계</div>
+                <div class="menu_item">일별 통계</div>
+                <div class="menu_item">데이터</div>
+                <div class="menu_item">설정</div>
+            </div>
+        </div>
+        <div class="content">
+            <table>
+                <thead>
+                    <th>LOT</th>
+                    <th>S01</th>
+                    <th>S02</th>
+                    <th>S03</th>
+                    <th>S04</th>
+                    <th>S05</th>
+                    <th>S06</th>
+                    <th>S07</th>
+                    <th>S08</th>
+                    <th>S10</th>
+                    <th>S11</th>
+                    <th>S12</th>
+                    <th>S13</th>
+                    <th>S14</th>
+                    <th>S15</th>
+                    <th>S16</th>
+                    <th>S17</th>
+                    <th>S18</th>
+                    <th>S09</th>
+                    <th>W01</th>
+                    <th>W02-A</th>
+                    <th>W02-B</th>
+                    <th>W03</th>
+                    <th>W03-1</th>
+                    <th>W04</th>
+                    <th>W05</th>
+                    <th>W06</th>
+                    <th>Pallet</th>
+                    <th>Paint</th>
+                    <th>Paint</th>
+                    <th>AS01</th>
+                    <th>Vision</th>
+                    <th>AS02</th>
+                    <th>A01</th>
+                    <th>A02</th>
+                    <th>A03</th>
+                    <th>Pallet</th>
+                </thead>
+                <tbody>
+                    <?php
+                    //제일 최근 제품 10개를 선택
+                    $sql01 = "select * from tracking01 order by id desc limit 20";
+                    $res01 = mysqli_query($conn, $sql01);
+                    for (; $row01 = mysqli_fetch_array($res01);) {
+
+                        $sql02 = "select * from tracking02 order by id desc limit 20";
+                        $res02 = mysqli_query($conn, $sql02);
+                        $row02 = mysqli_fetch_array($res02);
+
+                        $sql03 = "select * from tracking03 order by id desc limit 20";
+                        $res03 = mysqli_query($conn, $sql03);
+                        $row03 = mysqli_fetch_array($res03);
+
+                        $sql04 = "select * from tracking04 order by id desc limit 20";
+                        $res04 = mysqli_query($conn, $sql04);
+                        $row04 = mysqli_fetch_array($res04);
+
+                        echo "
+<tr>
+<td>" . $row01['lot_code'] . "</td>
+<td>" . $row01['data0'] . "</td>
+<td>" . $row01['data1'] . "</td>
+<td>" . $row01['data2'] . "</td>
+<td>" . $row01['data3'] . "</td>
+<td>" . $row01['data4'] . "</td>
+<td>" . $row01['data5'] . "</td>
+<td>" . $row01['data6'] . "</td>
+<td>" . $row01['data7'] . "</td>
+<td>" . $row01['data8'] . "</td>
+<td>" . $row01['data9'] . "</td>
+<td>" . $row02['data0'] . "</td>
+<td>" . $row02['data1'] . "</td>
+<td>" . $row02['data2'] . "</td>
+<td>" . $row02['data3'] . "</td>
+<td>" . $row02['data4'] . "</td>
+<td>" . $row02['data5'] . "</td>
+<td>" . $row02['data6'] . "</td>
+<td>" . $row02['data7'] . "</td>
+<td>" . $row02['data8'] . "</td>
+<td>" . $row02['data9'] . "</td>
+<td>" . $row03['data0'] . "</td>
+<td>" . $row03['data1'] . "</td>
+<td>" . $row03['data2'] . "</td>
+<td>" . $row03['data3'] . "</td>
+<td>" . $row03['data4'] . "</td>
+<td>" . $row03['data5'] . "</td>
+<td>" . $row03['data6'] . "</td>
+<td>" . $row03['data7'] . "</td>
+<td>" . $row04['data0'] . "</td>
+<td>" . $row04['data1'] . "</td>
+<td>" . $row04['data2'] . "</td>
+<td>" . $row04['data3'] . "</td>
+<td>" . $row04['data4'] . "</td>
+<td>" . $row04['data5'] . "</td>
+<td>" . $row04['data6'] . "</td>
+<td>" . $row04['data7'] . "</td>
+</tr>
+";
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+<script src="/jquery/jquery.min.js"></script>
+<script>
+            $(document).ready(function() {
+            updateData();
+        });
+
+        function updateData() {
+            $.ajax({
+                url: "/get_tracking.php",
+                type: "post",
+                cache: false,
+                success: function(data) {
+
+                    // var array = JSON.parse(data);
+
+                    // for (let count = 1; count <= array.length; count++) {
+                    //     $('#data' + count).html(array[count - 1]);
+                    // }
+console.log(data);
+                }
+            });
+            timerID = setTimeout("updateData()", 1000); // 1초 단위로 갱신 처리
+
+        }
+</script>
+
+</html>
