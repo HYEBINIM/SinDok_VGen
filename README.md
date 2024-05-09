@@ -9,6 +9,6 @@
 추적성 페이지 디자인 변경
 - 240509
 디자인 변경 완료
-![메인](https://github.com/HYEBINIM/SinDok_VGen/assets/125339506/18f16746-7b9a-46ad-a79b-b1d842a83e8c)
-![그래프JPG](https://github.com/HYEBINIM/SinDok_VGen/assets/125339506/2ecc4c45-247a-48e4-9a7f-ebe4d1e6c2c3)
-![추적성](https://github.com/HYEBINIM/SinDok_VGen/assets/125339506/732ad959-6e6a-400a-a0a4-e2720c3f1a23)
+![메인](https://github.com/HYEBINIM/SinDok_VGen/assets/125339506/b679c75c-6d67-4e53-839e-e1c95074d8f7)
+![그래프JPG](https://github.com/HYEBINIM/SinDok_VGen/assets/125339506/9b7fa95c-7445-4b29-8ae0-61bf1a300536)
+![추적성](https://github.com/HYEBINIM/SinDok_VGen/assets/125339506/5f45df46-a123-40f3-984b-ddd33fa0cfea)
