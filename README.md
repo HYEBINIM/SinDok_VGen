@@ -1,4 +1,4 @@
-![추적성](https://github.com/HYEBINIM/SinDok_VGen/assets/125339506/af39933f-cac9-47a8-a261-57f39c8df9f4)<h2>* 신독 VGen1 & 2 모니터링 페이지</h2><br>
+<h2>* 신독 VGen1 & 2 모니터링 페이지</h2><br>
 - 240312<br>
 초안 개발 시작<br>
 - 240315<br>
