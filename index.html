@@ -1,103 +1,139 @@
-<?php
-session_start();
-$conn = mysqli_connect("localhost", "server", "00000000", "dataset");
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>신독 | 메인화면</title>
-    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <title>EAST</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
+    <!-- 전체 -->
     <div class="wrapper">
-        <div class="top_bar">
-            <div class="logo"><a href="/index.html">EAST</a></div>
+        <!-- 사이드바 -->
+        <div class="side_bar">
+            <div class="logo" onclick="window.location.href='/index.html'">
+                <img src="/img/logo.png" alt="">
+                <div class="logo_text">EAST COMPANY</div>
+            </div>
             <div class="menu">
-                <div class="menu_item active" onclick="window.location.href='/index.html'">HOME</div>
-                <div class="menu_item" onclick="window.location.href='/tracking.html'">공정 추적</div>
-                <div class="menu_item">공정 그래프</div>
-                <div class="menu_item">월별 통계</div>
-                <div class="menu_item">일별 통계</div>
-                <div class="menu_item">데이터</div>
-                <div class="menu_item">설정</div>
+                <div class="menu_item active" onclick="window.location.href='/index.html'">
+                    <div class="menu_path"></div>
+                    <svg width="26" height="26" viewBox="0 0 26 26">
+                        <path id="main_page" data-name="main page" d="M15.422,14.556a1.445,1.445,0,0,0-1.444-1.444H4.444A1.445,1.445,0,0,0,3,14.556v13A1.445,1.445,0,0,0,4.444,29h9.533a1.445,1.445,0,0,0,1.444-1.444ZM29,23.222a1.445,1.445,0,0,0-1.444-1.444H18.889a1.487,1.487,0,0,0-1.444,1.444v4.333A1.445,1.445,0,0,0,18.889,29h8.667A1.445,1.445,0,0,0,29,27.556Zm-2.167.722v2.889H19.611V23.944ZM13.256,15.278V26.833H5.167V15.278ZM29,4.444A1.445,1.445,0,0,0,27.556,3H18.889a1.445,1.445,0,0,0-1.444,1.444V18.311a1.445,1.445,0,0,0,1.444,1.444h8.667A1.445,1.445,0,0,0,29,18.311Zm-2.167.722V17.589H19.611V5.167ZM15.422,4.444A1.445,1.445,0,0,0,13.978,3H4.444A1.445,1.445,0,0,0,3,4.444v5.2a1.445,1.445,0,0,0,1.444,1.444h9.533a1.445,1.445,0,0,0,1.444-1.444v-5.2Zm-2.167.722V8.922H5.167V5.167Z" transform="translate(-3 -3)" fill="#ddddde" />
+                    </svg>
+                </div>
+                <div class="menu_item" onclick="window.location.href='/graph.html'">
+                    <div class="menu_path"></div>
+                    <svg width="26" height="24" viewBox="0 0 26 24">
+                        <path id="graph_page" data-name="graph page" d="M5.417,9.727v8.727H3.25V9.727ZM7.583,7.545h-6.5V20.636h6.5Zm6.5-4.364V18.455H11.917V3.182ZM16.25,1H9.75V20.636h6.5Zm6.5,14.182v3.273H20.583V15.182ZM24.917,13h-6.5v7.636h6.5ZM26,22.818H0V25H26Z" transform="translate(0 -1)" fill="#ddddde" />
+                    </svg>
+                </div>
+                <div class="menu_item" onclick="window.location.href='/tracking.html'">
+                    <div class="menu_path"></div>
+                    <svg width="26" height="26" viewBox="0 0 26 26">
+                        <path id="iconmonstr-share-2" d="M5.417,9.75A3.25,3.25,0,1,1,2.167,13,3.254,3.254,0,0,1,5.417,9.75Zm0-2.167A5.417,5.417,0,1,0,10.833,13,5.417,5.417,0,0,0,5.417,7.583Zm16.25,9.75a4.305,4.305,0,0,0-3.18,1.409l-5.945-3.171a7.523,7.523,0,0,1-1.023,1.911l5.945,3.171a4.327,4.327,0,1,0,4.2-3.32Zm0,6.5a2.167,2.167,0,1,1,2.167-2.167A2.169,2.169,0,0,1,21.667,23.833ZM21.667,0a4.334,4.334,0,0,0-4.333,4.333,4.331,4.331,0,0,0,.131,1.013L11.519,8.517a7.576,7.576,0,0,1,1.023,1.911l5.945-3.171A4.328,4.328,0,1,0,21.667,0Zm0,6.5a2.167,2.167,0,1,1,2.167-2.167A2.169,2.169,0,0,1,21.667,6.5Z" fill="#ddddde" />
+                    </svg>
+                </div>
+                <div class="menu_item" onclick="window.location.href='/dayily.html'">
+                    <div class="menu_path"></div>
+                    <svg width="26" height="26" viewBox="0 0 26 26">
+                        <path id="daily_page" data-name="daily page" d="M26,26H5.667a1,1,0,0,0,0,2h21A1.372,1.372,0,0,0,28,26.665v-21a1,1,0,0,0-2,0ZM24.667,3.331A1.336,1.336,0,0,0,23.333,2h-20A1.334,1.334,0,0,0,2,3.331v20a1.334,1.334,0,0,0,1.333,1.333h20a1.336,1.336,0,0,0,1.333-1.333Zm-2,6V22.665H4V9.331Zm0-2H4V4H22.667Z" transform="translate(-2 -1.998)" fill="#ddddde" />
+                    </svg>
+                </div>
+                <div class="menu_item" onclick="window.location.href='/index.html'">
+                    <div class="menu_path"></div>
+                    <svg width="26" height="23" viewBox="0 0 26 23">
+                        <path id="month_page" data-name="month page" d="M23.958,24.081H6.042L4.066,11.941H25.935ZM5.36,8.1H24.689l-.3,1.924H5.654ZM6.651,4.915H23.4l-.169,1.256H6.819ZM28,11.3a1.289,1.289,0,0,0-1.3-1.275h-.329c.4-2.637.376-2.442.376-2.567a1.292,1.292,0,0,0-1.3-1.288H25.2c.251-1.867.243-1.788.243-1.894A1.292,1.292,0,0,0,24.14,3H5.909a1.291,1.291,0,0,0-1.3,1.278c0,.106-.01.017.244,1.895H4.605A1.294,1.294,0,0,0,3.3,7.457c0,.129-.021-.034.377,2.568H3.3A1.289,1.289,0,0,0,2,11.3c0,.151-.136-.744,2.2,13.62A1.292,1.292,0,0,0,5.488,26H24.513A1.292,1.292,0,0,0,25.8,24.922C28.139,10.547,28,11.454,28,11.3Z" transform="translate(-2 -2.998)" fill="#ddddde" />
+                    </svg>
+                </div>
+                <div class="menu_item" onclick="window.location.href='/index.html'">
+                    <div class="menu_path"></div>
+                    <svg width="26" height="24" viewBox="0 0 26 24">
+                        <path id="data_page" data-name="data page" d="M21.4,21.914a5.364,5.364,0,0,1-2.987.9,5.442,5.442,0,1,1,4.519-2.447L26,23.457,24.468,25Zm-8.292.9H0V1H7.583c1.836,2.119,2.569,3.273,4.333,3.273H23.833v7.749a7.594,7.594,0,0,0-2.167-1.558V6.455h-9.75c-2.534,0-3.832-1.514-5.327-3.273H2.167V20.636h9.4A7.645,7.645,0,0,0,13.112,22.818Zm5.305-8.727a3.273,3.273,0,1,1-3.25,3.273A3.263,3.263,0,0,1,18.417,14.091Z" transform="translate(0 -1)" fill="#ddddde" fill-rule="evenodd" />
+                    </svg>
+                </div>
             </div>
         </div>
+        <!-- /사이드바 -->
+
         <div class="content">
             <div class="top">
                 <div class="top_left">
-                    <div class="img">
+                    <div class="top_title">Information</div>
+                    <div class="top_inner">
+                        <div class="info">
+                            <div class="info_item">
+                                <div class="item_title">현재 시간</div>
+                                <div class="item_text" id='clock'></div>
+                            </div>
+                            <div class="info_item">
+                                <div class="item_title">제품명</div>
+                                <div class="item_text">V-GEN 1</div>
+                            </div>
+                            <div class="info_item">
+                                <div class="item_title">검사 날짜</div>
+                                <div class="item_text">2024-05-07</div>
+                            </div>
+                            <div class="info_item">
+                                <div class="item_title">검사 시간</div>
+                                <div class="item_text">13:42:30</div>
+                            </div>
+                        </div>
                         <img src="/img/vgen1.png" alt="">
-                    </div>
-                </div>
-                <div class="top_center">
-                    <div class="info info_left">
-                        <div class="info_title">날짜</div>
-                        <div class="info_text"><?php echo date('Y-m-d'); ?></div>
-                    </div>
-                    <div class="info info_left">
-                        <div class="info_title">제품명</div>
-                        <div class="info_text" id="data1"></div>
-                    </div>
-                    <div class="info info_left">
-                        <div class="info_title">양품 수량</div>
-                        <div class="info_text" id="data3"></div>
-                    </div>
-                    <div class="info info_left">
-                        <div class="info_title">최근 투입시간</div>
-                        <div class="info_text" id="data5"></div>
-                    </div>
-                    <div class="info info_right">
-                        <div class="info_title">시간</div>
-                        <div class="info_text" id='clock'></div>
-                    </div>
-                    <div class="info info_right">
-                        <div class="info_title">총 생산 수량</div>
-                        <div class="info_text" id="data2"></div>
-                    </div>
-                    <div class="info info_right">
-                        <div class="info_title">불량 수량</div>
-                        <div class="info_text" id="data4"></div>
-                    </div>
-                    <div class="info info_right">
-                        <div class="info_title">시간당 생산량</div>
-                        <div class="info_text" id="data6"></div>
+                        <div class="info">
+                            <div class="info_item">
+                                <div class="item_title">총 생산 수량</div>
+                                <div class="item_text">5,000</div>
+                            </div>
+                            <div class="info_item">
+                                <div class="item_title">시간당 생산량</div>
+                                <div class="item_text">120</div>
+                            </div>
+                            <div class="info_item">
+                                <div class="item_title">양품</div>
+                                <div class="item_text ok_color">1,250</div>
+                            </div>
+                            <div class="info_item">
+                                <div class="item_title">불량</div>
+                                <div class="item_text ng_color">30</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="top_right">
-                    <div class="spc">
-                        <div class="slider-container">
-                            <div class="slider-wrapper">
-                                <div class="slide">
-                                    <div class="spc_item spc_top">
+                    <div class="slider-container">
+                        <div class="slider-wrapper">
+                            <div class="slide">
+                                <div class="slide_title">SUB1</div>
+                                <div class="slide_inner">
+                                    <div class="spc_item">
                                         <div class="item_top">
                                             <div class="spc_title1">S01</div>
                                         </div>
                                         <canvas class="myChart" id="myChart1_1"></canvas>
                                     </div>
-                                    <div class="spc_item spc_top">
+                                    <div class="spc_item">
                                         <div class="item_top">
                                             <div class="spc_title1">S02</div>
                                         </div>
                                         <canvas class="myChart" id="myChart1_2"></canvas>
                                     </div>
-                                    <div class="spc_item spc_top">
+                                    <div class="spc_item">
                                         <div class="item_top">
                                             <div class="spc_title1">S03</div>
                                         </div>
                                         <canvas class="myChart" id="myChart1_3"></canvas>
                                     </div>
-                                    <div class="spc_item spc_top">
+                                    <div class="spc_item">
                                         <div class="item_top">
                                             <div class="spc_title1">S04</div>
                                         </div>
                                         <canvas class="myChart" id="myChart1_4"></canvas>
                                     </div>
-                                    <div class="spc_item spc_top">
+                                    <div class="spc_item">
                                         <div class="item_top">
                                             <div class="spc_title1">S05</div>
                                         </div>
@@ -121,45 +157,36 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                                         </div>
                                         <canvas class="myChart" id="myChart1_8"></canvas>
                                     </div>
-                                    <div class="spc_item">
-                                        <div class="item_top">
-                                            <div class="spc_title1">S09</div>
-                                        </div>
-                                        <canvas class="myChart" id="myChart1_9"></canvas>
-                                    </div>
-                                    <div class="spc_item">
-                                        <div class="item_top">
-                                            <div class="spc_title1">S10</div>
-                                        </div>
-                                        <canvas class="myChart" id="myChart1_10"></canvas>
-                                    </div>
                                 </div>
-                                <div class="slide">
-                                    <div class="spc_item spc_top">
+                            </div>
+                            <div class="slide">
+                                <div class="slide_title">SUB2</div>
+                                <div class="slide_inner">
+                                    <div class="spc_item">
                                         <div class="item_top">
                                             <div class="spc_title2">S01</div>
                                         </div>
                                         <canvas class="myChart" id="myChart2_1"></canvas>
                                     </div>
-                                    <div class="spc_item spc_top">
+                                    <div class="spc_item">
                                         <div class="item_top">
                                             <div class="spc_title2">S02</div>
                                         </div>
                                         <canvas class="myChart" id="myChart2_2"></canvas>
                                     </div>
-                                    <div class="spc_item spc_top">
+                                    <div class="spc_item">
                                         <div class="item_top">
                                             <div class="spc_title2">S03</div>
                                         </div>
                                         <canvas class="myChart" id="myChart2_3"></canvas>
                                     </div>
-                                    <div class="spc_item spc_top">
+                                    <div class="spc_item">
                                         <div class="item_top">
                                             <div class="spc_title2">S04</div>
                                         </div>
                                         <canvas class="myChart" id="myChart2_4"></canvas>
                                     </div>
-                                    <div class="spc_item spc_top">
+                                    <div class="spc_item">
                                         <div class="item_top">
                                             <div class="spc_title2">S05</div>
                                         </div>
@@ -183,45 +210,36 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                                         </div>
                                         <canvas class="myChart" id="myChart2_8"></canvas>
                                     </div>
-                                    <div class="spc_item">
-                                        <div class="item_top">
-                                            <div class="spc_title2">S09</div>
-                                        </div>
-                                        <canvas class="myChart" id="myChart2_9"></canvas>
-                                    </div>
-                                    <div class="spc_item">
-                                        <div class="item_top">
-                                            <div class="spc_title2">S10</div>
-                                        </div>
-                                        <canvas class="myChart" id="myChart2_10"></canvas>
-                                    </div>
                                 </div>
-                                <div class="slide">
-                                    <div class="spc_item spc_top">
+                            </div>
+                            <div class="slide">
+                                <div class="slide_title">Main Line</div>
+                                <div class="slide_inner">
+                                    <div class="spc_item">
                                         <div class="item_top">
                                             <div class="spc_title3">S01</div>
                                         </div>
                                         <canvas class="myChart" id="myChart3_1"></canvas>
                                     </div>
-                                    <div class="spc_item spc_top">
+                                    <div class="spc_item">
                                         <div class="item_top">
                                             <div class="spc_title3">S02</div>
                                         </div>
                                         <canvas class="myChart" id="myChart3_2"></canvas>
                                     </div>
-                                    <div class="spc_item spc_top">
+                                    <div class="spc_item">
                                         <div class="item_top">
                                             <div class="spc_title3">S03</div>
                                         </div>
                                         <canvas class="myChart" id="myChart3_3"></canvas>
                                     </div>
-                                    <div class="spc_item spc_top">
+                                    <div class="spc_item">
                                         <div class="item_top">
                                             <div class="spc_title3">S04</div>
                                         </div>
                                         <canvas class="myChart" id="myChart3_4"></canvas>
                                     </div>
-                                    <div class="spc_item spc_top">
+                                    <div class="spc_item">
                                         <div class="item_top">
                                             <div class="spc_title3">S05</div>
                                         </div>
@@ -245,45 +263,36 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                                         </div>
                                         <canvas class="myChart" id="myChart3_8"></canvas>
                                     </div>
-                                    <div class="spc_item">
-                                        <div class="item_top">
-                                            <div class="spc_title3">S09</div>
-                                        </div>
-                                        <canvas class="myChart" id="myChart3_9"></canvas>
-                                    </div>
-                                    <div class="spc_item">
-                                        <div class="item_top">
-                                            <div class="spc_title3">S10</div>
-                                        </div>
-                                        <canvas class="myChart" id="myChart3_10"></canvas>
-                                    </div>
                                 </div>
-                                <div class="slide">
-                                    <div class="spc_item spc_top">
+                            </div>
+                            <div class="slide">
+                                <div class="slide_title">Assy Line</div>
+                                <div class="slide_inner">
+                                    <div class="spc_item">
                                         <div class="item_top">
                                             <div class="spc_title4">S01</div>
                                         </div>
                                         <canvas class="myChart" id="myChart4_1"></canvas>
                                     </div>
-                                    <div class="spc_item spc_top">
+                                    <div class="spc_item">
                                         <div class="item_top">
                                             <div class="spc_title4">S02</div>
                                         </div>
                                         <canvas class="myChart" id="myChart4_2"></canvas>
                                     </div>
-                                    <div class="spc_item spc_top">
+                                    <div class="spc_item">
                                         <div class="item_top">
                                             <div class="spc_title4">S03</div>
                                         </div>
                                         <canvas class="myChart" id="myChart4_3"></canvas>
                                     </div>
-                                    <div class="spc_item spc_top">
+                                    <div class="spc_item">
                                         <div class="item_top">
                                             <div class="spc_title4">S04</div>
                                         </div>
                                         <canvas class="myChart" id="myChart4_4"></canvas>
                                     </div>
-                                    <div class="spc_item spc_top">
+                                    <div class="spc_item">
                                         <div class="item_top">
                                             <div class="spc_title4">S05</div>
                                         </div>
@@ -307,18 +316,6 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                                         </div>
                                         <canvas class="myChart" id="myChart4_8"></canvas>
                                     </div>
-                                    <div class="spc_item">
-                                        <div class="item_top">
-                                            <div class="spc_title4">S09</div>
-                                        </div>
-                                        <canvas class="myChart" id="myChart4_9"></canvas>
-                                    </div>
-                                    <div class="spc_item">
-                                        <div class="item_top">
-                                            <div class="spc_title4">S10</div>
-                                        </div>
-                                        <canvas class="myChart" id="myChart4_10"></canvas>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -326,306 +323,762 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 </div>
             </div>
             <div class="bottom">
-                <div class="process">
-                    <div class="process_top">
-                        <div class="front_line">
-                            <div class="line_title1">FRONT 라인</div>
-                            <div class="line1">
-                                <div class="line_item1">
-                                    <div class="item_position1">A-19</div>
-                                    <div class="line_box1">
-                                        <div class="item_title1">S01</div>
-                                        <div class="item_text1" id="data7"></div>
+                <div class="data-container">
+                    <div class="data-wrapper">
+                        <div class="data">
+                            <div class="data_title1">FRONT 라인</div>
+                            <div class="data_inner">
+                                <div class="data_item">
+                                    <div class="data_position1">S01</div>
+                                    <div class="data_text">
+                                        <div class="lot_num1">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="line_item1">
-                                    <div class="item_position1">A-18</div>
-                                    <div class="line_box1">
-                                        <div class="item_title1">S02</div>
-                                        <div class="item_text1" id="data8"></div>
+                                <div class="data_item">
+                                    <div class="data_position1">S02</div>
+                                    <div class="data_text">
+                                        <div class="lot_num1">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="line_item1">
-                                    <div class="item_position1">A-17</div>
-                                    <div class="line_box1">
-                                        <div class="item_title1">S03</div>
-                                        <div class="item_text1" id="data9"></div>
+                                <div class="data_item">
+                                    <div class="data_position1">S03</div>
+                                    <div class="data_text">
+                                        <div class="lot_num1">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="line_item1">
-                                    <div class="item_position1">A-16</div>
-                                    <div class="line_box1">
-                                        <div class="item_title1">S04</div>
-                                        <div class="item_text1" id="data10"></div>
+                                <div class="data_item">
+                                    <div class="data_position1">S04</div>
+                                    <div class="data_text">
+                                        <div class="lot_num1">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="line_item1">
-                                    <div class="item_position1">A-15</div>
-                                    <div class="line_box1">
-                                        <div class="item_title1">S05</div>
-                                        <div class="item_text1" id="data11"></div>
+                                <div class="data_item">
+                                    <div class="data_position1">S05</div>
+                                    <div class="data_text">
+                                        <div class="lot_num1">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="line_item1">
-                                    <div class="item_position1">A-14</div>
-                                    <div class="line_box1">
-                                        <div class="item_title1">S06</div>
-                                        <div class="item_text1" id="data12"></div>
+                                <div class="data_item">
+                                    <div class="data_position1">S06</div>
+                                    <div class="data_text">
+                                        <div class="lot_num1">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="line_item1">
-                                    <div class="item_position1">A-13</div>
-                                    <div class="line_box1">
-                                        <div class="item_title1">S07</div>
-                                        <div class="item_text1" id="data13"></div>
+                                <div class="data_item">
+                                    <div class="data_position1">S07</div>
+                                    <div class="data_text">
+                                        <div class="lot_num1">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="line_item1">
-                                    <div class="item_position1">A-12</div>
-                                    <div class="line_box1">
-                                        <div class="item_title1">S08</div>
-                                        <div class="item_text1" id="data14"></div>
+                                <div class="data_item">
+                                    <div class="data_position1">S08</div>
+                                    <div class="data_text">
+                                        <div class="lot_num1">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="line_item1">
-                                    <div class="item_position1">A-11</div>
-                                    <div class="line_box1">
-                                        <div class="item_title1">S09</div>
-                                        <div class="item_text1" id="data15"></div>
-                                    </div>
-                                </div>
-                                <div class="line_item1">
-                                    <div class="item_position1 line_disabled">ㅡ</div>
-                                    <div class="line_box1 line_disabled">
-                                        <div class="item_title1"></div>
-                                        <div class="item_text1"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="rear_line">
-                            <div class="line_title2">REAR 라인</div>
-                            <div class="line2">
-                                <div class="line_item2">
-                                    <div class="item_position2">A-10</div>
-                                    <div class="line_box2">
-                                        <div class="item_title2">S10</div>
-                                        <div class="item_text2" id="data16"></div>
-                                    </div>
-                                </div>
-                                <div class="line_item2">
-                                    <div class="item_position2">A-09</div>
-                                    <div class="line_box2">
-                                        <div class="item_title2">S11</div>
-                                        <div class="item_text2" id="data17"></div>
-                                    </div>
-                                </div>
-                                <div class="line_item2">
-                                    <div class="item_position2">A-08</div>
-                                    <div class="line_box2">
-                                        <div class="item_title2">S12</div>
-                                        <div class="item_text2" id="data18"></div>
-                                    </div>
-                                </div>
-                                <div class="line_item2">
-                                    <div class="item_position2">A-07</div>
-                                    <div class="line_box2">
-                                        <div class="item_title2">S13</div>
-                                        <div class="item_text2" id="data19"></div>
-                                    </div>
-                                </div>
-                                <div class="line_item2">
-                                    <div class="item_position2">A-06</div>
-                                    <div class="line_box2">
-                                        <div class="item_title2">S14</div>
-                                        <div class="item_text2" id="data20"></div>
-                                    </div>
-                                </div>
-                                <div class="line_item2 line_active2">
-                                    <div class="item_position2">A-05</div>
-                                    <div class="line_box2">
-                                        <div class="item_title2">S15</div>
-                                        <div class="item_text2" id="data21"></div>
-                                    </div>
-                                </div>
-                                <div class="line_item2">
-                                    <div class="item_position2">A-04</div>
-                                    <div class="line_box2">
-                                        <div class="item_title2">S16</div>
-                                        <div class="item_text2" id="data22"></div>
-                                    </div>
-                                </div>
-                                <div class="line_item2">
-                                    <div class="item_position2">A-03</div>
-                                    <div class="line_box2">
-                                        <div class="item_title2">S17</div>
-                                        <div class="item_text2" id="data23"></div>
-                                    </div>
-                                </div>
-                                <div class="line_item2">
-                                    <div class="item_position2">A-02</div>
-                                    <div class="line_box2">
-                                        <div class="item_title2">S18</div>
-                                        <div class="item_text2" id="data24"></div>
-                                    </div>
-                                </div>
-                                <div class="line_item2">
-                                    <div class="item_position2">A-01</div>
-                                    <div class="line_box2">
-                                        <div class="item_title2">S09</div>
-                                        <div class="item_text2" id="data25"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="process_bottom">
-                        <div class="main_line">
-                            <div class="line_title3">메인 라인</div>
-                            <div class="line3">
-                                <div class="line_item3">
-                                    <div class="item_position3">AA-8</div>
-                                    <div class="line_box3">
-                                        <div class="item_title3">W01</div>
-                                        <div class="item_text3" id="data26"></div>
-                                    </div>
-                                </div>
-                                <div class="line_item3">
-                                    <div class="item_position3">AA-7</div>
-                                    <div class="line_box3">
-                                        <div class="item_title3">W02-A</div>
-                                        <div class="item_text3" id="data27"></div>
-                                    </div>
-                                </div>
-                                <div class="line_item3">
-                                    <div class="item_position3">AA-6</div>
-                                    <div class="line_box3">
-                                        <div class="item_title3">W02-B</div>
-                                        <div class="item_text3" id="data28"></div>
-                                    </div>
-                                </div>
-                                <div class="line_item3">
-                                    <div class="item_position3">AA-5</div>
-                                    <div class="line_box3">
-                                        <div class="item_title3">W03</div>
-                                        <div class="item_text3" id="data29"></div>
-                                    </div>
-                                </div>
-                                <div class="line_item3">
-                                    <div class="item_position3">AA-4</div>
-                                    <div class="line_box3">
-                                        <div class="item_title3">W03-1</div>
-                                        <div class="item_text3" id="data30"></div>
-                                    </div>
-                                </div>
-                                <div class="line_item3 line_active3">
-                                    <div class="item_position3">AA-3</div>
-                                    <div class="line_box3">
-                                        <div class="item_title3">W04</div>
-                                        <div class="item_text3" id="data31"></div>
-                                    </div>
-                                </div>
-                                <div class="line_item3">
-                                    <div class="item_position3">AA-2</div>
-                                    <div class="line_box3">
-                                        <div class="item_title3">W05</div>
-                                        <div class="item_text3" id="data32"></div>
-                                    </div>
-                                </div>
-                                <div class="line_item3">
-                                    <div class="item_position3">AA-1</div>
-                                    <div class="line_box3">
-                                        <div class="item_title3">W06</div>
-                                        <div class="item_text3" id="data33"></div>
-                                    </div>
-                                </div>
-                                <div class="line_item3">
-                                    <div class="item_position3">ㅡ</div>
-                                    <div class="line_box3">
-                                        <div class="item_title3">Pallet</div>
-                                        <div class="item_text3" id="data34"></div>
-                                    </div>
-                                </div>
-                                <div class="line_item3">
-                                    <div class="item_position3">ㅡ</div>
-                                    <div class="line_box3">
-                                        <div class="item_title3">Paint</div>
-                                        <div class="item_text3" id="data35"></div>
+                                <div class="data_item">
+                                    <div class="data_position1">S09</div>
+                                    <div class="data_text">
+                                        <div class="lot_num1">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="assy_line">
-                            <div class="line_title4">조립 라인</div>
-                            <div class="line4">
-                                <div class="line_item4">
-                                    <div class="item_position4">AA-8</div>
-                                    <div class="line_box4">
-                                        <div class="item_title4">Paint</div>
-                                        <div class="item_text4" id="data36"></div>
+                        <div class="data">
+                            <div class="data_title2">REAR 라인</div>
+                            <div class="data_inner">
+                                <div class="data_item">
+                                    <div class="data_position2">S10</div>
+                                    <div class="data_text">
+                                        <div class="lot_num2">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="line_item4">
-                                    <div class="item_position4">AA-7</div>
-                                    <div class="line_box4">
-                                        <div class="item_title4">AS01</div>
-                                        <div class="item_text4" id="data37"></div>
+                                <div class="data_item">
+                                    <div class="data_position2">S11</div>
+                                    <div class="data_text">
+                                        <div class="lot_num2">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="line_item4">
-                                    <div class="item_position4">AA-6</div>
-                                    <div class="line_box4">
-                                        <div class="item_title4">Vision</div>
-                                        <div class="item_text4" id="data38"></div>
+                                <div class="data_item">
+                                    <div class="data_position2">S12</div>
+                                    <div class="data_text">
+                                        <div class="lot_num2">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="line_item4">
-                                    <div class="item_position4">AA-5</div>
-                                    <div class="line_box4">
-                                        <div class="item_title4">AS02</div>
-                                        <div class="item_text4" id="data39"></div>
+                                <div class="data_item">
+                                    <div class="data_position2">S13</div>
+                                    <div class="data_text">
+                                        <div class="lot_num2">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="line_item4">
-                                    <div class="item_position4">AA-4</div>
-                                    <div class="line_box4">
-                                        <div class="item_title4">A01</div>
-                                        <div class="item_text4" id="data40"></div>
+                                <div class="data_item">
+                                    <div class="data_position2">S14</div>
+                                    <div class="data_text">
+                                        <div class="lot_num2">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="line_item4">
-                                    <div class="item_position4">AA-3</div>
-                                    <div class="line_box4">
-                                        <div class="item_title4">A02</div>
-                                        <div class="item_text4" id="data41"></div>
+                                <div class="data_item">
+                                    <div class="data_position2">S15</div>
+                                    <div class="data_text">
+                                        <div class="lot_num2">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="line_item4">
-                                    <div class="item_position4">ㅡ</div>
-                                    <div class="line_box4">
-                                        <div class="item_title4">A03</div>
-                                        <div class="item_text4" id="data42"></div>
+                                <div class="data_item">
+                                    <div class="data_position2">S16</div>
+                                    <div class="data_text">
+                                        <div class="lot_num2">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="line_item4">
-                                    <div class="item_position4">ㅡ</div>
-                                    <div class="line_box4">
-                                        <div class="item_title4">Pallet</div>
-                                        <div class="item_text4" id="data43"></div>
+                                <div class="data_item">
+                                    <div class="data_position2">S17</div>
+                                    <div class="data_text">
+                                        <div class="lot_num2">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="line_item4">
-                                    <div class="item_position4 line_disabled">ㅡ</div>
-                                    <div class="line_box4 line_disabled">
-                                        <div class="item_title4"></div>
-                                        <div class="item_text4"></div>
+                                <div class="data_item">
+                                    <div class="data_position2">S18</div>
+                                    <div class="data_text">
+                                        <div class="lot_num2">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="line_item4">
-                                    <div class="item_position4 line_disabled">ㅡ</div>
-                                    <div class="line_box4 line_disabled">
-                                        <div class="item_title4"></div>
-                                        <div class="item_text4"></div>
+                                <div class="data_item">
+                                    <div class="data_position2">S19</div>
+                                    <div class="data_text">
+                                        <div class="lot_num2">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="data">
+                            <div class="data_title3">MAIN 라인</div>
+                            <div class="data_inner">
+                                <div class="data_item">
+                                    <div class="data_position3">W01</div>
+                                    <div class="data_text">
+                                        <div class="lot_num3">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data_item">
+                                    <div class="data_position3">W02A1</div>
+                                    <div class="data_text">
+                                        <div class="lot_num3">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data_item">
+                                    <div class="data_position3">W02A2</div>
+                                    <div class="data_text">
+                                        <div class="lot_num3">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data_item">
+                                    <div class="data_position3">W02A3</div>
+                                    <div class="data_text">
+                                        <div class="lot_num3">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data_item">
+                                    <div class="data_position3">W02A4</div>
+                                    <div class="data_text">
+                                        <div class="lot_num3">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data_item">
+                                    <div class="data_position3">W02A5</div>
+                                    <div class="data_text">
+                                        <div class="lot_num3">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data_item">
+                                    <div class="data_position3">W02B</div>
+                                    <div class="data_text">
+                                        <div class="lot_num3">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data_item">
+                                    <div class="data_position3">W03</div>
+                                    <div class="data_text">
+                                        <div class="lot_num3">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data_item">
+                                    <div class="data_position3">W03-1</div>
+                                    <div class="data_text">
+                                        <div class="lot_num3">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data_item">
+                                    <div class="data_position3">W04</div>
+                                    <div class="data_text">
+                                        <div class="lot_num3">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data_item">
+                                    <div class="data_position3">W05</div>
+                                    <div class="data_text">
+                                        <div class="lot_num3">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data_item">
+                                    <div class="data_position3">W06</div>
+                                    <div class="data_text">
+                                        <div class="lot_num3">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data_item">
+                                    <div class="data_position3">Pallet</div>
+                                    <div class="data_text">
+                                        <div class="lot_num3">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data_item">
+                                    <div class="data_position3">Paint</div>
+                                    <div class="data_text">
+                                        <div class="lot_num3">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="data">
+                            <div class="data_title4">ASSY 라인</div>
+                            <div class="data_inner">
+                                <div class="data_item">
+                                    <div class="data_position4">Pallet</div>
+                                    <div class="data_text">
+                                        <div class="lot_num4">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data_item">
+                                    <div class="data_position4">AS01</div>
+                                    <div class="data_text">
+                                        <div class="lot_num4">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data_item">
+                                    <div class="data_position4">Vision</div>
+                                    <div class="data_text">
+                                        <div class="lot_num4">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data_item">
+                                    <div class="data_position4">AS02</div>
+                                    <div class="data_text">
+                                        <div class="lot_num4">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data_item">
+                                    <div class="data_position4">A01</div>
+                                    <div class="data_text">
+                                        <div class="lot_num4">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data_item">
+                                    <div class="data_position4">A02</div>
+                                    <div class="data_text">
+                                        <div class="lot_num4">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data_item">
+                                    <div class="data_position4">A03</div>
+                                    <div class="data_text">
+                                        <div class="lot_num4">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data_item">
+                                    <div class="data_position4">Pallet</div>
+                                    <div class="data_text">
+                                        <div class="lot_num4">10008SD5</div>
+                                        <div class="lot_data">
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                            <div class="lot_item">c1458</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -635,42 +1088,18 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
             </div>
         </div>
     </div>
-    <script src="/jquery/jquery.min.js"></script>
+    <!-- /전체 -->
     <script>
-        $(document).ready(function() {
-            updateData();
-        });
-
-        function updateData() {
-            $.ajax({
-                url: "/get_data.php",
-                type: "post",
-                cache: false,
-                success: function(data) {
-
-                    var array = JSON.parse(data);
-
-                    for (let count = 1; count <= array.length; count++) {
-                        $('#data' + count).html(array[count - 1]);
-                    }
-
-                }
-            });
-            timerID = setTimeout("updateData()", 1000); // 1초 단위로 갱신 처리
-
-        }
-
         var data1_1 = {
             labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
             datasets: [{
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(81, 137, 250)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(81, 137, 250)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -680,11 +1109,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [5, 5, 5, 5, 5, 5],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(81, 137, 250)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(81, 137, 250)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -694,11 +1122,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(81, 137, 250)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(81, 137, 250)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -708,11 +1135,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(81, 137, 250)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(81, 137, 250)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -722,11 +1148,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 20, 30, 25, 40, 35],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(81, 137, 250)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(81, 137, 250)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -736,11 +1161,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(81, 137, 250)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(81, 137, 250)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -750,11 +1174,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(81, 137, 250)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(81, 137, 250)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -764,39 +1187,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(81, 137, 250)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(81, 137, 250)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
-                tension: 0.4
-            }]
-        };
-        var data1_9 = {
-            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
-            datasets: [{
-                label: '데이터',
-                data: [10, 10, 10, 11, 10, 9],
-                backgroundColor: 'transparent',
-                borderColor: 'rgba(81, 137, 250)',
-                borderWidth: 2,
-                fill: 'start',
-                pointBorderColor: 'rgba(81, 137, 250)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
-                tension: 0.4
-            }]
-        };
-        var data1_10 = {
-            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
-            datasets: [{
-                label: '데이터',
-                data: [4, 4, 3, 4, 2, 9],
-                backgroundColor: 'transparent',
-                borderColor: 'rgba(81, 137, 250)',
-                borderWidth: 2,
-                fill: 'start',
-                pointBorderColor: 'rgba(81, 137, 250)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -807,11 +1201,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(3, 203, 164)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(3, 203, 164)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -821,11 +1214,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [5, 5, 5, 5, 5, 5],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(3, 203, 164)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(3, 203, 164)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -835,11 +1227,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(3, 203, 164)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(3, 203, 164)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -849,11 +1240,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(3, 203, 164)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(3, 203, 164)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -863,11 +1253,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 20, 30, 25, 40, 35],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(3, 203, 164)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(3, 203, 164)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -877,11 +1266,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(3, 203, 164)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(3, 203, 164)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -891,11 +1279,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(3, 203, 164)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(3, 203, 164)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -905,39 +1292,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(3, 203, 164)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(3, 203, 164)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
-                tension: 0.4
-            }]
-        };
-        var data2_9 = {
-            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
-            datasets: [{
-                label: '데이터',
-                data: [10, 10, 10, 11, 10, 9],
-                backgroundColor: 'transparent',
-                borderColor: 'rgba(3, 203, 164)',
-                borderWidth: 2,
-                fill: 'start',
-                pointBorderColor: 'rgba(3, 203, 164)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
-                tension: 0.4
-            }]
-        };
-        var data2_10 = {
-            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
-            datasets: [{
-                label: '데이터',
-                data: [4, 4, 3, 4, 2, 9],
-                backgroundColor: 'transparent',
-                borderColor: 'rgba(3, 203, 164)',
-                borderWidth: 2,
-                fill: 'start',
-                pointBorderColor: 'rgba(3, 203, 164)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -948,11 +1306,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(0, 190, 234)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(0, 190, 234)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -962,11 +1319,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [5, 5, 5, 5, 5, 5],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(0, 190, 234)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(0, 190, 234)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -976,11 +1332,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(0, 190, 234)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(0, 190, 234)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -990,11 +1345,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(0, 190, 234)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(0, 190, 234)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -1004,11 +1358,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 20, 30, 25, 40, 35],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(0, 190, 234)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(0, 190, 234)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -1018,11 +1371,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(0, 190, 234)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(0, 190, 234)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -1032,11 +1384,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(0, 190, 234)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(0, 190, 234)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -1046,39 +1397,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(0, 190, 234)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(0, 190, 234)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
-                tension: 0.4
-            }]
-        };
-        var data3_9 = {
-            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
-            datasets: [{
-                label: '데이터',
-                data: [10, 10, 10, 11, 10, 9],
-                backgroundColor: 'transparent',
-                borderColor: 'rgba(0, 190, 234)',
-                borderWidth: 2,
-                fill: 'start',
-                pointBorderColor: 'rgba(0, 190, 234)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
-                tension: 0.4
-            }]
-        };
-        var data3_10 = {
-            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
-            datasets: [{
-                label: '데이터',
-                data: [4, 4, 3, 4, 2, 9],
-                backgroundColor: 'transparent',
-                borderColor: 'rgba(0, 190, 234)',
-                borderWidth: 2,
-                fill: 'start',
-                pointBorderColor: 'rgba(0, 190, 234)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -1089,11 +1411,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(165, 116, 238)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(165, 116, 238)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -1103,11 +1424,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [5, 5, 5, 5, 5, 5],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(165, 116, 238)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(165, 116, 238)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -1117,11 +1437,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(165, 116, 238)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(165, 116, 238)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -1131,11 +1450,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(165, 116, 238)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(165, 116, 238)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -1145,11 +1463,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 20, 30, 25, 40, 35],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(165, 116, 238)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(165, 116, 238)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -1159,11 +1476,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(165, 116, 238)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(165, 116, 238)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -1173,11 +1489,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(165, 116, 238)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(165, 116, 238)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -1187,39 +1502,10 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
                 label: '데이터',
                 data: [10, 10, 10, 11, 10, 9],
                 backgroundColor: 'transparent',
-                borderColor: 'rgba(165, 116, 238)',
+                borderColor: 'rgb(51, 225, 239)',
                 borderWidth: 2,
                 fill: 'start',
-                pointBorderColor: 'rgba(165, 116, 238)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
-                tension: 0.4
-            }]
-        };
-        var data4_9 = {
-            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
-            datasets: [{
-                label: '데이터',
-                data: [10, 10, 10, 11, 10, 9],
-                backgroundColor: 'transparent',
-                borderColor: 'rgba(165, 116, 238)',
-                borderWidth: 2,
-                fill: 'start',
-                pointBorderColor: 'rgba(165, 116, 238)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
-                tension: 0.4
-            }]
-        };
-        var data4_10 = {
-            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
-            datasets: [{
-                label: '데이터',
-                data: [9, 9, 3, 9, 2, 9],
-                backgroundColor: 'transparent',
-                borderColor: 'rgba(165, 116, 238)',
-                borderWidth: 2,
-                fill: 'start',
-                pointBorderColor: 'rgba(165, 116, 238)',
-                pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                pointRadius: 0, // 점 숨기기
                 tension: 0.4
             }]
         };
@@ -1317,20 +1603,6 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
             data: data1_8,
             options: options
         });
-        // 차트 생성
-        var ctx = document.getElementById('myChart1_9').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: data1_9,
-            options: options
-        });
-        // 차트 생성
-        var ctx = document.getElementById('myChart1_10').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: data1_10,
-            options: options
-        });
 
         // 차트 생성
         var ctx = document.getElementById('myChart2_1').getContext('2d');
@@ -1386,20 +1658,6 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
         var myChart = new Chart(ctx, {
             type: 'line',
             data: data2_8,
-            options: options
-        });
-        // 차트 생성
-        var ctx = document.getElementById('myChart2_9').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: data2_9,
-            options: options
-        });
-        // 차트 생성
-        var ctx = document.getElementById('myChart2_10').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: data2_10,
             options: options
         });
 
@@ -1459,20 +1717,6 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
             data: data3_8,
             options: options
         });
-        // 차트 생성
-        var ctx = document.getElementById('myChart3_9').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: data3_9,
-            options: options
-        });
-        // 차트 생성
-        var ctx = document.getElementById('myChart3_10').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: data3_10,
-            options: options
-        });
 
         // 차트 생성
         var ctx = document.getElementById('myChart4_1').getContext('2d');
@@ -1530,21 +1774,6 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
             data: data4_8,
             options: options
         });
-        // 차트 생성
-        var ctx = document.getElementById('myChart4_9').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: data4_9,
-            options: options
-        });
-        // 차트 생성
-        var ctx = document.getElementById('myChart4_10').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: data4_10,
-            options: options
-        });
-
 
 
         /////////////////////////////////////////////////////슬라이드
@@ -1572,6 +1801,33 @@ $conn = mysqli_connect("localhost", "server", "00000000", "dataset");
 
         setInterval(function() {
             nextSlide();
+        }, 5000);
+
+        /////////////////////////////////////////////////////슬라이드
+        var datarWrapper = document.querySelector(".data-wrapper");
+        var datas = document.getElementsByClassName("data");
+        var currentdata = 0;
+
+        function showdata(n) {
+            if (n < 0) {
+                currentdata = datas.length - 1;
+            } else if (n >= datas.length) {
+                currentdata = 0;
+            } else {
+                currentdata = n;
+            }
+
+            datarWrapper.style.transform = `translateX(-${currentdata * 100}%)`;
+        }
+
+        function nextdata() {
+            showdata(currentdata + 1);
+        }
+
+        showdata(currentdata);
+
+        setInterval(function() {
+            nextdata();
         }, 5000);
 
         ////////////////////////////////////////////////////////시계

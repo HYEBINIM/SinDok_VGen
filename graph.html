@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/graph.css">
+    <title>EAST</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <!-- 전체 -->
+    <div class="wrapper">
+        <!-- 사이드바 -->
+        <div class="side_bar">
+            <div class="logo" onclick="window.location.href='/index.html'">
+                <img src="/img/logo.png" alt="">
+                <div class="logo_text">EAST COMPANY</div>
+            </div>
+            <div class="menu">
+                <div class="menu_item" onclick="window.location.href='/index.html'">
+                    <div class="menu_path"></div>
+                    <svg width="26" height="26" viewBox="0 0 26 26">
+                        <path id="main_page" data-name="main page" d="M15.422,14.556a1.445,1.445,0,0,0-1.444-1.444H4.444A1.445,1.445,0,0,0,3,14.556v13A1.445,1.445,0,0,0,4.444,29h9.533a1.445,1.445,0,0,0,1.444-1.444ZM29,23.222a1.445,1.445,0,0,0-1.444-1.444H18.889a1.487,1.487,0,0,0-1.444,1.444v4.333A1.445,1.445,0,0,0,18.889,29h8.667A1.445,1.445,0,0,0,29,27.556Zm-2.167.722v2.889H19.611V23.944ZM13.256,15.278V26.833H5.167V15.278ZM29,4.444A1.445,1.445,0,0,0,27.556,3H18.889a1.445,1.445,0,0,0-1.444,1.444V18.311a1.445,1.445,0,0,0,1.444,1.444h8.667A1.445,1.445,0,0,0,29,18.311Zm-2.167.722V17.589H19.611V5.167ZM15.422,4.444A1.445,1.445,0,0,0,13.978,3H4.444A1.445,1.445,0,0,0,3,4.444v5.2a1.445,1.445,0,0,0,1.444,1.444h9.533a1.445,1.445,0,0,0,1.444-1.444v-5.2Zm-2.167.722V8.922H5.167V5.167Z" transform="translate(-3 -3)" fill="#ddddde" />
+                    </svg>
+                </div>
+                <div class="menu_item active" onclick="window.location.href='/graph.html'">
+                    <div class="menu_path"></div>
+                    <svg width="26" height="24" viewBox="0 0 26 24">
+                        <path id="graph_page" data-name="graph page" d="M5.417,9.727v8.727H3.25V9.727ZM7.583,7.545h-6.5V20.636h6.5Zm6.5-4.364V18.455H11.917V3.182ZM16.25,1H9.75V20.636h6.5Zm6.5,14.182v3.273H20.583V15.182ZM24.917,13h-6.5v7.636h6.5ZM26,22.818H0V25H26Z" transform="translate(0 -1)" fill="#ddddde" />
+                    </svg>
+                </div>
+                <div class="menu_item" onclick="window.location.href='/tracking.html'">
+                    <div class="menu_path"></div>
+                    <svg width="26" height="26" viewBox="0 0 26 26">
+                        <path id="iconmonstr-share-2" d="M5.417,9.75A3.25,3.25,0,1,1,2.167,13,3.254,3.254,0,0,1,5.417,9.75Zm0-2.167A5.417,5.417,0,1,0,10.833,13,5.417,5.417,0,0,0,5.417,7.583Zm16.25,9.75a4.305,4.305,0,0,0-3.18,1.409l-5.945-3.171a7.523,7.523,0,0,1-1.023,1.911l5.945,3.171a4.327,4.327,0,1,0,4.2-3.32Zm0,6.5a2.167,2.167,0,1,1,2.167-2.167A2.169,2.169,0,0,1,21.667,23.833ZM21.667,0a4.334,4.334,0,0,0-4.333,4.333,4.331,4.331,0,0,0,.131,1.013L11.519,8.517a7.576,7.576,0,0,1,1.023,1.911l5.945-3.171A4.328,4.328,0,1,0,21.667,0Zm0,6.5a2.167,2.167,0,1,1,2.167-2.167A2.169,2.169,0,0,1,21.667,6.5Z" fill="#ddddde" />
+                    </svg>
+                </div>
+                <div class="menu_item" onclick="window.location.href='/dayily.html'">
+                    <div class="menu_path"></div>
+                    <svg width="26" height="26" viewBox="0 0 26 26">
+                        <path id="daily_page" data-name="daily page" d="M26,26H5.667a1,1,0,0,0,0,2h21A1.372,1.372,0,0,0,28,26.665v-21a1,1,0,0,0-2,0ZM24.667,3.331A1.336,1.336,0,0,0,23.333,2h-20A1.334,1.334,0,0,0,2,3.331v20a1.334,1.334,0,0,0,1.333,1.333h20a1.336,1.336,0,0,0,1.333-1.333Zm-2,6V22.665H4V9.331Zm0-2H4V4H22.667Z" transform="translate(-2 -1.998)" fill="#ddddde" />
+                    </svg>
+                </div>
+                <div class="menu_item" onclick="window.location.href='/index.html'">
+                    <div class="menu_path"></div>
+                    <svg width="26" height="23" viewBox="0 0 26 23">
+                        <path id="month_page" data-name="month page" d="M23.958,24.081H6.042L4.066,11.941H25.935ZM5.36,8.1H24.689l-.3,1.924H5.654ZM6.651,4.915H23.4l-.169,1.256H6.819ZM28,11.3a1.289,1.289,0,0,0-1.3-1.275h-.329c.4-2.637.376-2.442.376-2.567a1.292,1.292,0,0,0-1.3-1.288H25.2c.251-1.867.243-1.788.243-1.894A1.292,1.292,0,0,0,24.14,3H5.909a1.291,1.291,0,0,0-1.3,1.278c0,.106-.01.017.244,1.895H4.605A1.294,1.294,0,0,0,3.3,7.457c0,.129-.021-.034.377,2.568H3.3A1.289,1.289,0,0,0,2,11.3c0,.151-.136-.744,2.2,13.62A1.292,1.292,0,0,0,5.488,26H24.513A1.292,1.292,0,0,0,25.8,24.922C28.139,10.547,28,11.454,28,11.3Z" transform="translate(-2 -2.998)" fill="#ddddde" />
+                    </svg>
+                </div>
+                <div class="menu_item" onclick="window.location.href='/index.html'">
+                    <div class="menu_path"></div>
+                    <svg width="26" height="24" viewBox="0 0 26 24">
+                        <path id="data_page" data-name="data page" d="M21.4,21.914a5.364,5.364,0,0,1-2.987.9,5.442,5.442,0,1,1,4.519-2.447L26,23.457,24.468,25Zm-8.292.9H0V1H7.583c1.836,2.119,2.569,3.273,4.333,3.273H23.833v7.749a7.594,7.594,0,0,0-2.167-1.558V6.455h-9.75c-2.534,0-3.832-1.514-5.327-3.273H2.167V20.636h9.4A7.645,7.645,0,0,0,13.112,22.818Zm5.305-8.727a3.273,3.273,0,1,1-3.25,3.273A3.263,3.263,0,0,1,18.417,14.091Z" transform="translate(0 -1)" fill="#ddddde" fill-rule="evenodd" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <!-- /사이드바 -->
+        <div class="content">
+            <div class="row">
+                <div class="graph_title">Sub Front</div>
+                <div class="graph">
+                    <div class="graph_item">
+                        <div class="position">S02</div>
+                        <div class="name">너트 용접</div>
+                        <div class="inner">
+                            <canvas class="myChart" id="myChart1_1"></canvas>
+                        </div>
+                    </div>
+                    <div class="graph_item">
+                        <div class="position">S04</div>
+                        <div class="name">너트 용접</div>
+                        <div class="inner">
+                            <canvas class="myChart" id="myChart1_2"></canvas>
+                        </div>
+                    </div>
+                    <div class="graph_item">
+                        <div class="position">S06</div>
+                        <div class="name">볼트 용접</div>
+                        <div class="inner">
+                            <canvas class="myChart" id="myChart1_3"></canvas>
+                        </div>
+                    </div>
+                    <div class="graph_item">
+                        <div class="position">S07</div>
+                        <div class="name">탭 검사</div>
+                        <div class="inner">
+                            <canvas class="myChart" id="myChart1_4"></canvas>
+                        </div>
+                    </div>
+                    <div class="graph_item">
+                        <div class="position">S08</div>
+                        <div class="name">스팟 용접</div>
+                        <div class="inner">
+                            <canvas class="myChart" id="myChart1_5"></canvas>
+                        </div>
+                    </div>
+                    <div class="graph_item">
+                        <div class="position none_color">NONE</div>
+                        <div class="name"></div>
+                        <div class="inner">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="graph_title">Sub Rear</div>
+                <div class="graph">
+                    <div class="graph_item">
+                        <div class="position">S02</div>
+                        <div class="name">너트 용접</div>
+                        <div class="inner">
+                            <canvas class="myChart" id="myChart2_1"></canvas>
+                        </div>
+                    </div>
+                    <div class="graph_item">
+                        <div class="position">S04</div>
+                        <div class="name">너트 용접</div>
+                        <div class="inner">
+                            <canvas class="myChart" id="myChart2_2"></canvas>
+                        </div>
+                    </div>
+                    <div class="graph_item">
+                        <div class="position">S06</div>
+                        <div class="name">볼트 용접</div>
+                        <div class="inner">
+                            <canvas class="myChart" id="myChart2_3"></canvas>
+                        </div>
+                    </div>
+                    <div class="graph_item">
+                        <div class="position">S07</div>
+                        <div class="name">탭 검사</div>
+                        <div class="inner">
+                            <canvas class="myChart" id="myChart2_4"></canvas>
+                        </div>
+                    </div>
+                    <div class="graph_item">
+                        <div class="position">S08</div>
+                        <div class="name">스팟 용접</div>
+                        <div class="inner">
+                            <canvas class="myChart" id="myChart2_5"></canvas>
+                        </div>
+                    </div>
+                    <div class="graph_item">
+                        <div class="position none_color">NONE</div>
+                        <div class="name"></div>
+                        <div class="inner">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="graph_title">메인 Line</div>
+                <div class="graph">
+                    <div class="graph_item">
+                        <div class="position">S02</div>
+                        <div class="name">너트 용접</div>
+                        <div class="inner">
+                            <canvas class="myChart" id="myChart3_1"></canvas>
+                        </div>
+                    </div>
+                    <div class="graph_item">
+                        <div class="position">S04</div>
+                        <div class="name">너트 용접</div>
+                        <div class="inner">
+                            <canvas class="myChart" id="myChart3_2"></canvas>
+                        </div>
+                    </div>
+                    <div class="graph_item">
+                        <div class="position">S06</div>
+                        <div class="name">볼트 용접</div>
+                        <div class="inner">
+                            <canvas class="myChart" id="myChart3_3"></canvas>
+                        </div>
+                    </div>
+                    <div class="graph_item">
+                        <div class="position">S07</div>
+                        <div class="name">탭 검사</div>
+                        <div class="inner">
+                            <canvas class="myChart" id="myChart3_4"></canvas>
+                        </div>
+                    </div>
+                    <div class="graph_item">
+                        <div class="position">S08</div>
+                        <div class="name">스팟 용접</div>
+                        <div class="inner">
+                            <canvas class="myChart" id="myChart3_5"></canvas>
+                        </div>
+                    </div>
+                    <div class="graph_item">
+                        <div class="position">W04</div>
+                        <div class="name">비전 검사</div>
+                        <div class="inner">
+                            <canvas class="myChart" id="myChart3_6"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="graph_title">조립 Line</div>
+                <div class="graph">
+                    <div class="graph_item">
+                        <div class="position">S02</div>
+                        <div class="name">너트 용접</div>
+                        <div class="inner">
+                            <canvas class="myChart" id="myChart4_1"></canvas>
+                        </div>
+                    </div>
+                    <div class="graph_item">
+                        <div class="position">S04</div>
+                        <div class="name">너트 용접</div>
+                        <div class="inner">
+                            <canvas class="myChart" id="myChart4_2"></canvas>
+                        </div>
+                    </div>
+                    <div class="info_item">
+                        <div class="info_top">
+                            <div class="info_title">시간당 생산량</div>
+                            <div class="info_part">주간</div>
+                        </div>
+                        <div class="info_bottom">
+                            <div class="info_left">
+                                <div class="left_title">총 생산 개수</div>
+                                <div class="left_count">0개</div>
+                            </div>
+                            <div class="info_right">
+                                <div class="right_title">시간당 생산 개수</div>
+                                <div class="right_count">0개</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info_item">
+                    <div class="info_top">
+                            <div class="info_title">공정 불량률</div>
+                            <div class="info_part">주간</div>
+                        </div>
+                        <div class="info_bottom">
+                            <div class="info_left">
+                                <div class="left_title">주간 시간당 불량 개수</div>
+                                <div class="left_count">0개</div>
+                            </div>
+                            <div class="info_right">
+                                <div class="right_title">주간 불량 퍼센트</div>
+                                <div class="right_count">0.00%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /전체 -->
+    <script>
+        var data1_1 = {
+            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+            datasets: [{
+                label: '데이터',
+                data: [10, 10, 10, 11, 10, 9],
+                backgroundColor: 'transparent',
+                borderColor: 'rgb(51, 225, 239)',
+                borderWidth: 2,
+                fill: 'start',
+                pointRadius: 0, // 점 숨기기
+                tension: 0.4
+            }]
+        };
+        var data1_2 = {
+            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+            datasets: [{
+                label: '데이터',
+                data: [5, 5, 5, 5, 5, 5],
+                backgroundColor: 'transparent',
+                borderColor: 'rgb(51, 225, 239)',
+                borderWidth: 2,
+                fill: 'start',
+                pointRadius: 0, // 점 숨기기
+                tension: 0.4
+            }]
+        };
+        var data1_3 = {
+            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+            datasets: [{
+                label: '데이터',
+                data: [10, 10, 10, 11, 10, 9],
+                backgroundColor: 'transparent',
+                borderColor: 'rgb(51, 225, 239)',
+                borderWidth: 2,
+                fill: 'start',
+                pointRadius: 0, // 점 숨기기
+                tension: 0.4
+            }]
+        };
+        var data1_4 = {
+            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+            datasets: [{
+                label: '데이터',
+                data: [10, 10, 10, 11, 10, 9],
+                backgroundColor: 'transparent',
+                borderColor: 'rgb(51, 225, 239)',
+                borderWidth: 2,
+                fill: 'start',
+                pointRadius: 0, // 점 숨기기
+                tension: 0.4
+            }]
+        };
+        var data1_5 = {
+            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+            datasets: [{
+                label: '데이터',
+                data: [10, 20, 30, 25, 40, 35],
+                backgroundColor: 'transparent',
+                borderColor: 'rgb(51, 225, 239)',
+                borderWidth: 2,
+                fill: 'start',
+                pointRadius: 0, // 점 숨기기
+                tension: 0.4
+            }]
+        };
+
+        var data2_1 = {
+            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+            datasets: [{
+                label: '데이터',
+                data: [10, 10, 10, 11, 10, 9],
+                backgroundColor: 'transparent',
+                borderColor: 'rgb(51, 225, 239)',
+                borderWidth: 2,
+                fill: 'start',
+                pointRadius: 0, // 점 숨기기
+                tension: 0.4
+            }]
+        };
+        var data2_2 = {
+            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+            datasets: [{
+                label: '데이터',
+                data: [5, 5, 5, 5, 5, 5],
+                backgroundColor: 'transparent',
+                borderColor: 'rgb(51, 225, 239)',
+                borderWidth: 2,
+                fill: 'start',
+                pointRadius: 0, // 점 숨기기
+                tension: 0.4
+            }]
+        };
+        var data2_3 = {
+            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+            datasets: [{
+                label: '데이터',
+                data: [10, 10, 10, 11, 10, 9],
+                backgroundColor: 'transparent',
+                borderColor: 'rgb(51, 225, 239)',
+                borderWidth: 2,
+                fill: 'start',
+                pointRadius: 0, // 점 숨기기
+                tension: 0.4
+            }]
+        };
+        var data2_4 = {
+            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+            datasets: [{
+                label: '데이터',
+                data: [10, 10, 10, 11, 10, 9],
+                backgroundColor: 'transparent',
+                borderColor: 'rgb(51, 225, 239)',
+                borderWidth: 2,
+                fill: 'start',
+                pointRadius: 0, // 점 숨기기
+                tension: 0.4
+            }]
+        };
+        var data2_5 = {
+            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+            datasets: [{
+                label: '데이터',
+                data: [10, 20, 30, 25, 40, 35],
+                backgroundColor: 'transparent',
+                borderColor: 'rgb(51, 225, 239)',
+                borderWidth: 2,
+                fill: 'start',
+                pointRadius: 0, // 점 숨기기
+                tension: 0.4
+            }]
+        };
+
+        var data3_1 = {
+            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+            datasets: [{
+                label: '데이터',
+                data: [10, 10, 10, 11, 10, 9],
+                backgroundColor: 'transparent',
+                borderColor: 'rgb(51, 225, 239)',
+                borderWidth: 2,
+                fill: 'start',
+                pointRadius: 0, // 점 숨기기
+                tension: 0.4
+            }]
+        };
+        var data3_2 = {
+            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+            datasets: [{
+                label: '데이터',
+                data: [5, 5, 5, 5, 5, 5],
+                backgroundColor: 'transparent',
+                borderColor: 'rgb(51, 225, 239)',
+                borderWidth: 2,
+                fill: 'start',
+                pointRadius: 0, // 점 숨기기
+                tension: 0.4
+            }]
+        };
+        var data3_3 = {
+            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+            datasets: [{
+                label: '데이터',
+                data: [10, 10, 10, 11, 10, 9],
+                backgroundColor: 'transparent',
+                borderColor: 'rgb(51, 225, 239)',
+                borderWidth: 2,
+                fill: 'start',
+                pointRadius: 0, // 점 숨기기
+                tension: 0.4
+            }]
+        };
+        var data3_4 = {
+            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+            datasets: [{
+                label: '데이터',
+                data: [10, 10, 10, 11, 10, 9],
+                backgroundColor: 'transparent',
+                borderColor: 'rgb(51, 225, 239)',
+                borderWidth: 2,
+                fill: 'start',
+                pointRadius: 0, // 점 숨기기
+                tension: 0.4
+            }]
+        };
+        var data3_5 = {
+            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+            datasets: [{
+                label: '데이터',
+                data: [10, 20, 30, 25, 40, 35],
+                backgroundColor: 'transparent',
+                borderColor: 'rgb(51, 225, 239)',
+                borderWidth: 2,
+                fill: 'start',
+                pointRadius: 0, // 점 숨기기
+                tension: 0.4
+            }]
+        };
+        var data3_6 = {
+            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+            datasets: [{
+                label: '데이터',
+                data: [10, 10, 10, 11, 10, 9],
+                backgroundColor: 'transparent',
+                borderColor: 'rgb(51, 225, 239)',
+                borderWidth: 2,
+                fill: 'start',
+                pointRadius: 0, // 점 숨기기
+                tension: 0.4
+            }]
+        };
+
+        var data4_1 = {
+            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+            datasets: [{
+                label: '데이터',
+                data: [10, 10, 10, 11, 10, 9],
+                backgroundColor: 'transparent',
+                borderColor: 'rgb(51, 225, 239)',
+                borderWidth: 2,
+                fill: 'start',
+                pointRadius: 0, // 점 숨기기
+                tension: 0.4
+            }]
+        };
+        var data4_2 = {
+            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+            datasets: [{
+                label: '데이터',
+                data: [5, 5, 5, 5, 5, 5],
+                backgroundColor: 'transparent',
+                borderColor: 'rgb(51, 225, 239)',
+                borderWidth: 2,
+                fill: 'start',
+                pointRadius: 0, // 점 숨기기
+                tension: 0.4
+            }]
+        };
+
+        var options = {
+            responsive: true,
+            scales: {
+                y: {
+                    display: false,
+                    min: 0, // y축 최솟값 설정
+                    max: 50, // y축 최댓값 설정
+                    grid: {
+                        display: false, // 세로축의 눈금선 숨기기
+                        drawOnChartArea: false, // 차트 영역 내부에만 눈금선 그리기
+                    },
+                    ticks: {
+                        font: {
+                            size: 7 // 폰트 크기 설정
+                        }
+                    }
+                },
+                x: {
+                    display: false,
+                    grid: {
+                        display: false, // 세로축의 눈금선 숨기기
+                    },
+                    // display: false,  // 세로축 눈금 숨기기
+                    ticks: {
+                        font: {
+                            size: 7 // 폰트 크기 설정
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        };
+
+        // 차트 생성
+        var ctx = document.getElementById('myChart1_1').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data1_1,
+            options: options
+        });
+        // 차트 생성
+        var ctx = document.getElementById('myChart1_2').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data1_2,
+            options: options
+        });
+        // 차트 생성
+        var ctx = document.getElementById('myChart1_3').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data1_3,
+            options: options
+        });
+        // 차트 생성
+        var ctx = document.getElementById('myChart1_4').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data1_4,
+            options: options
+        });
+        // 차트 생성
+        var ctx = document.getElementById('myChart1_5').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data1_5,
+            options: options
+        });
+
+        // 차트 생성
+        var ctx = document.getElementById('myChart2_1').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data2_1,
+            options: options
+        });
+        // 차트 생성
+        var ctx = document.getElementById('myChart2_2').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data2_2,
+            options: options
+        });
+        // 차트 생성
+        var ctx = document.getElementById('myChart2_3').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data2_3,
+            options: options
+        });
+        // 차트 생성
+        var ctx = document.getElementById('myChart2_4').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data2_4,
+            options: options
+        });
+        // 차트 생성
+        var ctx = document.getElementById('myChart2_5').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data2_5,
+            options: options
+        });
+
+        // 차트 생성
+        var ctx = document.getElementById('myChart3_1').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data3_1,
+            options: options
+        });
+        // 차트 생성
+        var ctx = document.getElementById('myChart3_2').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data3_2,
+            options: options
+        });
+        // 차트 생성
+        var ctx = document.getElementById('myChart3_3').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data3_3,
+            options: options
+        });
+        // 차트 생성
+        var ctx = document.getElementById('myChart3_4').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data3_4,
+            options: options
+        });
+        // 차트 생성
+        var ctx = document.getElementById('myChart3_5').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data3_5,
+            options: options
+        });
+        // 차트 생성
+        var ctx = document.getElementById('myChart3_6').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data3_6,
+            options: options
+        });
+        // 차트 생성
+        var ctx = document.getElementById('myChart4_1').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data4_1,
+            options: options
+        });
+        // 차트 생성
+        var ctx = document.getElementById('myChart4_2').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data4_2,
+            options: options
+        });
+    </script>
+</body>
+
+</html>
