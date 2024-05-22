@@ -260,125 +260,120 @@
             updateData();
         });
 
+        var ctx1 = [];
+        var set1 = [];
+        var option1 = [];
+        var myChart1 = [];
+        var array1 = []; //1번째 행
+
+        var ctx2 = [];
+        var set2 = [];
+        var option2 = [];
+        var myChart2 = [];
+        var array2 = []; //2번째 행
+        
+        var ctx3 = [];
+        var set3 = [];
+        var option3 = [];
+        var myChart3 = [];
+        var array3 = []; //2번째 행
+
+        var ctx4 = [];
+        var set4 = [];
+        var option4 = [];
+        var myChart4 = [];
+        var array4 = []; //2번째 행
+        // 차트 데이터와 옵션 정의
+        // var maxValues = {};
+        // var minValues = {};
+        // var adjustedMaxValues = {};
+        // var adjustedMinValues = {};
+
+
+        /////////////////////////기능 분리하자!!
+
+        //불러온 데이터 배열을 보내는 곳!! 데이터만 보내자
         function updateData() {
-            //함수가 정의되어 있는지 확인하고 실행!
-            if (typeof createChart1 === "function") {
-                var xhr1 = new XMLHttpRequest();
-                xhr1.onreadystatechange = function() {
-                    if (xhr1.readyState === XMLHttpRequest.DONE) {
-                        if (xhr1.status === 200) {
-                            var data1 = JSON.parse(xhr1.responseText);
-                            createChart1(data1);
-                        } else {
-                            console.error('Failed to fetch data');
-                        }
-                    }
-                };
-                xhr1.open('GET', '/get/get_graph1.php', true);
-                xhr1.send();
-            }
 
-            if (typeof createChart2 === "function") {
-                var xhr2 = new XMLHttpRequest();
-                xhr2.onreadystatechange = function() {
-                    if (xhr2.readyState === XMLHttpRequest.DONE) {
-                        if (xhr2.status === 200) {
-                            var data2 = JSON.parse(xhr2.responseText);
-                            createChart2(data2);
-                        } else {
-                            console.error('Failed to fetch data');
-                        }
-                    }
-                };
-                xhr2.open('GET', '/get/get_graph2.php', true);
-                xhr2.send();
-            }
+            $.ajax({
+                url: "/get/get_graph1.php",
+                type: "post",
+                cache: false,
+                success: function(data1) {
+                    array1 = JSON.parse(data1);
+                }
+            });
 
-            if (typeof createChart3 === "function") {
-                var xhr3 = new XMLHttpRequest();
-                xhr3.onreadystatechange = function() {
-                    if (xhr3.readyState === XMLHttpRequest.DONE) {
-                        if (xhr3.status === 200) {
-                            var data3 = JSON.parse(xhr3.responseText);
-                            createChart3(data3);
-                        } else {
-                            console.error('Failed to fetch data');
-                        }
-                    }
-                };
-                xhr3.open('GET', '/get/get_graph3.php', true);
-                xhr3.send();
-            }
+            $.ajax({
+                url: "/get/get_graph2.php",
+                type: "post",
+                cache: false,
+                success: function(data2) {
+                    array2 = JSON.parse(data2);
+                }
+            });
 
-            if (typeof createChart4 === "function") {
-                var xhr4 = new XMLHttpRequest();
-                xhr4.onreadystatechange = function() {
-                    if (xhr4.readyState === XMLHttpRequest.DONE) {
-                        if (xhr4.status === 200) {
-                            var data4 = JSON.parse(xhr4.responseText);
-                            createChart4(data4);
-                        } else {
-                            console.error('Failed to fetch data');
-                        }
-                    }
-                };
-                xhr4.open('GET', '/get/get_graph4.php', true);
-                xhr4.send();
+            $.ajax({
+                url: "/get/get_graph3.php",
+                type: "post",
+                cache: false,
+                success: function(data3) {
+                    array3 = JSON.parse(data3);
+                }
+            });
+
+            $.ajax({
+                url: "/get/get_graph4.php",
+                type: "post",
+                cache: false,
+                success: function(data4) {
+                    array4 = JSON.parse(data4);
+                }
+            });
+
+            //함수가 존재하는지 판별 후 실행 (예외처리)
+            if(typeof updateChart1 === 'function'){
+            updateChart1(array1);
+            }
+            if(typeof updateChart2 === 'function'){
+            updateChart2(array2);
+            }
+            if(typeof updateChart3 === 'function'){
+            updateChart3(array3);
+            }
+            if(typeof updateChart4 === 'function'){
+            updateChart4(array4);
             }
 
             timerID = setTimeout("updateData()", 1000); // 1초 단위로 갱신 처리
         }
 
+        //1번째 행 데이터 배열을 받아와서 배치 해주자!!
+        function updateChart1(array1) {
+            for (num1 = 1; num1 <= 5; num1++) {
+                ctx1[num1 - 1] = document.getElementById(`myChart1_${num1}`).getContext('2d');
 
-        // 차트 객체를 저장할 전역 변수
-        var chartInstances = {};
+                set1[num1 - 1] = {
+                    labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+                    datasets: [{
+                        label: '데이터',
+                        data: array1[num1 - 1],
+                        backgroundColor: 'transparent',
+                        borderColor: 'rgb(51, 225, 239)',
+                        borderWidth: 2,
+                        fill: 'start',
+                        pointRadius: 0, // 점 숨기기
+                        // tension: 0.4
+                    }]
+                };
 
-        // 특정 DOM 요소를 제거하는 함수
-        function removeChartElement(chartId, elementId) {
-            // 차트 인스턴스가 존재하는지 확인하고 파괴
-            if (chartInstances[chartId]) {
-                chartInstances[chartId].destroy();
-                delete chartInstances[chartId];
-            }
-
-            // // DOM 요소 제거
-            // var element = document.getElementById(elementId);
-            // if (element) {
-            //     element.parentNode.removeChild(element);
-            // }
-        }
-
-        function createChart1(data1) {
-
-            removeChartElement('myChart1_1', 'myChart1_1');
-            removeChartElement('myChart1_2', 'myChart1_2');
-            removeChartElement('myChart1_3', 'myChart1_3');
-            removeChartElement('myChart1_4', 'myChart1_4');
-            removeChartElement('myChart1_5', 'myChart1_5');
-
-            // 데이터의 최댓값과 최솟값을 계산할 객체 생성
-            var maxValues = {};
-            var minValues = {};
-            var adjustedMaxValues = {};
-            var adjustedMinValues = {};
-            var options = {};
-
-            for (var count = 0; count < data1.length; count++) {
-                // 최댓값과 최솟값 계산
-                maxValues[count] = Math.max(...data1[count]);
-                minValues[count] = Math.min(...data1[count]);
-
-                // 최댓값과 최솟값에 여유를 두어 조정
-                adjustedMaxValues[count] = maxValues[count] + 10;
-                adjustedMinValues[count] = minValues[count] - 10;
-
-                options[count] = {
+                option1[num1 - 1] = {
                     responsive: true,
                     scales: {
                         y: {
                             display: false,
-                            min: adjustedMinValues[count], // 계산된 최솟값으로 설정
-                            max: adjustedMaxValues[count], // 계산된 최댓값으로 설정
+                            min: 0, // 계산된 최솟값으로 설정
+                            max: 500, // 계산된 최댓값으로 설정
                             grid: {
                                 display: false, // 세로축의 눈금선 숨기기
                                 drawOnChartArea: false, // 차트 영역 내부에만 눈금선 그리기
@@ -444,154 +439,49 @@
                         duration: 0 // 애니메이션 지속 시간을 0으로 설정하여 애니메이션 비활성화
                     }
                 };
+
+                if (myChart1[num1 - 1]) {
+                    // 차트가 이미 존재하면 업데이트
+                    myChart1[num1 - 1].data = set1[num1 - 1];
+                    myChart1[num1 - 1].options = option1[num1 - 1];
+                    myChart1[num1 - 1].update();
+                } else {
+                    // 차트가 존재하지 않으면 새로 생성
+                    myChart1[num1 - 1] = new Chart(ctx1[num1 - 1], {
+                        type: 'line',
+                        data: set1[num1 - 1],
+                        options: option1[num1 - 1]
+                    });
+                }
             }
-
-            var data1_1 = {
-                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-                datasets: [{
-                    label: '데이터',
-                    data: data1[0],
-                    backgroundColor: 'transparent',
-                    borderColor: 'rgb(51, 225, 239)',
-                    borderWidth: 2,
-                    fill: 'start',
-                    pointRadius: 0, // 점 숨기기
-                    // tension: 0.4
-                }]
-            };
-
-            var data1_2 = {
-                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-                datasets: [{
-                    label: '데이터',
-                    data: data1[1],
-                    backgroundColor: 'transparent',
-                    borderColor: 'rgb(51, 225, 239)',
-                    borderWidth: 2,
-                    fill: 'start',
-                    pointRadius: 0, // 점 숨기기
-                    // tension: 0.4
-                }]
-            };
-
-            var data1_3 = {
-                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-                datasets: [{
-                    label: '데이터',
-                    data: data1[2],
-                    backgroundColor: 'transparent',
-                    borderColor: 'rgb(51, 225, 239)',
-                    borderWidth: 2,
-                    fill: 'start',
-                    pointRadius: 0, // 점 숨기기
-                    // tension: 0.4
-                }]
-            };
-
-            var data1_4 = {
-                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-                datasets: [{
-                    label: '데이터',
-                    data: data1[3],
-                    backgroundColor: 'transparent',
-                    borderColor: 'rgb(51, 225, 239)',
-                    borderWidth: 2,
-                    fill: 'start',
-                    pointRadius: 0, // 점 숨기기
-                    // tension: 0.4
-                }]
-            };
-
-            var data1_5 = {
-                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-                datasets: [{
-                    label: '데이터',
-                    data: data1[4],
-                    backgroundColor: 'transparent',
-                    borderColor: 'rgb(51, 225, 239)',
-                    borderWidth: 2,
-                    fill: 'start',
-                    pointRadius: 0, // 점 숨기기
-                    // tension: 0.4
-                }]
-            };
-
-
-            var ctx1_1 = document.getElementById('myChart1_1').getContext('2d');
-            var myChart1_1 = new Chart(ctx1_1, {
-                type: 'line',
-                data: data1_1,
-                options: options[0]
-            });
-
-            var ctx1_2 = document.getElementById('myChart1_2').getContext('2d');
-            var myChart1_2 = new Chart(ctx1_2, {
-                type: 'line',
-                data: data1_2,
-                options: options[1]
-            });
-
-            var ctx1_3 = document.getElementById('myChart1_3').getContext('2d');
-            var myChart1_3 = new Chart(ctx1_3, {
-                type: 'line',
-                data: data1_3,
-                options: options[2]
-            });
-
-            var ctx1_4 = document.getElementById('myChart1_4').getContext('2d');
-            var myChart1_4 = new Chart(ctx1_4, {
-                type: 'line',
-                data: data1_4,
-                options: options[3]
-            });
-
-            var ctx1_5 = document.getElementById('myChart1_5').getContext('2d');
-            var myChart1_5 = new Chart(ctx1_5, {
-                type: 'line',
-                data: data1_5,
-                options: options[4]
-            });
-
-            // 생성된 차트 객체를 전역 변수에 저장
-            chartInstances['myChart1_1'] = myChart1_1;
-            chartInstances['myChart1_2'] = myChart1_2;
-            chartInstances['myChart1_3'] = myChart1_3;
-            chartInstances['myChart1_4'] = myChart1_4;
-            chartInstances['myChart1_5'] = myChart1_5;
-
+            // console.log(array1);
         }
 
-        function createChart2(data2) {
+        function updateChart2(array2) {
+            for (num2 = 1; num2 <= 5; num2++) {
+                ctx2[num2 - 1] = document.getElementById(`myChart2_${num2}`).getContext('2d');
 
-            removeChartElement('myChart2_1', 'myChart2_1');
-            removeChartElement('myChart2_2', 'myChart2_2');
-            removeChartElement('myChart2_3', 'myChart2_3');
-            removeChartElement('myChart2_4', 'myChart2_4');
-            removeChartElement('myChart2_5', 'myChart2_5');
+                set2[num2 - 1] = {
+                    labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+                    datasets: [{
+                        label: '데이터',
+                        data: array2[num2 - 1],
+                        backgroundColor: 'transparent',
+                        borderColor: 'rgb(51, 225, 239)',
+                        borderWidth: 2,
+                        fill: 'start',
+                        pointRadius: 0, // 점 숨기기
+                        // tension: 0.4
+                    }]
+                };
 
-            // 데이터의 최댓값과 최솟값을 계산할 객체 생성
-            var maxValues = {};
-            var minValues = {};
-            var adjustedMaxValues = {};
-            var adjustedMinValues = {};
-            var options = {};
-
-            for (var count = 0; count < data2.length; count++) {
-                // 최댓값과 최솟값 계산
-                maxValues[count] = Math.max(...data2[count]);
-                minValues[count] = Math.min(...data2[count]);
-
-                // 최댓값과 최솟값에 여유를 두어 조정
-                adjustedMaxValues[count] = maxValues[count] + 10;
-                adjustedMinValues[count] = minValues[count] - 10;
-
-                options[count] = {
+                option2[num2 - 1] = {
                     responsive: true,
                     scales: {
                         y: {
                             display: false,
-                            min: adjustedMinValues[count], // 계산된 최솟값으로 설정
-                            max: adjustedMaxValues[count], // 계산된 최댓값으로 설정
+                            min: 0, // 계산된 최솟값으로 설정
+                            max: 500, // 계산된 최댓값으로 설정
                             grid: {
                                 display: false, // 세로축의 눈금선 숨기기
                                 drawOnChartArea: false, // 차트 영역 내부에만 눈금선 그리기
@@ -657,155 +547,49 @@
                         duration: 0 // 애니메이션 지속 시간을 0으로 설정하여 애니메이션 비활성화
                     }
                 };
+
+                if (myChart2[num2 - 1]) {
+                    // 차트가 이미 존재하면 업데이트
+                    myChart2[num2 - 1].data = set2[num2 - 1];
+                    myChart2[num2 - 1].options = option2[num2 - 1];
+                    myChart2[num2 - 1].update();
+                } else {
+                    // 차트가 존재하지 않으면 새로 생성
+                    myChart2[num2 - 1] = new Chart(ctx2[num2 - 1], {
+                        type: 'line',
+                        data: set2[num2 - 1],
+                        options: option2[num2 - 1]
+                    });
+                }
             }
-
-            var data2_1 = {
-                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-                datasets: [{
-                    label: '데이터',
-                    data: data2[0],
-                    backgroundColor: 'transparent',
-                    borderColor: 'rgb(51, 225, 239)',
-                    borderWidth: 2,
-                    fill: 'start',
-                    pointRadius: 0, // 점 숨기기
-                    // tension: 0.4
-                }]
-            };
-
-            var data2_2 = {
-                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-                datasets: [{
-                    label: '데이터',
-                    data: data2[1],
-                    backgroundColor: 'transparent',
-                    borderColor: 'rgb(51, 225, 239)',
-                    borderWidth: 2,
-                    fill: 'start',
-                    pointRadius: 0, // 점 숨기기
-                    // tension: 0.4
-                }]
-            };
-
-            var data2_3 = {
-                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-                datasets: [{
-                    label: '데이터',
-                    data: data2[2],
-                    backgroundColor: 'transparent',
-                    borderColor: 'rgb(51, 225, 239)',
-                    borderWidth: 2,
-                    fill: 'start',
-                    pointRadius: 0, // 점 숨기기
-                    // tension: 0.4
-                }]
-            };
-
-            var data2_4 = {
-                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-                datasets: [{
-                    label: '데이터',
-                    data: data2[3],
-                    backgroundColor: 'transparent',
-                    borderColor: 'rgb(51, 225, 239)',
-                    borderWidth: 2,
-                    fill: 'start',
-                    pointRadius: 0, // 점 숨기기
-                    // tension: 0.4
-                }]
-            };
-
-            var data2_5 = {
-                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-                datasets: [{
-                    label: '데이터',
-                    data: data2[4],
-                    backgroundColor: 'transparent',
-                    borderColor: 'rgb(51, 225, 239)',
-                    borderWidth: 2,
-                    fill: 'start',
-                    pointRadius: 0, // 점 숨기기
-                    // tension: 0.4
-                }]
-            };
-
-
-            var ctx2_1 = document.getElementById('myChart2_1').getContext('2d');
-            var myChart2_1 = new Chart(ctx2_1, {
-                type: 'line',
-                data: data2_1,
-                options: options[0]
-            });
-
-            var ctx2_2 = document.getElementById('myChart2_2').getContext('2d');
-            var myChart2_2 = new Chart(ctx2_2, {
-                type: 'line',
-                data: data2_2,
-                options: options[1]
-            });
-
-            var ctx2_3 = document.getElementById('myChart2_3').getContext('2d');
-            var myChart2_3 = new Chart(ctx2_3, {
-                type: 'line',
-                data: data2_3,
-                options: options[2]
-            });
-
-            var ctx2_4 = document.getElementById('myChart2_4').getContext('2d');
-            var myChart2_4 = new Chart(ctx2_4, {
-                type: 'line',
-                data: data2_4,
-                options: options[3]
-            });
-
-            var ctx2_5 = document.getElementById('myChart2_5').getContext('2d');
-            var myChart2_5 = new Chart(ctx2_5, {
-                type: 'line',
-                data: data2_5,
-                options: options[4]
-            });
-
-            // 생성된 차트 객체를 전역 변수에 저장
-            chartInstances['myChart2_1'] = myChart2_1;
-            chartInstances['myChart2_2'] = myChart2_2;
-            chartInstances['myChart2_3'] = myChart2_3;
-            chartInstances['myChart2_4'] = myChart2_4;
-            chartInstances['myChart2_5'] = myChart2_5;
-
+            // console.log(array1);
         }
 
-        function createChart3(data3) {
+        function updateChart3(array3) {
+            for (num3 = 1; num3 <= 6; num3++) {
+                ctx3[num3 - 1] = document.getElementById(`myChart3_${num3}`).getContext('2d');
 
-            removeChartElement('myChart3_1', 'myChart3_1');
-            removeChartElement('myChart3_2', 'myChart3_2');
-            removeChartElement('myChart3_3', 'myChart3_3');
-            removeChartElement('myChart3_4', 'myChart3_4');
-            removeChartElement('myChart3_5', 'myChart3_5');
-            removeChartElement('myChart3_6', 'myChart3_6');
+                set3[num3 - 1] = {
+                    labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+                    datasets: [{
+                        label: '데이터',
+                        data: array3[num3 - 1],
+                        backgroundColor: 'transparent',
+                        borderColor: 'rgb(51, 225, 239)',
+                        borderWidth: 2,
+                        fill: 'start',
+                        pointRadius: 0, // 점 숨기기
+                        // tension: 0.4
+                    }]
+                };
 
-            // 데이터의 최댓값과 최솟값을 계산할 객체 생성
-            var maxValues = {};
-            var minValues = {};
-            var adjustedMaxValues = {};
-            var adjustedMinValues = {};
-            var options = {};
-
-            for (var count = 0; count < data3.length; count++) {
-                // 최댓값과 최솟값 계산
-                maxValues[count] = Math.max(...data3[count]);
-                minValues[count] = Math.min(...data3[count]);
-
-                // 최댓값과 최솟값에 여유를 두어 조정
-                adjustedMaxValues[count] = maxValues[count] + 10;
-                adjustedMinValues[count] = minValues[count] - 10;
-
-                options[count] = {
+                option3[num3 - 1] = {
                     responsive: true,
                     scales: {
                         y: {
                             display: false,
-                            min: adjustedMinValues[count], // 계산된 최솟값으로 설정
-                            max: adjustedMaxValues[count], // 계산된 최댓값으로 설정
+                            min: 0, // 계산된 최솟값으로 설정
+                            max: 500, // 계산된 최댓값으로 설정
                             grid: {
                                 display: false, // 세로축의 눈금선 숨기기
                                 drawOnChartArea: false, // 차트 영역 내부에만 눈금선 그리기
@@ -871,173 +655,49 @@
                         duration: 0 // 애니메이션 지속 시간을 0으로 설정하여 애니메이션 비활성화
                     }
                 };
+
+                if (myChart3[num3 - 1]) {
+                    // 차트가 이미 존재하면 업데이트
+                    myChart3[num3 - 1].data = set3[num3 - 1];
+                    myChart3[num3 - 1].options = option3[num3 - 1];
+                    myChart3[num3 - 1].update();
+                } else {
+                    // 차트가 존재하지 않으면 새로 생성
+                    myChart3[num3 - 1] = new Chart(ctx3[num3 - 1], {
+                        type: 'line',
+                        data: set3[num3 - 1],
+                        options: option3[num3 - 1]
+                    });
+                }
             }
-
-            var data3_1 = {
-                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-                datasets: [{
-                    label: '데이터',
-                    data: data3[0],
-                    backgroundColor: 'transparent',
-                    borderColor: 'rgb(51, 225, 239)',
-                    borderWidth: 2,
-                    fill: 'start',
-                    pointRadius: 0, // 점 숨기기
-                    tension: 0
-                }]
-            };
-
-            var data3_2 = {
-                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-                datasets: [{
-                    label: '데이터',
-                    data: data3[1],
-                    backgroundColor: 'transparent',
-                    borderColor: 'rgb(51, 225, 239)',
-                    borderWidth: 2,
-                    fill: 'start',
-                    pointRadius: 0, // 점 숨기기
-                    tension: 0
-                }]
-            };
-
-            var data3_3 = {
-                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-                datasets: [{
-                    label: '데이터',
-                    data: data3[2],
-                    backgroundColor: 'transparent',
-                    borderColor: 'rgb(51, 225, 239)',
-                    borderWidth: 2,
-                    fill: 'start',
-                    pointRadius: 0, // 점 숨기기
-                    tension: 0
-                }]
-            };
-
-            var data3_4 = {
-                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-                datasets: [{
-                    label: '데이터',
-                    data: data3[3],
-                    backgroundColor: 'transparent',
-                    borderColor: 'rgb(51, 225, 239)',
-                    borderWidth: 2,
-                    fill: 'start',
-                    pointRadius: 0, // 점 숨기기
-                    tension: 0
-                }]
-            };
-
-            var data3_5 = {
-                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-                datasets: [{
-                    label: '데이터',
-                    data: data3[4],
-                    backgroundColor: 'transparent',
-                    borderColor: 'rgb(51, 225, 239)',
-                    borderWidth: 2,
-                    fill: 'start',
-                    pointRadius: 0, // 점 숨기기
-                    tension: 0
-                }]
-            };
-
-            var data3_6 = {
-                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-                datasets: [{
-                    label: '데이터',
-                    data: data3[5],
-                    backgroundColor: 'transparent',
-                    borderColor: 'rgb(51, 225, 239)',
-                    borderWidth: 2,
-                    fill: 'start',
-                    pointRadius: 0, // 점 숨기기
-                    tension: 0
-                }]
-            };
-
-
-            var ctx3_1 = document.getElementById('myChart3_1').getContext('2d');
-            var myChart3_1 = new Chart(ctx3_1, {
-                type: 'line',
-                data: data3_1,
-                options: options[0]
-            });
-
-            var ctx3_2 = document.getElementById('myChart3_2').getContext('2d');
-            var myChart3_2 = new Chart(ctx3_2, {
-                type: 'line',
-                data: data3_2,
-                options: options[1]
-            });
-
-            var ctx3_3 = document.getElementById('myChart3_3').getContext('2d');
-            var myChart3_3 = new Chart(ctx3_3, {
-                type: 'line',
-                data: data3_3,
-                options: options[2]
-            });
-
-            var ctx3_4 = document.getElementById('myChart3_4').getContext('2d');
-            var myChart3_4 = new Chart(ctx3_4, {
-                type: 'line',
-                data: data3_4,
-                options: options[3]
-            });
-
-            var ctx3_5 = document.getElementById('myChart3_5').getContext('2d');
-            var myChart3_5 = new Chart(ctx3_5, {
-                type: 'line',
-                data: data3_5,
-                options: options[4]
-            });
-
-            var ctx3_6 = document.getElementById('myChart3_6').getContext('2d');
-            var myChart3_6 = new Chart(ctx3_6, {
-                type: 'line',
-                data: data3_6,
-                options: options[5]
-            });
-
-            // 생성된 차트 객체를 전역 변수에 저장
-            chartInstances['myChart3_1'] = myChart3_1;
-            chartInstances['myChart3_2'] = myChart3_2;
-            chartInstances['myChart3_3'] = myChart3_3;
-            chartInstances['myChart3_4'] = myChart3_4;
-            chartInstances['myChart3_5'] = myChart3_5;
-            chartInstances['myChart3_6'] = myChart3_6;
-
+            // console.log(array1);
         }
 
-        function createChart4(data4) {
+        function updateChart4(array4) {
+            for (num4 = 1; num4 <= 2; num4++) {
+                ctx4[num4 - 1] = document.getElementById(`myChart4_${num4}`).getContext('2d');
 
-            removeChartElement('myChart4_1', 'myChart4_1');
-            removeChartElement('myChart4_2', 'myChart4_2');
+                set4[num4 - 1] = {
+                    labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+                    datasets: [{
+                        label: '데이터',
+                        data: array4[num4 - 1],
+                        backgroundColor: 'transparent',
+                        borderColor: 'rgb(51, 225, 239)',
+                        borderWidth: 2,
+                        fill: 'start',
+                        pointRadius: 0, // 점 숨기기
+                        // tension: 0.4
+                    }]
+                };
 
-            // 데이터의 최댓값과 최솟값을 계산할 객체 생성
-            var maxValues = {};
-            var minValues = {};
-            var adjustedMaxValues = {};
-            var adjustedMinValues = {};
-            var options = {};
-
-            for (var count = 0; count < data4.length; count++) {
-                // 최댓값과 최솟값 계산
-                maxValues[count] = Math.max(...data4[count]);
-                minValues[count] = Math.min(...data4[count]);
-
-                // 최댓값과 최솟값에 여유를 두어 조정
-                adjustedMaxValues[count] = maxValues[count] + 10;
-                adjustedMinValues[count] = minValues[count] - 10;
-
-                options[count] = {
+                option4[num4 - 1] = {
                     responsive: true,
                     scales: {
                         y: {
                             display: false,
-                            min: adjustedMinValues[count], // 계산된 최솟값으로 설정
-                            max: adjustedMaxValues[count], // 계산된 최댓값으로 설정
+                            min: 0, // 계산된 최솟값으로 설정
+                            max: 500, // 계산된 최댓값으로 설정
                             grid: {
                                 display: false, // 세로축의 눈금선 숨기기
                                 drawOnChartArea: false, // 차트 영역 내부에만 눈금선 그리기
@@ -1103,55 +763,22 @@
                         duration: 0 // 애니메이션 지속 시간을 0으로 설정하여 애니메이션 비활성화
                     }
                 };
+
+                if (myChart4[num4 - 1]) {
+                    // 차트가 이미 존재하면 업데이트
+                    myChart4[num4 - 1].data = set4[num4 - 1];
+                    myChart4[num4 - 1].options = option4[num4 - 1];
+                    myChart4[num4 - 1].update();
+                } else {
+                    // 차트가 존재하지 않으면 새로 생성
+                    myChart4[num4 - 1] = new Chart(ctx4[num4 - 1], {
+                        type: 'line',
+                        data: set4[num4 - 1],
+                        options: option4[num4 - 1]
+                    });
+                }
             }
-
-            var data4_1 = {
-                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-                datasets: [{
-                    label: '데이터',
-                    data: data4[0],
-                    backgroundColor: 'transparent',
-                    borderColor: 'rgb(51, 225, 239)',
-                    borderWidth: 2,
-                    fill: 'start',
-                    pointRadius: 0, // 점 숨기기
-                    // tension: 0.4
-                }]
-            };
-
-            var data4_2 = {
-                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-                datasets: [{
-                    label: '데이터',
-                    data: data4[1],
-                    backgroundColor: 'transparent',
-                    borderColor: 'rgb(51, 225, 239)',
-                    borderWidth: 2,
-                    fill: 'start',
-                    pointRadius: 0, // 점 숨기기
-                    // tension: 0.4
-                }]
-            };
-
-            var ctx4_1 = document.getElementById('myChart4_1').getContext('2d');
-            var myChart4_1 = new Chart(ctx4_1, {
-                type: 'line',
-                data: data4_1,
-                options: options[0]
-            });
-
-            var ctx4_2 = document.getElementById('myChart4_2').getContext('2d');
-            var myChart4_2 = new Chart(ctx4_2, {
-                type: 'line',
-                data: data4_2,
-                options: options[1]
-            });
-
-
-            // 생성된 차트 객체를 전역 변수에 저장
-            chartInstances['myChart4_1'] = myChart4_1;
-            chartInstances['myChart4_2'] = myChart4_2;
-
+            // console.log(array1);
         }
     </script>
 </body>

@@ -256,6 +256,7 @@
     <script src="/jquery/jquery.min.js"></script>
 
     <script>
+
         $(document).ready(function() {
             updateData();
         });
@@ -333,28 +334,25 @@
         // 차트 객체를 저장할 전역 변수
         var chartInstances = {};
 
-        // 특정 DOM 요소를 제거하는 함수
-        function removeChartElement(chartId, elementId) {
-            // 차트 인스턴스가 존재하는지 확인하고 파괴
-            if (chartInstances[chartId]) {
-                chartInstances[chartId].destroy();
-                delete chartInstances[chartId];
-            }
-
-            // // DOM 요소 제거
-            // var element = document.getElementById(elementId);
-            // if (element) {
-            //     element.parentNode.removeChild(element);
-            // }
-        }
-
         function createChart1(data1) {
 
-            removeChartElement('myChart1_1', 'myChart1_1');
-            removeChartElement('myChart1_2', 'myChart1_2');
-            removeChartElement('myChart1_3', 'myChart1_3');
-            removeChartElement('myChart1_4', 'myChart1_4');
-            removeChartElement('myChart1_5', 'myChart1_5');
+
+            // 'myChart1_1'에 해당하는 차트가 이미 있으면 제거
+            if (chartInstances['myChart1_1']) {
+                chartInstances['myChart1_1'].destroy();
+            }
+            if (chartInstances['myChart1_2']) {
+                chartInstances['myChart1_2'].destroy();
+            }
+            if (chartInstances['myChart1_3']) {
+                chartInstances['myChart1_3'].destroy();
+            }
+            if (chartInstances['myChart1_4']) {
+                chartInstances['myChart1_4'].destroy();
+            }
+            if (chartInstances['myChart1_5']) {
+                chartInstances['myChart1_5'].destroy();
+            }
 
             // 데이터의 최댓값과 최솟값을 계산할 객체 생성
             var maxValues = {};
@@ -563,11 +561,23 @@
 
         function createChart2(data2) {
 
-            removeChartElement('myChart2_1', 'myChart2_1');
-            removeChartElement('myChart2_2', 'myChart2_2');
-            removeChartElement('myChart2_3', 'myChart2_3');
-            removeChartElement('myChart2_4', 'myChart2_4');
-            removeChartElement('myChart2_5', 'myChart2_5');
+
+            // 'myChart1_1'에 해당하는 차트가 이미 있으면 제거
+            if (chartInstances['myChart2_1']) {
+                chartInstances['myChart2_1'].destroy();
+            }
+            if (chartInstances['myChart2_2']) {
+                chartInstances['myChart2_2'].destroy();
+            }
+            if (chartInstances['myChart2_3']) {
+                chartInstances['myChart2_3'].destroy();
+            }
+            if (chartInstances['myChart2_4']) {
+                chartInstances['myChart2_4'].destroy();
+            }
+            if (chartInstances['myChart2_5']) {
+                chartInstances['myChart2_5'].destroy();
+            }
 
             // 데이터의 최댓값과 최솟값을 계산할 객체 생성
             var maxValues = {};
@@ -776,12 +786,25 @@
 
         function createChart3(data3) {
 
-            removeChartElement('myChart3_1', 'myChart3_1');
-            removeChartElement('myChart3_2', 'myChart3_2');
-            removeChartElement('myChart3_3', 'myChart3_3');
-            removeChartElement('myChart3_4', 'myChart3_4');
-            removeChartElement('myChart3_5', 'myChart3_5');
-            removeChartElement('myChart3_6', 'myChart3_6');
+            if (chartInstances['myChart3_1']) {
+                chartInstances['myChart3_1'].destroy();
+            }
+            if (chartInstances['myChart3_2']) {
+                chartInstances['myChart3_2'].destroy();
+            }
+            if (chartInstances['myChart3_3']) {
+                chartInstances['myChart3_3'].destroy();
+            }
+            if (chartInstances['myChart3_4']) {
+                chartInstances['myChart3_4'].destroy();
+            }
+            if (chartInstances['myChart3_5']) {
+                chartInstances['myChart3_5'].destroy();
+            }
+            if (chartInstances['myChart3_6']) {
+                chartInstances['myChart3_6'].destroy();
+            }
+
 
             // 데이터의 최댓값과 최솟값을 계산할 객체 생성
             var maxValues = {};
@@ -1012,8 +1035,12 @@
 
         function createChart4(data4) {
 
-            removeChartElement('myChart4_1', 'myChart4_1');
-            removeChartElement('myChart4_2', 'myChart4_2');
+            if (chartInstances['myChart4_1']) {
+                chartInstances['myChart4_1'].destroy();
+            }
+            if (chartInstances['myChart4_2']) {
+                chartInstances['myChart4_2'].destroy();
+            }
 
             // 데이터의 최댓값과 최솟값을 계산할 객체 생성
             var maxValues = {};
