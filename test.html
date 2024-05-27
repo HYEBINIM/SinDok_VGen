@@ -265,7 +265,9 @@
         var option1 = [];
         var myChart1 = [];
         var array1 = []; //1번째 행
-
+        var min1 = []; 
+        var max1 = []; 
+        
         var ctx2 = [];
         var set2 = [];
         var option2 = [];
@@ -276,13 +278,13 @@
         var set3 = [];
         var option3 = [];
         var myChart3 = [];
-        var array3 = []; //2번째 행
+        var array3 = []; //3번째 행
 
         var ctx4 = [];
         var set4 = [];
         var option4 = [];
         var myChart4 = [];
-        var array4 = []; //2번째 행
+        var array4 = []; //4번째 행
         // 차트 데이터와 옵션 정의
         // var maxValues = {};
         // var minValues = {};
@@ -366,6 +368,9 @@
                         // tension: 0.4
                     }]
                 };
+
+                max1[num1 - 1] = Math.max(...array1[num1 - 1]);
+                min1[num1 - 1] = Math.min(...array1[num1 - 1]);
 
                 option1[num1 - 1] = {
                     responsive: true,
