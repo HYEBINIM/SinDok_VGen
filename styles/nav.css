@@ -1,0 +1,319 @@
+.mediaViewInfo {
+		--web-view-name: nav;
+		--web-view-id: nav;
+		--web-scale-on-resize: true;
+		--web-enable-deep-linking: true;
+	}
+	:root {
+		--web-view-ids: nav;
+	}
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		border: none;
+	}
+	#nav {
+		position: absolute;
+		width: 113px;
+		height: 1080px;
+		background-color: rgba(255,255,255,1);
+		overflow: hidden;
+		--web-view-name: nav;
+		--web-view-id: nav;
+		--web-scale-on-resize: true;
+		--web-enable-deep-linking: true;
+	}
+	#nav_m {
+		position: absolute;
+		width: 110px;
+		height: 1080px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#back_o {
+		fill: url(#back_o);
+	}
+	.back_o {
+		filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.341));
+		overflow: visible;
+		position: absolute;
+		width: 119px;
+		height: 1089px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#n_40 {
+		position: absolute;
+		width: 40px;
+		height: 39px;
+		left: 34px;
+		top: 28px;
+		overflow: visible;
+	}
+	#logo {
+		position: absolute;
+		width: 20px;
+		height: 25px;
+		left: 12px;
+		top: 0px;
+		overflow: visible;
+	}
+	#EAST_company {
+		left: 0px;
+		top: 28px;
+		position: absolute;
+		overflow: visible;
+		width: 41px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Bebas Neue;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 9px;
+		color: rgba(222,222,223,1);
+	}
+	#n_41 {
+		position: absolute;
+		width: 110px;
+		height: 56px;
+		left: 0px;
+		top: 174px;
+		overflow: visible;
+	}
+	#select_box_u {
+		opacity: 0.2;
+		fill: url(#select_box_u);
+	}
+	.select_box_u {
+		position: absolute;
+		overflow: visible;
+		width: 110px;
+		height: 56px;
+		left: 0px;
+		top: 0px;
+	}
+	#select_bar {
+		fill: rgba(221,221,222,1);
+	}
+	.select_bar {
+		overflow: visible;
+		position: absolute;
+		width: 4.5px;
+		height: 56px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#top_bar {
+		fill: transparent;
+		stroke: rgba(72,72,72,1);
+		stroke-width: 2px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.top_bar {
+		overflow: visible;
+		position: absolute;
+		width: 110px;
+		height: 2px;
+		left: 0px;
+		top: 129px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#n_42 {
+		position: absolute;
+		width: 110px;
+		height: 56px;
+		left: 0px;
+		top: 174px;
+		overflow: visible;
+	}
+	#main_page {
+		fill: rgba(221,221,222,1);
+	}
+	.main_page {
+		overflow: visible;
+		position: absolute;
+		width: 26px;
+		height: 26px;
+		left: 42px;
+		top: 15px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#main_box {
+		opacity: 0.2;
+		fill: transparent;
+	}
+	.main_box {
+		position: absolute;
+		overflow: visible;
+		width: 110px;
+		height: 56px;
+		left: 0px;
+		top: 0px;
+	}
+	#n_43 {
+		position: absolute;
+		width: 110px;
+		height: 56px;
+		left: 0px;
+		top: 279px;
+		overflow: visible;
+	}
+	#graph_page {
+		fill: rgba(221,221,222,1);
+	}
+	.graph_page {
+		overflow: visible;
+		position: absolute;
+		width: 26px;
+		height: 24px;
+		left: 42px;
+		top: 16px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#graph_box {
+		opacity: 0.2;
+		fill: transparent;
+	}
+	.graph_box {
+		position: absolute;
+		overflow: visible;
+		width: 110px;
+		height: 56px;
+		left: 0px;
+		top: 0px;
+	}
+	#n_111 {
+		position: absolute;
+		width: 110px;
+		height: 56px;
+		left: 0px;
+		top: 384px;
+		overflow: visible;
+	}
+	#graph_box_ {
+		opacity: 0.2;
+		fill: transparent;
+	}
+	.graph_box_ {
+		position: absolute;
+		overflow: visible;
+		width: 110px;
+		height: 56px;
+		left: 0px;
+		top: 0px;
+	}
+	#iconmonstr-share-2 {
+		fill: rgba(221,221,222,1);
+	}
+	.iconmonstr-share-2 {
+		overflow: visible;
+		position: absolute;
+		width: 26px;
+		height: 26px;
+		left: 42px;
+		top: 15px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#n_44 {
+		position: absolute;
+		width: 110px;
+		height: 56px;
+		left: 0px;
+		top: 489px;
+		overflow: visible;
+	}
+	#daily_page {
+		fill: rgba(221,221,222,1);
+	}
+	.daily_page {
+		overflow: visible;
+		position: absolute;
+		width: 26px;
+		height: 26px;
+		left: 42px;
+		top: 15px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#daily_box {
+		opacity: 0.2;
+		fill: transparent;
+	}
+	.daily_box {
+		position: absolute;
+		overflow: visible;
+		width: 110px;
+		height: 56px;
+		left: 0px;
+		top: 0px;
+	}
+	#n_45 {
+		position: absolute;
+		width: 110px;
+		height: 56px;
+		left: 0px;
+		top: 594px;
+		overflow: visible;
+	}
+	#month_page {
+		fill: rgba(221,221,222,1);
+	}
+	.month_page {
+		overflow: visible;
+		position: absolute;
+		width: 26px;
+		height: 23px;
+		left: 42px;
+		top: 16px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#month_box {
+		opacity: 0.2;
+		fill: transparent;
+	}
+	.month_box {
+		position: absolute;
+		overflow: visible;
+		width: 110px;
+		height: 56px;
+		left: 0px;
+		top: 0px;
+	}
+	#n_46 {
+		position: absolute;
+		width: 110px;
+		height: 56px;
+		left: 0px;
+		top: 697px;
+		overflow: visible;
+	}
+	#data_page {
+		fill: rgba(221,221,222,1);
+	}
+	.data_page {
+		overflow: visible;
+		position: absolute;
+		width: 26px;
+		height: 24px;
+		left: 43px;
+		top: 16px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#data_box {
+		opacity: 0.2;
+		fill: transparent;
+	}
+	.data_box {
+		position: absolute;
+		overflow: visible;
+		width: 110px;
+		height: 56px;
+		left: 0px;
+		top: 0px;
+	}

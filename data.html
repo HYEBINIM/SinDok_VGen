@@ -1,0 +1,1894 @@
+<?php
+session_start();
+// 데이터베이스 연결 및 쿼리 실행
+$conn = new mysqli("localhost", "server", "dltmxm1234", "dataset");
+if ($conn->connect_error) {
+    die("데이터베이스 연결 실패: " . $conn->connect_error);
+} 
+
+?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://kit.fontawesome.com/75c7e406fa.js" crossorigin="anonymous"></script>
+	<script src="js/jquery-3.6.0.min.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script src="js/jquery.timepicker.min.js"></script>
+	<link rel="stylesheet" href="styles/data.css">
+	<link rel="stylesheet" href="styles/data2.css">
+	<link rel="stylesheet" href="styles/nav.css">
+	<link rel="stylesheet" href="styles/jquery-ui.css">
+	<link rel="stylesheet" href="styles/jquery.timepicker.min.css">
+	<title>data</title>
+
+</head>
+
+<body>
+	<div id="data">
+		<div id="n_">
+			<svg class="top_bar_w" viewBox="0 0 1750 50">
+				<linearGradient id="top_bar_w" spreadMethod="pad" x1="-0.624" x2="1.298" y1="-0.682" y2="1.207">
+					<stop offset="0" stop-color="#5f6265" stop-opacity="1"></stop>
+					<stop offset="1" stop-color="#303133" stop-opacity="1"></stop>
+				</linearGradient>
+				<path id="top_bar_w"
+					d="M 13.671875 0 L 1736.328247070312 0 C 1743.879028320312 0 1750 4.477152347564697 1750 10 L 1750 40 C 1750 45.52284622192383 1743.879028320312 50 1736.328247070312 50 L 13.671875 50 C 6.121107578277588 50 0 45.52284622192383 0 40 L 0 10 C 0 4.477152347564697 6.121107578277588 0 13.671875 0 Z">
+				</path>
+			</svg>
+			<svg class="start_day__box">
+				<rect id="start_day__box" rx="12" ry="12" x="0" y="0" width="431" height="24">
+				</rect>
+			</svg>
+			<svg class="start_day__box_y">
+				<rect id="start_day__box_y" rx="7" ry="7" x="0" y="0" width="14" height="14">
+				</rect>
+			</svg>
+			<svg class="start_day__box_z">
+				<rect id="start_day__box_z" rx="7" ry="7" x="0" y="0" width="14" height="14">
+				</rect>
+			</svg>
+			<svg class="start_day__box_">
+				<rect id="start_day__box_" rx="7" ry="7" x="0" y="0" width="14" height="14">
+				</rect>
+			</svg>
+			<svg class="start_day__box_ba">
+				<rect id="start_day__box_ba" rx="7" ry="7" x="0" y="0" width="14" height="14">
+				</rect>
+			</svg>
+			<form class="search_box" id="searchForm" action="./serach.php" method="post">
+				<input class="search_text" type="text" name="search" placeholder="검색어를 입력하세요">
+				<button class="search_btn" type="submit" onclick="">
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</button>
+			</form>
+			<svg class="search_box_" viewBox="0 0 60 20">
+				<linearGradient id="search_box_" spreadMethod="pad" x1="-0.32" x2="0.98" y1="-0.607" y2="0.836">
+					<stop offset="0" stop-color="#5f6265" stop-opacity="1"></stop>
+					<stop offset="1" stop-color="#303133" stop-opacity="1"></stop>
+				</linearGradient>
+				<path id="search_box_"
+					d="M 5 0 L 55 0 C 57.76142501831055 0 60 2.238576173782349 60 5 L 60 15 C 60 17.76142311096191 57.76142501831055 20 55 20 L 5 20 C 2.238576173782349 20 0 17.76142311096191 0 15 L 0 5 C 0 2.238576173782349 2.238576173782349 0 5 0 Z">
+				</path>
+			</svg>
+			<form class="search_box_">
+				<button class="search_btn_text" type="submit">
+					검색
+				</button>
+			</form>
+			<div id="Text_">
+				<span>다운로드</span>
+			</div>
+			<div id="Sub_L">
+				<span>Sub_L</span>
+			</div>
+			<div id="Sub_S">
+				<span>Sub_S</span>
+			</div>
+			<div id="Main_Line">
+				<span>Main Line</span>
+			</div>
+			<div id="n_Line">
+				<span>조립 Line</span>
+			</div>
+			<svg class="start_day__box_bc">
+				<rect id="start_day__box_bc" rx="12" ry="12" x="0" y="0" width="146" height="24">
+				</rect>
+			</svg>
+			<svg class="start_time_box">
+				<rect id="start_time_box" rx="12" ry="12" x="0" y="0" width="146" height="24">
+				</rect>
+			</svg>
+			<form class="date_">
+				<input type="hidden" id="datepicker">
+				<input type="text" id="datepicker_display" readonly="readonly">
+				<button class="calendar_icon_" type="button">
+					<i class="fa-regular fa-calendar-check"></i>
+				</button>
+			</form>
+			<form class="time_">
+				<input type="hidden" id="timepicker">
+				<input type="text" id="timepicker_display" readonly="readonly">
+				<button id="time_icon_" type="button">
+					<i class="fa-regular fa-clock"></i>
+				</button>
+			</form>
+			<img id="Excel2_35735_1" src="./img/Excel2_35735_1.png" srcset="">
+
+			<svg class="start_day__box_bj">
+				<rect id="start_day__box_bj" rx="4" ry="4" x="0" y="0" width="8" height="8">
+				</rect>
+			</svg>
+		</div>
+
+		<div id="Group" style="overflow:auto;  height:900px; padding: 10px;">
+			<div id="Group_bl">
+				<svg class="n_box_bn">
+					<linearGradient id="n_box_bn" spreadMethod="pad" x1="-0.624" x2="0.986" y1="-0.682" y2="1.052">
+						<stop offset="0" stop-color="#5f6265" stop-opacity="1"></stop>
+						<stop offset="1" stop-color="#303133" stop-opacity="1"></stop>
+					</linearGradient>
+					<rect id="n_box_bn" rx="10" ry="10" x="0" y="0" width="1980" height="841">
+					</rect>
+				</svg>
+
+				<div class="dataContainer">
+					<div id="svgContainer">
+						<svg class="good_bar_1">
+							<rect id="good_bar_1" rx="0" ry="0" x="0" y="0" width="1" height="10">
+							</rect>
+						</svg>
+						<svg class="good_bar_2">
+							<rect id="good_bar_2" rx="0" ry="0" x="0" y="0" width="1" height="10">
+							</rect>
+						</svg>
+						<svg class="good_bar_3">
+							<rect id="good_bar_3" rx="0" ry="0" x="0" y="0" width="1" height="10">
+							</rect>
+						</svg>
+						<svg class="good_bar_4">
+							<rect id="good_bar_4" rx="0" ry="0" x="0" y="0" width="1" height="10">
+							</rect>
+						</svg>
+						<svg class="good_bar_5">
+							<rect id="good_bar_5" rx="0" ry="0" x="0" y="0" width="1" height="10">
+							</rect>
+						</svg>
+						<svg class="good_bar_6">
+							<rect id="good_bar_6" rx="0" ry="0" x="0" y="0" width="1" height="10">
+							</rect>
+						</svg>
+						<svg class="good_bar_7">
+							<rect id="good_bar_7" rx="0" ry="0" x="0" y="0" width="1" height="10">
+							</rect>
+						</svg>
+						<svg class="good_bar_8">
+							<rect id="good_bar_8" rx="0" ry="0" x="0" y="0" width="1" height="10">
+							</rect>
+						</svg>
+						<svg class="good_bar_9">
+							<rect id="good_bar_9" rx="0" ry="0" x="0" y="0" width="1" height="10">
+							</rect>
+						</svg>
+						<svg class="good_bar_10">
+							<rect id="good_bar_10" rx="0" ry="0" x="0" y="0" width="1" height="10">
+							</rect>
+						</svg>
+						<svg class="good_bar_11">
+							<rect id="good_bar_11" rx="0" ry="0" x="0" y="0" width="1" height="10">
+							</rect>
+						</svg>
+						<svg class="good_bar_12">
+							<rect id="good_bar_12" rx="0" ry="0" x="0" y="0" width="1" height="10">
+							</rect>
+						</svg>
+						<svg class="good_bar_12_cf">
+							<rect id="good_bar_12_cf" rx="0" ry="0" x="0" y="0" width="1" height="10">
+							</rect>
+						</svg>
+						<svg class="good_bar_12_cg">
+							<rect id="good_bar_12_cg" rx="0" ry="0" x="0" y="0" width="1" height="10">
+							</rect>
+						</svg>
+					</div>
+
+					<!-- ID -->
+					<div class="data_id" id="id0" name="id"></div>
+					<!-- 제품 이름 -->
+					<div class="data_name" id="name0" name="name"></div>
+					<!-- LOT NUMBER -->
+					<div class="data_lot_code" id="number0" name="lot_code"></div>
+					<!-- 날짜 -->
+					<div class="data_date" id="date0" name="date"></div>
+					<!-- 시간 -->
+					<div class="" id="time0" name="time"></div>
+					<!-- 데이터0 -->
+					<div class="data_data0" id="data0" name="data0"></div>
+					<!-- 데이터1 -->
+					<div class="data_data1" id="data1" name="data1"></div>
+					<!-- 데이터2 -->
+					<div class="data_data2" id="data2" name="data2"></div>
+					<!-- 데이터3 -->
+					<div class="data_data3" id="data3" name="data3"></div>
+					<!-- 데이터4 -->
+					<div class="data_data4" id="data4" name="data4"></div>
+					<!-- 데이터5 -->
+					<div class="data_data5" id="data5" name="data5"></div>
+					<!-- 데이터6 -->
+					<div class="data_data6" id="data6" name="data6"></div>
+					<!-- 데이터7 -->
+					<div class="data_data7" id="data7" name="data7"></div>
+					<!-- 데이터8 -->
+					<div class="data_data8" id="data8" name="data8"></div>
+					<!-- 데이터9 -->
+					<div class="data_data9" id="data9" name="data9"></div>
+					<!-- 데이터10 -->
+					<div class="data_data10" id="data10" name="data10"></div>
+					<!-- 데이터11 -->
+					<div class="data_data11" id="data11" name="data11"></div>
+					<!-- 데이터12 -->
+					<div class="data_data12" id="data12" name="data12"></div>
+				</div>
+				<div id="n__ch">
+					<svg class="good_bar_1_cw">
+						<rect id="good_bar_1_cw" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_cx">
+						<rect id="good_bar_2_cx" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_cy">
+						<rect id="good_bar_3_cy" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_cz">
+						<rect id="good_bar_4_cz" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_c">
+						<rect id="good_bar_5_c" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_c">
+						<rect id="good_bar_6_c" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_c">
+						<rect id="good_bar_7_c" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_c">
+						<rect id="good_bar_8_c" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_c">
+						<rect id="good_bar_9_c" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_c">
+						<rect id="good_bar_10_c" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_c">
+						<rect id="good_bar_11_c" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_c">
+						<rect id="good_bar_12_c" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_da">
+						<rect id="good_bar_12_da" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_db">
+						<rect id="good_bar_12_db" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+				<div id="n__da">
+					<svg class="good_bar_1_dp">
+						<rect id="good_bar_1_dp" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_dq">
+						<rect id="good_bar_2_dq" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_dr">
+						<rect id="good_bar_3_dr" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_ds">
+						<rect id="good_bar_4_ds" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_dt">
+						<rect id="good_bar_5_dt" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_du">
+						<rect id="good_bar_6_du" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_dv">
+						<rect id="good_bar_7_dv" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_dw">
+						<rect id="good_bar_8_dw" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_dx">
+						<rect id="good_bar_9_dx" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_dy">
+						<rect id="good_bar_10_dy" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_dz">
+						<rect id="good_bar_11_dz" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_d">
+						<rect id="good_bar_12_d" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_ea">
+						<rect id="good_bar_12_ea" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_eb">
+						<rect id="good_bar_12_eb" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+				<div id="n__d">
+					<svg class="good_bar_1_ei">
+						<rect id="good_bar_1_ei" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_ej">
+						<rect id="good_bar_2_ej" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_ek">
+						<rect id="good_bar_3_ek" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_el">
+						<rect id="good_bar_4_el" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_em">
+						<rect id="good_bar_5_em" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_en">
+						<rect id="good_bar_6_en" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_eo">
+						<rect id="good_bar_7_eo" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_ep">
+						<rect id="good_bar_8_ep" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_eq">
+						<rect id="good_bar_9_eq" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_er">
+						<rect id="good_bar_10_er" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_es">
+						<rect id="good_bar_11_es" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_et">
+						<rect id="good_bar_12_et" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_eu">
+						<rect id="good_bar_12_eu" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_ev">
+						<rect id="good_bar_12_ev" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+				<div id="n__ew">
+					<svg class="good_bar_1_fb">
+						<rect id="good_bar_1_fb" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_fc">
+						<rect id="good_bar_2_fc" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_fd">
+						<rect id="good_bar_3_fd" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_fe">
+						<rect id="good_bar_4_fe" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_ff">
+						<rect id="good_bar_5_ff" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_fg">
+						<rect id="good_bar_6_fg" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_fh">
+						<rect id="good_bar_7_fh" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_fi">
+						<rect id="good_bar_8_fi" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_fj">
+						<rect id="good_bar_9_fj" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_fk">
+						<rect id="good_bar_10_fk" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_fl">
+						<rect id="good_bar_11_fl" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_fm">
+						<rect id="good_bar_12_fm" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_fn">
+						<rect id="good_bar_12_fn" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_fo">
+						<rect id="good_bar_12_fo" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+				<div id="n__fp">
+					<svg class="good_bar_1_f">
+						<rect id="good_bar_1_f" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_f">
+						<rect id="good_bar_2_f" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_f">
+						<rect id="good_bar_3_f" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_f">
+						<rect id="good_bar_4_f" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_f">
+						<rect id="good_bar_5_f" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_f">
+						<rect id="good_bar_6_f" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_ga">
+						<rect id="good_bar_7_ga" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_gb">
+						<rect id="good_bar_8_gb" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_gc">
+						<rect id="good_bar_9_gc" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_gd">
+						<rect id="good_bar_10_gd" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_ge">
+						<rect id="good_bar_11_ge" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_gf">
+						<rect id="good_bar_12_gf" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_gg">
+						<rect id="good_bar_12_gg" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_gh">
+						<rect id="good_bar_12_gh" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+				<div id="n__gi">
+					<svg class="good_bar_1_gx">
+						<rect id="good_bar_1_gx" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_gy">
+						<rect id="good_bar_2_gy" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_gz">
+						<rect id="good_bar_3_gz" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_g">
+						<rect id="good_bar_4_g" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_g">
+						<rect id="good_bar_5_g" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_g">
+						<rect id="good_bar_6_g" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_g">
+						<rect id="good_bar_7_g" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_g">
+						<rect id="good_bar_8_g" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_g">
+						<rect id="good_bar_9_g" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_g">
+						<rect id="good_bar_10_g" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_g">
+						<rect id="good_bar_11_g" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_g">
+						<rect id="good_bar_12_g" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_ha">
+						<rect id="good_bar_12_ha" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_hb">
+						<rect id="good_bar_12_hb" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+				<div id="n__hb">
+					<svg class="good_bar_1_hq">
+						<rect id="good_bar_1_hq" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_hr">
+						<rect id="good_bar_2_hr" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_hs">
+						<rect id="good_bar_3_hs" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_ht">
+						<rect id="good_bar_4_ht" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_hu">
+						<rect id="good_bar_5_hu" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_hv">
+						<rect id="good_bar_6_hv" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_hw">
+						<rect id="good_bar_7_hw" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_hx">
+						<rect id="good_bar_8_hx" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_hy">
+						<rect id="good_bar_9_hy" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_hz">
+						<rect id="good_bar_10_hz" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_h">
+						<rect id="good_bar_11_h" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_h">
+						<rect id="good_bar_12_h" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_ia">
+						<rect id="good_bar_12_ia" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_ib">
+						<rect id="good_bar_12_ib" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+				<div id="n__h">
+					<svg class="good_bar_1_ij">
+						<rect id="good_bar_1_ij" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_ik">
+						<rect id="good_bar_2_ik" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_il">
+						<rect id="good_bar_3_il" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_im">
+						<rect id="good_bar_4_im" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_in">
+						<rect id="good_bar_5_in" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_io">
+						<rect id="good_bar_6_io" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_ip">
+						<rect id="good_bar_7_ip" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_iq">
+						<rect id="good_bar_8_iq" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_ir">
+						<rect id="good_bar_9_ir" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_is">
+						<rect id="good_bar_10_is" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_it">
+						<rect id="good_bar_11_it" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_iu">
+						<rect id="good_bar_12_iu" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_iv">
+						<rect id="good_bar_12_iv" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_iw">
+						<rect id="good_bar_12_iw" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+				<div id="n__ix">
+					<svg class="good_bar_1_jc">
+						<rect id="good_bar_1_jc" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_jd">
+						<rect id="good_bar_2_jd" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_je">
+						<rect id="good_bar_3_je" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_jf">
+						<rect id="good_bar_4_jf" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_jg">
+						<rect id="good_bar_5_jg" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_jh">
+						<rect id="good_bar_6_jh" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_ji">
+						<rect id="good_bar_7_ji" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_jj">
+						<rect id="good_bar_8_jj" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_jk">
+						<rect id="good_bar_9_jk" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_jl">
+						<rect id="good_bar_10_jl" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_jm">
+						<rect id="good_bar_11_jm" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_jn">
+						<rect id="good_bar_12_jn" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_jo">
+						<rect id="good_bar_12_jo" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_jp">
+						<rect id="good_bar_12_jp" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+				<div id="n__jq">
+					<svg class="good_bar_1_j">
+						<rect id="good_bar_1_j" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_j">
+						<rect id="good_bar_2_j" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_j">
+						<rect id="good_bar_3_j" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_j">
+						<rect id="good_bar_4_j" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_j">
+						<rect id="good_bar_5_j" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_ka">
+						<rect id="good_bar_6_ka" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_kb">
+						<rect id="good_bar_7_kb" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_kc">
+						<rect id="good_bar_8_kc" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_kd">
+						<rect id="good_bar_9_kd" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_ke">
+						<rect id="good_bar_10_ke" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_kf">
+						<rect id="good_bar_11_kf" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_kg">
+						<rect id="good_bar_12_kg" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_kh">
+						<rect id="good_bar_12_kh" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_ki">
+						<rect id="good_bar_12_ki" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+				<div id="n__kj">
+					<svg class="good_bar_1_ky">
+						<rect id="good_bar_1_ky" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_kz">
+						<rect id="good_bar_2_kz" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_k">
+						<rect id="good_bar_3_k" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_k">
+						<rect id="good_bar_4_k" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_k">
+						<rect id="good_bar_5_k" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_k">
+						<rect id="good_bar_6_k" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_k">
+						<rect id="good_bar_7_k" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_k">
+						<rect id="good_bar_8_k" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_k">
+						<rect id="good_bar_9_k" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_k">
+						<rect id="good_bar_10_k" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_k">
+						<rect id="good_bar_11_k" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_k">
+						<rect id="good_bar_12_k" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_la">
+						<rect id="good_bar_12_la" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_lb">
+						<rect id="good_bar_12_lb" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+				<div id="n__lc">
+					<svg class="good_bar_1_lr">
+						<rect id="good_bar_1_lr" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_ls">
+						<rect id="good_bar_2_ls" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_lt">
+						<rect id="good_bar_3_lt" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_lu">
+						<rect id="good_bar_4_lu" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_lv">
+						<rect id="good_bar_5_lv" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_lw">
+						<rect id="good_bar_6_lw" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_lx">
+						<rect id="good_bar_7_lx" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_ly">
+						<rect id="good_bar_8_ly" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_lz">
+						<rect id="good_bar_9_lz" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_l">
+						<rect id="good_bar_10_l" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_l">
+						<rect id="good_bar_11_l" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_l">
+						<rect id="good_bar_12_l" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_ma">
+						<rect id="good_bar_12_ma" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_mb">
+						<rect id="good_bar_12_mb" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+				<div id="n__l">
+					<svg class="good_bar_1_mk">
+						<rect id="good_bar_1_mk" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_ml">
+						<rect id="good_bar_2_ml" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_mm">
+						<rect id="good_bar_3_mm" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_mn">
+						<rect id="good_bar_4_mn" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_mo">
+						<rect id="good_bar_5_mo" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_mp">
+						<rect id="good_bar_6_mp" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_mq">
+						<rect id="good_bar_7_mq" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_mr">
+						<rect id="good_bar_8_mr" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_ms">
+						<rect id="good_bar_9_ms" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_mt">
+						<rect id="good_bar_10_mt" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_mu">
+						<rect id="good_bar_11_mu" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_mv">
+						<rect id="good_bar_12_mv" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_mw">
+						<rect id="good_bar_12_mw" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_mx">
+						<rect id="good_bar_12_mx" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+				<div id="n__my">
+					<svg class="good_bar_1_nd">
+						<rect id="good_bar_1_nd" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_ne">
+						<rect id="good_bar_2_ne" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_nf">
+						<rect id="good_bar_3_nf" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_ng">
+						<rect id="good_bar_4_ng" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_nh">
+						<rect id="good_bar_5_nh" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_ni">
+						<rect id="good_bar_6_ni" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_nj">
+						<rect id="good_bar_7_nj" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_nk">
+						<rect id="good_bar_8_nk" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_nl">
+						<rect id="good_bar_9_nl" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_nm">
+						<rect id="good_bar_10_nm" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_nn">
+						<rect id="good_bar_11_nn" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_no">
+						<rect id="good_bar_12_no" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_np">
+						<rect id="good_bar_12_np" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_nq">
+						<rect id="good_bar_12_nq" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+				<div id="n__nr">
+					<svg class="good_bar_1_n">
+						<rect id="good_bar_1_n" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_n">
+						<rect id="good_bar_2_n" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_n">
+						<rect id="good_bar_3_n" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_n">
+						<rect id="good_bar_4_n" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_oa">
+						<rect id="good_bar_5_oa" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_ob">
+						<rect id="good_bar_6_ob" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_oc">
+						<rect id="good_bar_7_oc" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_od">
+						<rect id="good_bar_8_od" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_oe">
+						<rect id="good_bar_9_oe" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_of">
+						<rect id="good_bar_10_of" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_og">
+						<rect id="good_bar_11_og" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_oh">
+						<rect id="good_bar_12_oh" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_oi">
+						<rect id="good_bar_12_oi" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_oj">
+						<rect id="good_bar_12_oj" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+				<div id="n__ok">
+					<svg class="good_bar_1_oz">
+						<rect id="good_bar_1_oz" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_o">
+						<rect id="good_bar_2_o" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_o">
+						<rect id="good_bar_3_o" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_o">
+						<rect id="good_bar_4_o" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_o">
+						<rect id="good_bar_5_o" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_o">
+						<rect id="good_bar_6_o" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_o">
+						<rect id="good_bar_7_o" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_o">
+						<rect id="good_bar_8_o" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_o">
+						<rect id="good_bar_9_o" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_o">
+						<rect id="good_bar_10_o" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_o">
+						<rect id="good_bar_11_o" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_pa">
+						<rect id="good_bar_12_pa" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_pb">
+						<rect id="good_bar_12_pb" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_pc">
+						<rect id="good_bar_12_pc" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+				<div id="n__pd">
+					<svg class="good_bar_1_ps">
+						<rect id="good_bar_1_ps" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_pt">
+						<rect id="good_bar_2_pt" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_pu">
+						<rect id="good_bar_3_pu" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_pv">
+						<rect id="good_bar_4_pv" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_pw">
+						<rect id="good_bar_5_pw" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_px">
+						<rect id="good_bar_6_px" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_py">
+						<rect id="good_bar_7_py" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_pz">
+						<rect id="good_bar_8_pz" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_p">
+						<rect id="good_bar_9_p" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_p">
+						<rect id="good_bar_10_p" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_p">
+						<rect id="good_bar_11_p" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_p">
+						<rect id="good_bar_12_p" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_qa">
+						<rect id="good_bar_12_qa" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_qb">
+						<rect id="good_bar_12_qb" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+				<div id="n__p">
+					<svg class="good_bar_1_ql">
+						<rect id="good_bar_1_ql" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_qm">
+						<rect id="good_bar_2_qm" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_qn">
+						<rect id="good_bar_3_qn" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_qo">
+						<rect id="good_bar_4_qo" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_qp">
+						<rect id="good_bar_5_qp" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_qq">
+						<rect id="good_bar_6_qq" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_qr">
+						<rect id="good_bar_7_qr" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_qs">
+						<rect id="good_bar_8_qs" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_qt">
+						<rect id="good_bar_9_qt" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_qu">
+						<rect id="good_bar_10_qu" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_qv">
+						<rect id="good_bar_11_qv" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_qw">
+						<rect id="good_bar_12_qw" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_qx">
+						<rect id="good_bar_12_qx" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_qy">
+						<rect id="good_bar_12_qy" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+				<div id="n__qz">
+					<svg class="good_bar_1_re">
+						<rect id="good_bar_1_re" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_rf">
+						<rect id="good_bar_2_rf" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_rg">
+						<rect id="good_bar_3_rg" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_rh">
+						<rect id="good_bar_4_rh" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_ri">
+						<rect id="good_bar_5_ri" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_rj">
+						<rect id="good_bar_6_rj" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_rk">
+						<rect id="good_bar_7_rk" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_rl">
+						<rect id="good_bar_8_rl" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_rm">
+						<rect id="good_bar_9_rm" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_rn">
+						<rect id="good_bar_10_rn" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_ro">
+						<rect id="good_bar_11_ro" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_rp">
+						<rect id="good_bar_12_rp" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_rq">
+						<rect id="good_bar_12_rq" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_rr">
+						<rect id="good_bar_12_rr" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+				<div id="n__rs">
+					<svg class="good_bar_1_r">
+						<rect id="good_bar_1_r" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_r">
+						<rect id="good_bar_2_r" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_r">
+						<rect id="good_bar_3_r" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_sa">
+						<rect id="good_bar_4_sa" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_sb">
+						<rect id="good_bar_5_sb" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_sc">
+						<rect id="good_bar_6_sc" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_sd">
+						<rect id="good_bar_7_sd" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_se">
+						<rect id="good_bar_8_se" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_sf">
+						<rect id="good_bar_9_sf" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_sg">
+						<rect id="good_bar_10_sg" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_sh">
+						<rect id="good_bar_11_sh" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_si">
+						<rect id="good_bar_12_si" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_sj">
+						<rect id="good_bar_12_sj" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_sk">
+						<rect id="good_bar_12_sk" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+				<div id="n__sl">
+					<svg class="good_bar_1_s">
+						<rect id="good_bar_1_s" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_s">
+						<rect id="good_bar_2_s" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_s">
+						<rect id="good_bar_3_s" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_s">
+						<rect id="good_bar_4_s" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_s">
+						<rect id="good_bar_5_s" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_s">
+						<rect id="good_bar_6_s" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_s">
+						<rect id="good_bar_7_s" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_s">
+						<rect id="good_bar_8_s" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_s">
+						<rect id="good_bar_9_s" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_s">
+						<rect id="good_bar_10_s" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_ta">
+						<rect id="good_bar_11_ta" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_tb">
+						<rect id="good_bar_12_tb" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_tc">
+						<rect id="good_bar_12_tc" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_td">
+						<rect id="good_bar_12_td" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+				<div id="n__te">
+					<svg class="good_bar_1_tt">
+						<rect id="good_bar_1_tt" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_tu">
+						<rect id="good_bar_2_tu" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_tv">
+						<rect id="good_bar_3_tv" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_tw">
+						<rect id="good_bar_4_tw" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_tx">
+						<rect id="good_bar_5_tx" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_ty">
+						<rect id="good_bar_6_ty" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_tz">
+						<rect id="good_bar_7_tz" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_t">
+						<rect id="good_bar_8_t" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_t">
+						<rect id="good_bar_9_t" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_t">
+						<rect id="good_bar_10_t" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_t">
+						<rect id="good_bar_11_t" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_t">
+						<rect id="good_bar_12_t" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_ua">
+						<rect id="good_bar_12_ua" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_ub">
+						<rect id="good_bar_12_ub" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+				<div id="n__t">
+					<svg class="good_bar_1_um">
+						<rect id="good_bar_1_um" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_un">
+						<rect id="good_bar_2_un" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_uo">
+						<rect id="good_bar_3_uo" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_up">
+						<rect id="good_bar_4_up" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_uq">
+						<rect id="good_bar_5_uq" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_ur">
+						<rect id="good_bar_6_ur" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_us">
+						<rect id="good_bar_7_us" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_ut">
+						<rect id="good_bar_8_ut" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_uu">
+						<rect id="good_bar_9_uu" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_uv">
+						<rect id="good_bar_10_uv" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_uw">
+						<rect id="good_bar_11_uw" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_ux">
+						<rect id="good_bar_12_ux" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_uy">
+						<rect id="good_bar_12_uy" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_uz">
+						<rect id="good_bar_12_uz" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+				<div id="n__u">
+					<svg class="good_bar_1_vf">
+						<rect id="good_bar_1_vf" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_vg">
+						<rect id="good_bar_2_vg" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_vh">
+						<rect id="good_bar_3_vh" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_vi">
+						<rect id="good_bar_4_vi" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_vj">
+						<rect id="good_bar_5_vj" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_vk">
+						<rect id="good_bar_6_vk" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_vl">
+						<rect id="good_bar_7_vl" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_vm">
+						<rect id="good_bar_8_vm" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_vn">
+						<rect id="good_bar_9_vn" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_vo">
+						<rect id="good_bar_10_vo" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_vp">
+						<rect id="good_bar_11_vp" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_vq">
+						<rect id="good_bar_12_vq" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_vr">
+						<rect id="good_bar_12_vr" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_vs">
+						<rect id="good_bar_12_vs" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+			</div>
+			<div id="Group_vt">
+				<svg class="n_box_vv">
+					<linearGradient id="n_box_vv" spreadMethod="pad" x1="-0.624" x2="0.986" y1="-0.682" y2="1.052">
+						<stop offset="0" stop-color="#5f6265" stop-opacity="1"></stop>
+						<stop offset="1" stop-color="#303133" stop-opacity="1"></stop>
+					</linearGradient>
+					<rect id="n_box_vv" rx="10" ry="10" x="0" y="0" width="1980" height="57">
+					</rect>
+				</svg>
+				<div id="Group_vw">
+					<div id="ID">
+						<span>ID</span>
+					</div>
+					<div id="Product_Name">
+						<span>Product_Name</span>
+					</div>
+					<div id="ROT_Number">
+						<span>ROT_Number</span>
+					</div>
+					<div id="TimeStamp">
+						<span>TimeStamp</span>
+					</div>
+					<div id="Sub_F_S02">
+						<span>너트용접1</span>
+					</div>
+					<div id="Sub_F_S04">
+						<span>너트용접2</span>
+					</div>
+					<div id="Sub_F_S06">
+						<span>볼트용접1</span>
+					</div>
+					<div id="Sub_F_S07">
+						<span>탭검사1</span>
+					</div>
+					<div id="Sub_F_S08">
+						<span>스폿용접1</span>
+					</div>
+					<div id="Sub_R_S11">
+						<span>너트용접3</span>
+					</div>
+					<div id="Sub_R_S13">
+						<span>너트용접4</span>
+					</div>
+					<div id="Sub_R_S15">
+						<span>볼트용접2</span>
+					</div>
+					<div id="Sub_R_S17">
+						<span>탭검사2</span>
+					</div>
+					<div id="Main_a_S18">
+						<span>스폿용접2</span>
+					</div>
+					<div id="Main_a_S19">
+						<span>비전검사1</span>
+					</div>
+					<div id="asm_a_S20">
+						<span>비전검사2</span>
+					</div>
+					<div id="asm_a_S21">
+						<span>탭검사3</span>
+					</div>
+					<svg class="good_bar_1_wb">
+						<rect id="good_bar_1_wb" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_2_wc">
+						<rect id="good_bar_2_wc" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_3_wd">
+						<rect id="good_bar_3_wd" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_4_we">
+						<rect id="good_bar_4_we" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_5_wf">
+						<rect id="good_bar_5_wf" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_6_wg">
+						<rect id="good_bar_6_wg" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_7_wh">
+						<rect id="good_bar_7_wh" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_8_wi">
+						<rect id="good_bar_8_wi" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_9_wj">
+						<rect id="good_bar_9_wj" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_10_wk">
+						<rect id="good_bar_10_wk" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_11_wl">
+						<rect id="good_bar_11_wl" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_wm">
+						<rect id="good_bar_12_wm" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_wn">
+						<rect id="good_bar_12_wn" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_wo">
+						<rect id="good_bar_12_wo" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_21">
+						<rect id="good_bar_12_21" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+					<svg class="good_bar_12_22">
+						<rect id="good_bar_12_22" rx="0" ry="0" x="0" y="0" width="1" height="10">
+						</rect>
+					</svg>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	</div>
+	<script>
+		$(function () {
+			// 현재 날짜를 표시	
+			var today = new Date();
+			var dateFormat = "yy-mm-dd";
+			$("#datepicker_display").val($.datepicker.formatDate(dateFormat, today));
+
+
+			// DatePicker 초기화
+			$("#datepicker_display").datepicker({
+				dateFormat: dateFormat,
+				changeMonth: true,  // 월 선택을 위한 셀렉트박스 활성화
+				changeYear: true,   // 년 선택을 위한 셀렉트박스 활성화
+				yearRange: "c-10:c+10", // 년도 범위 설정 (예: 현재 년도로부터 10년 전부터 10년 후까지)
+				dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+				dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'],
+				monthNamesShort: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+				showOtherMonths: true,
+				onSelect: function (dateText) {
+					// 사용자가 날짜를 선택할 때마다 입력 필드에 날짜를 업데이트
+					$("#datepicker_display").val(dateText);
+				}
+			});
+
+			// 달력 아이콘 클릭 시 DatePicker 활성화
+			$(".calendar_icon_").click(function () {
+				$("#datepicker_display").datepicker("show");
+			});
+
+			// 현재 시간을 표시하는 함수
+			function getCurrentTimeForTimePicker() {
+				var now = new Date();
+				var hours = now.getHours(); // 0-23 시간
+				var minutes = now.getMinutes();
+
+				// 분이 한 자리 숫자일 경우 앞에 '0'을 추가
+				minutes = minutes < 10 ? '0' + minutes : minutes;
+
+				// 24시간 형식으로 변환
+				hours = hours < 10 ? '0' + hours : hours;
+
+				// 'HH:mm' 형식으로 반환
+				var currentTime = hours + ':' + minutes;
+				return currentTime;
+			}
+			$(document).ready(function () {
+				$('#timepicker_display').timepicker({
+					timeFormat: 'hh:mm p', // 24시간 형식으로 수정
+					interval: 1,
+					defaultTime: getCurrentTimeForTimePicker(),
+					startTime: getCurrentTimeForTimePicker(),
+					dynamic: false,
+					dropdown: true,
+					scrollbar: true
+				});
+
+				$("#time_icon_").click(function () {
+					$('#timepicker_display').timepicker('show');
+				});
+			});
+		});
+
+		// data 가져오기
+		function loadData() {
+			fetch('getdata.php') //
+				.then(response => response.json())
+				.then(data => {
+					const idContainer = document.getElementById('id0');
+					const nameContainer = document.getElementById('name0');
+					const lotContainer = document.getElementById('number0');
+					const dateContainer = document.getElementById('date0');
+					const timeContainer = document.getElementById('time0');
+					const data0Container = document.getElementById('data0');
+					const data1Container = document.getElementById('data1');
+					const data2Container = document.getElementById('data2');
+					const data3Container = document.getElementById('data3');
+					const data4Container = document.getElementById('data4');
+					const data5Container = document.getElementById('data5');
+					const data6Container = document.getElementById('data6');
+					const data7Container = document.getElementById('data7');
+					const data8Container = document.getElementById('data8');
+					const data9Container = document.getElementById('data9');
+					const data10Container = document.getElementById('data10');
+					const data11Container = document.getElementById('data11');
+					const data12Container = document.getElementById('data12');
+
+					// 데이터를 각각의 div에 할당
+					const idHtml = data.map(item => `<div style="margin-bottom: 12px;">${item.id}</div>`).join('');
+					const nameHtml = data.map(item => `<div style="margin-bottom: 12px;">${item.name}</div>`).join('');
+					const lotHtml = data.map(item => `<div style="margin-bottom: 12px;">${item.lot_code}</div>`).join('');
+					const dateHtml = data.map(item => `<div style="margin-bottom: 20px; position: relative; top: 0px; left: 0px;">${item.date}</div>`).join('');
+					const timeHtml = data.map(item => `<div style="margin-bottom: 19px; position: relative; top: 7px; left: 375px; font-size: 8px; color: rgba(222, 222, 223, 1);" >${item.time}</div>`).join('');
+					const data0Html = data.map(item => `<div style="margin-bottom: 12px; position: relative; left: 50px;">${item.data0}</div>`).join('');
+					const data1Html = data.map(item => `<div style="margin-bottom: 12px;">${item.data1}</div>`).join('');
+					const data2Html = data.map(item => `<div style="margin-bottom: 12px;">${item.data2}</div>`).join('');
+					const data3Html = data.map(item => `<div style="margin-bottom: 12px;">${item.data3}</div>`).join('');
+					const data4Html = data.map(item => `<div style="margin-bottom: 12px;">${item.data4}</div>`).join('');
+					const data5Html = data.map(item => `<div style="margin-bottom: 12px;">${item.t2_data0}</div>`).join('');
+					const data6Html = data.map(item => `<div style="margin-bottom: 12px;">${item.t2_data1}</div>`).join('');
+					const data7Html = data.map(item => `<div style="margin-bottom: 12px;">${item.t2_data2}</div>`).join('');
+					const data8Html = data.map(item => `<div style="margin-bottom: 12px;">${item.t2_data3}</div>`).join('');
+					const data9Html = data.map(item => `<div style="margin-bottom: 12px;">${item.t3_data0}</div>`).join('');
+					const data10Html = data.map(item => `<div style="margin-bottom: 12px;">${item.t4_data0}</div>`).join('');
+					const data11Html = data.map(item => `<div style="margin-bottom: 12px;">${item.t4_data1}</div>`).join('');
+					const data12Html = data.map(item => `<div style="margin-bottom: 12px;">${item.t4_data2}</div>`).join('');
+
+					// 생성된 HTML 문자열로 각각의 컨테이너 내용을 설정
+					idContainer.innerHTML = idHtml;
+					nameContainer.innerHTML = nameHtml;
+					lotContainer.innerHTML = lotHtml;
+					dateContainer.innerHTML = dateHtml;
+					timeContainer.innerHTML = timeHtml;
+					data0Container.innerHTML = data0Html;
+					data1Container.innerHTML = data1Html;
+					data2Container.innerHTML = data2Html;
+					data3Container.innerHTML = data3Html;
+					data4Container.innerHTML = data4Html;
+					data5Container.innerHTML = data5Html;
+					data6Container.innerHTML = data6Html;
+					data7Container.innerHTML = data7Html;
+					data8Container.innerHTML = data8Html;
+					data9Container.innerHTML = data9Html;
+					data10Container.innerHTML = data10Html;
+					data11Container.innerHTML = data11Html;
+					data12Container.innerHTML = data12Html;
+				})
+				.catch(error => console.error('Error:', error));
+		}
+
+		window.onload = loadData;
+
+	</script>
+</body>
+
+</html>

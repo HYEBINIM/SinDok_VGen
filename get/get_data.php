@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conn = mysqli_connect("localhost", "server", "00000000", "dataset");
+$conn = mysqli_connect("localhost", "server", "dltmxm1234", "dataset");
 
 $data = array();
 
