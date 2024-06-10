@@ -4,10 +4,14 @@ $conn = mysqli_connect("localhost", "server", "dltmxm1234", "dataset");
 
 $data = array();
 
-$sql = "select * from tracking04 order by id desc limit 50";
-$res = mysqli_query($conn, $sql);
+$sql03 = "select * from tracking03 order by id desc limit 50";
+$res03 = mysqli_query($conn, $sql03);
 
-for(; $row = mysqli_fetch_array($res);){
+for (; $row03 = mysqli_fetch_array($res03);) {
+
+    $sql = "select * from tracking04 WHERE (data1 = '" . $row03['data0'] . "') OR (data1 = '" . $row03['data1'] . "')";
+    $res = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($res);
 
     array_push($data, $row['data0']);
     array_push($data, $row['data1']);

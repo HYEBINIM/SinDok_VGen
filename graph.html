@@ -132,14 +132,14 @@
                     </div>
                     <div class="graph_item">
                         <div class="position">S07</div>
-                        <div class="name">탭 검사</div>
+                        <div class="name">볼트 검사</div>
                         <div class="inner">
                             <canvas class="myChart" id="myChart2_4"></canvas>
                         </div>
                     </div>
                     <div class="graph_item">
                         <div class="position">S08</div>
-                        <div class="name">스팟 용접</div>
+                        <div class="name">탭 검사</div>
                         <div class="inner">
                             <canvas class="myChart" id="myChart2_5"></canvas>
                         </div>
@@ -157,44 +157,42 @@
                 <div class="graph">
                     <div class="graph_item">
                         <div class="position">S02</div>
-                        <div class="name">너트 용접</div>
+                        <div class="name">스팟 용접</div>
                         <div class="inner">
                             <canvas class="myChart" id="myChart3_1"></canvas>
                         </div>
                     </div>
                     <div class="graph_item">
                         <div class="position">S04</div>
-                        <div class="name">너트 용접</div>
+                        <div class="name">스팟 용접</div>
                         <div class="inner">
                             <canvas class="myChart" id="myChart3_2"></canvas>
                         </div>
                     </div>
                     <div class="graph_item">
                         <div class="position">S06</div>
-                        <div class="name">볼트 용접</div>
+                        <div class="name">스팟 용접</div>
                         <div class="inner">
                             <canvas class="myChart" id="myChart3_3"></canvas>
                         </div>
                     </div>
                     <div class="graph_item">
                         <div class="position">S07</div>
-                        <div class="name">탭 검사</div>
+                        <div class="name">비전 검사</div>
                         <div class="inner">
                             <canvas class="myChart" id="myChart3_4"></canvas>
                         </div>
                     </div>
                     <div class="graph_item">
-                        <div class="position">S08</div>
-                        <div class="name">스팟 용접</div>
+                        <div class="position none_color">NONE</div>
+                        <div class="name"></div>
                         <div class="inner">
-                            <canvas class="myChart" id="myChart3_5"></canvas>
                         </div>
                     </div>
                     <div class="graph_item">
-                        <div class="position">W04</div>
-                        <div class="name">비전 검사</div>
+                        <div class="position none_color">NONE</div>
+                        <div class="name"></div>
                         <div class="inner">
-                            <canvas class="myChart" id="myChart3_6"></canvas>
                         </div>
                     </div>
                 </div>
@@ -204,14 +202,14 @@
                 <div class="graph">
                     <div class="graph_item">
                         <div class="position">S02</div>
-                        <div class="name">너트 용접</div>
+                        <div class="name">비전 검사</div>
                         <div class="inner">
                             <canvas class="myChart" id="myChart4_1"></canvas>
                         </div>
                     </div>
                     <div class="graph_item">
                         <div class="position">S04</div>
-                        <div class="name">너트 용접</div>
+                        <div class="name">탭 검사</div>
                         <div class="inner">
                             <canvas class="myChart" id="myChart4_2"></canvas>
                         </div>
@@ -224,11 +222,11 @@
                         <div class="info_bottom">
                             <div class="info_left">
                                 <div class="left_title">총 생산 개수</div>
-                                <div class="left_count">0개</div>
+                                <div class="left_count"><span id='allCount'></span><span>개</span></div>
                             </div>
                             <div class="info_right">
                                 <div class="right_title">시간당 생산 개수</div>
-                                <div class="right_count">0개</div>
+                                <div class="right_count"><span  id='timeCount'></span><span>개</span></div>
                             </div>
                         </div>
                     </div>
@@ -240,11 +238,11 @@
                         <div class="info_bottom">
                             <div class="info_left">
                                 <div class="left_title">주간 시간당 불량 개수</div>
-                                <div class="left_count">0개</div>
+                                <div class="left_count"><span id='timeNG'></span><span>개</span></div>
                             </div>
                             <div class="info_right">
                                 <div class="right_title">주간 불량 퍼센트</div>
-                                <div class="right_count">0.00%</div>
+                                <div class="right_count"><span id='perNG'></span><span>%</span></div>
                             </div>
                         </div>
                     </div>
@@ -260,6 +258,8 @@
             updateData();
         });
 
+        var arrCount = [];
+        
         var ctx1 = [];
         var set1 = [];
         var option1 = [];
@@ -298,6 +298,14 @@
 
         //불러온 데이터 배열을 보내는 곳!! 데이터만 보내자
         function updateData() {
+            $.ajax({
+                url: "/get/get_graphcount.php",
+                type: "post",
+                cache: false,
+                success: function(data) {
+                    arrCount = JSON.parse(data);
+                }
+            });
 
             $.ajax({
                 url: "/get/get_graph1.php",
@@ -336,6 +344,9 @@
             });
 
             //함수가 존재하는지 판별 후 실행 (예외처리)
+            if (typeof updateCount === 'function') {
+                updateCount(arrCount);
+            }
             if (typeof updateChart1 === 'function') {
                 updateChart1(array1);
             }
@@ -353,6 +364,10 @@
         }
 
         //1번째 행 데이터 배열을 받아와서 배치 해주자!!
+        function updateCount(arrCount) {
+            $('#allCount').html(arrCount[0]);
+        }
+
         function updateChart1(array1) {
             for (num1 = 1; num1 <= 5; num1++) {
             //     min1[num1 - 1] = Math.min(...array1[num1 - 1]);
@@ -409,24 +424,24 @@
                         }
                     },
                     plugins: {
-                        annotation: {
-                            annotations: {
-                                upperLine: { // 상한선 설정
-                                    type: 'line',
-                                    yMin: 500, // 상한선의 값
-                                    yMax: 500, // 이 값이 같으면 수평선이 됩니다.
-                                    borderColor: 'rgb(255, 99, 132)', // 선의 색상
-                                    borderWidth: 1, // 선의 두께
-                                },
-                                lowerLine: { // 하한선 설정
-                                    type: 'line',
-                                    yMin: 0, // 하한선의 값
-                                    yMax: 0, // 이 값이 같으면 수평선이 됩니다.
-                                    borderColor: 'rgb(54, 162, 235)', // 선의 색상
-                                    borderWidth: 1, // 선의 두께
-                                }
-                            }
-                        },
+                        // annotation: {
+                        //     annotations: {
+                        //         upperLine: { // 상한선 설정
+                        //             type: 'line',
+                        //             yMin: 500, // 상한선의 값
+                        //             yMax: 500, // 이 값이 같으면 수평선이 됩니다.
+                        //             borderColor: 'rgb(255, 99, 132)', // 선의 색상
+                        //             borderWidth: 1, // 선의 두께
+                        //         },
+                        //         lowerLine: { // 하한선 설정
+                        //             type: 'line',
+                        //             yMin: 0, // 하한선의 값
+                        //             yMax: 0, // 이 값이 같으면 수평선이 됩니다.
+                        //             borderColor: 'rgb(54, 162, 235)', // 선의 색상
+                        //             borderWidth: 1, // 선의 두께
+                        //         }
+                        //     }
+                        // },
                         tooltip: {
                             enabled: true, // 툴팁 활성화
                             mode: 'nearest', // 툴팁 모드 설정
@@ -490,8 +505,8 @@
                     scales: {
                         y: {
                             display: false,
-                            min: 0, // 계산된 최솟값으로 설정
-                            max: 500, // 계산된 최댓값으로 설정
+                            // min: 0, // 계산된 최솟값으로 설정
+                            // max: 500, // 계산된 최댓값으로 설정
                             grid: {
                                 display: false, // 세로축의 눈금선 숨기기
                                 drawOnChartArea: false, // 차트 영역 내부에만 눈금선 그리기
@@ -516,24 +531,24 @@
                         }
                     },
                     plugins: {
-                        annotation: {
-                            annotations: {
-                                upperLine: { // 상한선 설정
-                                    type: 'line',
-                                    yMin: 80, // 상한선의 값
-                                    yMax: 80, // 이 값이 같으면 수평선이 됩니다.
-                                    borderColor: 'rgb(255, 99, 132)', // 선의 색상
-                                    borderWidth: 1, // 선의 두께
-                                },
-                                lowerLine: { // 하한선 설정
-                                    type: 'line',
-                                    yMin: 20, // 하한선의 값
-                                    yMax: 20, // 이 값이 같으면 수평선이 됩니다.
-                                    borderColor: 'rgb(54, 162, 235)', // 선의 색상
-                                    borderWidth: 1, // 선의 두께
-                                }
-                            }
-                        },
+                        // annotation: {
+                        //     annotations: {
+                        //         upperLine: { // 상한선 설정
+                        //             type: 'line',
+                        //             yMin: 80, // 상한선의 값
+                        //             yMax: 80, // 이 값이 같으면 수평선이 됩니다.
+                        //             borderColor: 'rgb(255, 99, 132)', // 선의 색상
+                        //             borderWidth: 1, // 선의 두께
+                        //         },
+                        //         lowerLine: { // 하한선 설정
+                        //             type: 'line',
+                        //             yMin: 20, // 하한선의 값
+                        //             yMax: 20, // 이 값이 같으면 수평선이 됩니다.
+                        //             borderColor: 'rgb(54, 162, 235)', // 선의 색상
+                        //             borderWidth: 1, // 선의 두께
+                        //         }
+                        //     }
+                        // },
                         tooltip: {
                             enabled: true, // 툴팁 활성화
                             mode: 'nearest', // 툴팁 모드 설정
@@ -576,7 +591,7 @@
         }
 
         function updateChart3(array3) {
-            for (num3 = 1; num3 <= 6; num3++) {
+            for (num3 = 1; num3 <= 4; num3++) {
                 ctx3[num3 - 1] = document.getElementById(`myChart3_${num3}`).getContext('2d');
 
                 set3[num3 - 1] = {
@@ -598,8 +613,8 @@
                     scales: {
                         y: {
                             display: false,
-                            min: 0, // 계산된 최솟값으로 설정
-                            max: 500, // 계산된 최댓값으로 설정
+                            // min: 0, // 계산된 최솟값으로 설정
+                            // max: 500, // 계산된 최댓값으로 설정
                             grid: {
                                 display: false, // 세로축의 눈금선 숨기기
                                 drawOnChartArea: false, // 차트 영역 내부에만 눈금선 그리기
@@ -624,24 +639,24 @@
                         }
                     },
                     plugins: {
-                        annotation: {
-                            annotations: {
-                                upperLine: { // 상한선 설정
-                                    type: 'line',
-                                    yMin: 80, // 상한선의 값
-                                    yMax: 80, // 이 값이 같으면 수평선이 됩니다.
-                                    borderColor: 'rgb(255, 99, 132)', // 선의 색상
-                                    borderWidth: 1, // 선의 두께
-                                },
-                                lowerLine: { // 하한선 설정
-                                    type: 'line',
-                                    yMin: 20, // 하한선의 값
-                                    yMax: 20, // 이 값이 같으면 수평선이 됩니다.
-                                    borderColor: 'rgb(54, 162, 235)', // 선의 색상
-                                    borderWidth: 1, // 선의 두께
-                                }
-                            }
-                        },
+                        // annotation: {
+                        //     annotations: {
+                        //         upperLine: { // 상한선 설정
+                        //             type: 'line',
+                        //             yMin: 80, // 상한선의 값
+                        //             yMax: 80, // 이 값이 같으면 수평선이 됩니다.
+                        //             borderColor: 'rgb(255, 99, 132)', // 선의 색상
+                        //             borderWidth: 1, // 선의 두께
+                        //         },
+                        //         lowerLine: { // 하한선 설정
+                        //             type: 'line',
+                        //             yMin: 20, // 하한선의 값
+                        //             yMax: 20, // 이 값이 같으면 수평선이 됩니다.
+                        //             borderColor: 'rgb(54, 162, 235)', // 선의 색상
+                        //             borderWidth: 1, // 선의 두께
+                        //         }
+                        //     }
+                        // },
                         tooltip: {
                             enabled: true, // 툴팁 활성화
                             mode: 'nearest', // 툴팁 모드 설정
@@ -706,8 +721,8 @@
                     scales: {
                         y: {
                             display: false,
-                            min: 0, // 계산된 최솟값으로 설정
-                            max: 500, // 계산된 최댓값으로 설정
+                            // min: 0, // 계산된 최솟값으로 설정
+                            // max: 500, // 계산된 최댓값으로 설정
                             grid: {
                                 display: false, // 세로축의 눈금선 숨기기
                                 drawOnChartArea: false, // 차트 영역 내부에만 눈금선 그리기
@@ -732,24 +747,24 @@
                         }
                     },
                     plugins: {
-                        annotation: {
-                            annotations: {
-                                upperLine: { // 상한선 설정
-                                    type: 'line',
-                                    yMin: 80, // 상한선의 값
-                                    yMax: 80, // 이 값이 같으면 수평선이 됩니다.
-                                    borderColor: 'rgb(255, 99, 132)', // 선의 색상
-                                    borderWidth: 1, // 선의 두께
-                                },
-                                lowerLine: { // 하한선 설정
-                                    type: 'line',
-                                    yMin: 20, // 하한선의 값
-                                    yMax: 20, // 이 값이 같으면 수평선이 됩니다.
-                                    borderColor: 'rgb(54, 162, 235)', // 선의 색상
-                                    borderWidth: 1, // 선의 두께
-                                }
-                            }
-                        },
+                        // annotation: {
+                        //     annotations: {
+                        //         upperLine: { // 상한선 설정
+                        //             type: 'line',
+                        //             yMin: 80, // 상한선의 값
+                        //             yMax: 80, // 이 값이 같으면 수평선이 됩니다.
+                        //             borderColor: 'rgb(255, 99, 132)', // 선의 색상
+                        //             borderWidth: 1, // 선의 두께
+                        //         },
+                        //         lowerLine: { // 하한선 설정
+                        //             type: 'line',
+                        //             yMin: 20, // 하한선의 값
+                        //             yMax: 20, // 이 값이 같으면 수평선이 됩니다.
+                        //             borderColor: 'rgb(54, 162, 235)', // 선의 색상
+                        //             borderWidth: 1, // 선의 두께
+                        //         }
+                        //     }
+                        // },
                         tooltip: {
                             enabled: true, // 툴팁 활성화
                             mode: 'nearest', // 툴팁 모드 설정

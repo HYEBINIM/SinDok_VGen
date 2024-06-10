@@ -170,47 +170,97 @@ a {
     height: calc(100% - 70px);
     padding: 0 30px;
     display: flex;
+    flex-direction: column;
     overflow-Y: scroll;
 }
+
+.before{
+    width: 100%;
+    height:auto;
+    display: flex;
+}
+
+.after{
+    width: 100%;
+    height: 50%;
+    display: flex;
+}
+
+.before .tracking1 {
+    width: 720px;
+    height: 100%;
+}
+
+/* .before .tracking2 {
+    width: 360px;
+    height: 100%;
+    margin-left: 5px;
+} */
+
+.before .tracking3 {
+    width: 600px;
+    height: 100%;
+    margin-left: 5px;
+}
+
+.before .tracking4 {
+    width: 360px;
+    height: 100%;
+    margin-left: 5px;
+}
+
 
 .main_inner::-webkit-scrollbar {
     width: 10px;
     background-color: black;
 }
 
-.tracking1 {
-    width: 450px;
+.after .tracking1 {
+    width: 720px;
     height: 100%;
 }
 
-.tracking2 {
-    width: 450px;
+/* .after .tracking2 {
+    width: 360px;
     height: 100%;
-    margin-left: 6px;
+    margin-left: 5px;
+} */
+
+.after .tracking3 {
+    width: 600px;
+    height: 100%;
+    margin-left: 5px;
 }
 
-.tracking3 {
-    width: 525px;
+.after .tracking4 {
+    width: 360px;
     height: 100%;
-    margin-left: 6px;
-}
-
-.tracking4 {
-    width: 225px;
-    height: 100%;
-    margin-left: 6px;
+    margin-left: 5px;
 }
 
 .row {
     width: 100%;
-    height: 93px;
+    height: 63px;
     display: flex;
     justify-content: space-between;
 }
 
 .box {
-    width: 70px;
-    height: 70px;
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(180deg, var(--box-gradient1) 1%, var(--box-gradient2) 100%);
+    border: 1px solid var(--line-color3);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    box-shadow: var(--shadow2);
+}
+
+.box2 {
+    width: 115px;
+    height: 55px;
     background: linear-gradient(180deg, var(--box-gradient1) 1%, var(--box-gradient2) 100%);
     border: 1px solid var(--line-color3);
     border-radius: 10px;

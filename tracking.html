@@ -64,14 +64,207 @@ $conn = mysqli_connect("localhost", "server", "dltmxm1234", "dataset");
             <div class="main">
                 <div class="main_title">전체 공정 추적</div>
                 <div class="main_inner">
-                    <div class="tracking1">
-                        <?php
-                        $count01 = 0;
-                        $sql01 = "select * from tracking01 order by id desc limit 50";
-                        $res01 = mysqli_query($conn, $sql01);
+                    <div class="before">
+                        <div class="tracking1">
+                            <?php
+                            $count001 = 0;
+                            $sql001 = "SELECT * FROM tracking01
+                        WHERE NOT EXISTS (SELECT `data0` FROM tracking03 WHERE tracking01.data0 = tracking03.data0)";
+                            $res001 = mysqli_query($conn, $sql001);
 
-                        for (; $row01 = mysqli_fetch_array($res01);) {
-                            echo "
+                            for (; $row001 = mysqli_fetch_array($res001);) {
+
+                                $sql002 = "select * from tracking02 order by id desc limit 5";
+                                $res002 = mysqli_query($conn, $sql002);
+                                $row002 = mysqli_fetch_array($res002);
+
+                                echo "
+                            <div class='row'>
+                                <div class='box'>
+                                    <div class='box_title' id='color01_" . ($count001 + 1) . "'>S001</div>
+                                    <div class='box_name'>스캔</div>
+                                    <div class='box_data' id='data01_" . ($count001 + 1) . "'></div>
+                                </div>
+                                <div class='box'>
+                                    <div class='box_title' id='color02_" . ($count001 + 1) . "'>S10</div>
+                                    <div class='box_name'>스캔</div>
+                                    <div class='box_data' id='data02_" . ($count001 + 1) . "'></div>
+                                </div>
+                                
+                                <div class='box'>
+                                    <div class='box_title' id='color01_" . ($count001 + 2) . "'>S02</div>
+                                    <div class='box_name'>너트 용접</div>
+                                    <div class='box_data' id='data01_" . ($count001 + 2) . "'></div>
+                                </div>
+                                <div class='box'>
+                                    <div class='box_title' id='color02_" . ($count001 + 2) . "'>S11</div>
+                                    <div class='box_name'>너트 용접</div>
+                                    <div class='box_data' id='data02_" . ($count001 + 2) . "'></div>
+                                </div>
+                                
+                                <div class='box'>
+                                    <div class='box_title' id='color01_" . ($count001 + 3) . "'>S04</div>
+                                    <div class='box_name'>너트 용접</div>
+                                    <div class='box_data' id='data01_" . ($count001 + 3) . "'></div>
+                                </div>
+                                <div class='box'>
+                                    <div class='box_title' id='color02_" . ($count001 + 3) . "'>S13</div>
+                                    <div class='box_name'>너트 용접</div>
+                                    <div class='box_data' id='data02_" . ($count001 + 3) . "'></div>
+                                </div>
+                                
+                                <div class='box'>
+                                    <div class='box_title' id='color01_" . ($count001 + 4) . "'>S06</div>
+                                    <div class='box_name'>볼트 용접</div>
+                                    <div class='box_data' id='data01_" . ($count001 + 4) . "'></div>
+                                </div>
+                                <div class='box'>
+                                    <div class='box_title' id='color02_" . ($count001 + 4) . "'>S15</div>
+                                    <div class='box_name'>볼트 용접</div>
+                                    <div class='box_data' id='data02_" . ($count001 + 4) . "'></div>
+                                </div>
+                                
+                                <div class='box'>
+                                    <div class='box_title' id='color01_" . ($count001 + 5) . "'>S07</div>
+                                    <div class='box_name'>탭 검사</div>
+                                    <div class='box_data' id='data01_" . ($count001 + 5) . "'></div>
+                                </div>
+                                <div class='box'>
+                                    <div class='box_title' id='color02_" . ($count001 + 5) . "'>S17</div>
+                                    <div class='box_name'>볼트 용접</div>
+                                    <div class='box_data' id='data02_" . ($count001 + 5) . "'></div>
+                                </div>
+                                
+                                <div class='box'>
+                                    <div class='box_title' id='color01_" . ($count001 + 6) . "'>S08</div>
+                                    <div class='box_name'>스팟 용접</div>
+                                    <div class='box_data' id='data01_" . ($count001 + 6) . "'></div>
+                                </div>
+                                <div class='box'>
+                                    <div class='box_title' id='color02_" . ($count001 + 6) . "'>S18</div>
+                                    <div class='box_name'>탭 검사</div>
+                                    <div class='box_data' id='data02_" . ($count001 + 6) . "'></div>
+                                </div>
+                            </div>
+                            ";
+                                $count001 = ($count001 + 6);
+                            }
+
+                            ?>
+                        </div>
+                        <div class="tracking2">
+                            <?php
+                            $count002 = 0;
+                            $sql002 = "select * from tracking02 order by id desc limit 5";
+                            $res002 = mysqli_query($conn, $sql002);
+
+                            for (; $row002 = mysqli_fetch_array($res002);) {
+                                echo "
+                            <div class='row'>
+                                
+                            </div>
+                            ";
+                                $count002 = ($count002 + 6);
+                            }
+
+                            ?>
+                        </div>
+                        <div class="tracking3">
+                            <?php
+                            $count003 = 0;
+                            $sql003 = "select * from tracking03 order by id desc limit 5";
+                            $res003 = mysqli_query($conn, $sql003);
+
+                            for (; $row003 = mysqli_fetch_array($res003);) {
+                                echo "
+                            <div class='row'>
+                                <div class='box2'>
+                                    <div class='box_title' id='color03_" . ($count003 + 1) . "'>W02-A1</div>
+                                    <div class='box_name'>
+                                        <span>스캔</span>
+                                    </div>
+                                    <div class='box_data' id='data03_" . ($count003 + 1) . "'></div>
+                                </div>
+                                <div class='box2'>
+                                    <div class='box_title' id='color03_" . ($count003 + 2) . "'>W02-A2</div>
+                                    <div class='box_name'>
+                                        <span>스팟 용접</span>
+                                    </div>
+                                    <div class='box_data' id='data03_" . ($count003 + 2) . "'></div>
+                                </div>
+                                <div class='box2'>
+                                    <div class='box_title' id='color03_" . ($count003 + 3) . "'>W02-A3</div>
+                                    <div class='box_name'>
+                                        <span>스팟 용접</span>
+                                    </div>
+                                    <div class='box_data' id='data03_" . ($count003 + 3) . "'></div>
+                                </div>
+                                <div class='box2'>
+                                    <div class='box_title' id='color03_" . ($count003 + 4) . "'>W02-A4</div>
+                                    <div class='box_name'>
+                                        <span>스팟 용접</span>
+                                    </div>
+                                    <div class='box_data' id='data03_" . ($count003 + 4) . "'></div>
+                                </div>
+                                <div class='box2'>
+                                    <div class='box_title' id='color03_" . ($count003 + 5) . "'>W-04</div>
+                                    <div class='box_name'>비전 검사</div>
+                                    <div class='box_data' id='data03_" . ($count003 + 5) . "'></div>
+                                </div>
+                            </div>
+                            ";
+                                $count003 = ($count003 + 5);
+                            }
+
+                            ?>
+                        </div>
+                        <div class="tracking4">
+                            <?php
+                            $count004 = 0;
+                            $sql004 = "select * from tracking04 order by id desc limit 5";
+                            $res004 = mysqli_query($conn, $sql004);
+
+                            for (; $row04 = mysqli_fetch_array($res004);) {
+                                echo "
+                            <div class='row'>
+                                <div class='box2'>
+                                    <div class='box_title' id='color04_" . ($count004 + 1) . "'>Vision</div>
+                                    <div class='box_name'>비전 검사</div>
+                                    <div class='box_data' id='data04_" . ($count004 + 1) . "'></div>
+                                </div>
+                                <div class='box2'>
+                                    <div class='box_title' id='color04_" . ($count004 + 2) . "'>A01</div>
+                                    <div class='box_name'>스캔</div>
+                                    <div class='box_data' id='data04_" . ($count004 + 2) . "'></div>
+                                </div>
+                                <div class='box2'>
+                                    <div class='box_title' id='color04_" . ($count004 + 3) . "'>A02</div>
+                                    <div class='box_name'>탭 검사</div>
+                                    <div class='box_data' id='data04_" . ($count004 + 3) . "'></div>
+                                </div>
+                            </div>
+                            ";
+                                $count004 = ($count004 + 3);
+                            }
+
+                            ?>
+                        </div>
+                    </div>
+                    <div class="after">
+                        <div class="tracking1">
+                            <?php
+                            $count01 = 0;
+
+                            $sql01 = "select * from tracking01 order by id desc limit 50";
+                            $res01 = mysqli_query($conn, $sql01);
+
+                            for (; $row01 = mysqli_fetch_array($res01);) {
+
+                                $sql02 = "select * from tracking02 order by id desc limit 50";
+                                $res02 = mysqli_query($conn, $sql02);
+                                $row02 = mysqli_fetch_array($res02);
+
+                                echo "
                             <div class='row'>
                                 <div class='box'>
                                     <div class='box_title' id='color1_" . ($count01 + 1) . "'>S01</div>
@@ -79,179 +272,153 @@ $conn = mysqli_connect("localhost", "server", "dltmxm1234", "dataset");
                                     <div class='box_data' id='data1_" . ($count01 + 1) . "'></div>
                                 </div>
                                 <div class='box'>
+                                    <div class='box_title' id='color2_" . ($count01 + 1) . "'>S10</div>
+                                    <div class='box_name'>스캔</div>
+                                    <div class='box_data' id='data2_" . ($count01 + 1) . "'></div>
+                                </div>
+                                
+                                <div class='box'>
                                     <div class='box_title' id='color1_" . ($count01 + 2) . "'>S02</div>
                                     <div class='box_name'>너트 용접</div>
                                     <div class='box_data' id='data1_" . ($count01 + 2) . "'></div>
                                 </div>
+                                <div class='box'>
+                                    <div class='box_title' id='color2_" . ($count01 + 2) . "'>S11</div>
+                                    <div class='box_name'>너트 용접</div>
+                                    <div class='box_data' id='data2_" . ($count01 + 2) . "'></div>
+                                </div>
+                                
                                 <div class='box'>
                                     <div class='box_title' id='color1_" . ($count01 + 3) . "'>S04</div>
                                     <div class='box_name'>너트 용접</div>
                                     <div class='box_data' id='data1_" . ($count01 + 3) . "'></div>
                                 </div>
                                 <div class='box'>
+                                    <div class='box_title' id='color2_" . ($count01 + 3) . "'>S13</div>
+                                    <div class='box_name'>너트 용접</div>
+                                    <div class='box_data' id='data2_" . ($count01 + 3) . "'></div>
+                                </div>
+                                
+                                <div class='box'>
                                     <div class='box_title' id='color1_" . ($count01 + 4) . "'>S06</div>
                                     <div class='box_name'>볼트 용접</div>
                                     <div class='box_data' id='data1_" . ($count01 + 4) . "'></div>
                                 </div>
+                                <div class='box'>
+                                    <div class='box_title' id='color2_" . ($count01 + 4) . "'>S15</div>
+                                    <div class='box_name'>볼트 용접</div>
+                                    <div class='box_data' id='data2_" . ($count01 + 4) . "'></div>
+                                </div>
+                                
                                 <div class='box'>
                                     <div class='box_title' id='color1_" . ($count01 + 5) . "'>S07</div>
                                     <div class='box_name'>탭 검사</div>
                                     <div class='box_data' id='data1_" . ($count01 + 5) . "'></div>
                                 </div>
                                 <div class='box'>
+                                    <div class='box_title' id='color2_" . ($count01 + 5) . "'>S17</div>
+                                    <div class='box_name'>볼트 용접</div>
+                                    <div class='box_data' id='data2_" . ($count01 + 5) . "'></div>
+                                </div>
+                                
+                                <div class='box'>
                                     <div class='box_title' id='color1_" . ($count01 + 6) . "'>S08</div>
                                     <div class='box_name'>스팟 용접</div>
                                     <div class='box_data' id='data1_" . ($count01 + 6) . "'></div>
                                 </div>
-                            </div>
-                            ";
-                            $count01 = ($count01 + 6);
-                        }
-
-                        ?>
-                    </div>
-                    <div class="tracking2">
-                        <?php
-                        $count02 = 0;
-                        $sql02 = "select * from tracking02 order by id desc limit 50";
-                        $res02 = mysqli_query($conn, $sql02);
-
-                        for (; $row02 = mysqli_fetch_array($res02);) {
-                            echo "
-                            <div class='row'>
                                 <div class='box'>
-                                    <div class='box_title' id='color2_" . ($count02 + 1) . "'>S10</div>
-                                    <div class='box_name'>스캔</div>
-                                    <div class='box_data' id='data2_" . ($count02 + 1) . "'></div>
-                                </div>
-                                <div class='box'>
-                                    <div class='box_title' id='color2_" . ($count02 + 2) . "'>S11</div>
-                                    <div class='box_name'>너트 용접</div>
-                                    <div class='box_data' id='data2_" . ($count02 + 2) . "'></div>
-                                </div>
-                                <div class='box'>
-                                    <div class='box_title' id='color2_" . ($count02 + 3) . "'>S13</div>
-                                    <div class='box_name'>너트 용접</div>
-                                    <div class='box_data' id='data2_" . ($count02 + 3) . "'></div>
-                                </div>
-                                <div class='box'>
-                                    <div class='box_title' id='color2_" . ($count02 + 4) . "'>S15</div>
-                                    <div class='box_name'>볼트 용접</div>
-                                    <div class='box_data' id='data2_" . ($count02 + 4) . "'></div>
-                                </div>
-                                <div class='box'>
-                                    <div class='box_title' id='color2_" . ($count02 + 5) . "'>S17</div>
-                                    <div class='box_name'>볼트 용접</div>
-                                    <div class='box_data' id='data2_" . ($count02 + 5) . "'></div>
-                                </div>
-                                <div class='box'>
-                                    <div class='box_title' id='color2_" . ($count02 + 6) . "'>S18</div>
+                                    <div class='box_title' id='color2_" . ($count01 + 6) . "'>S18</div>
                                     <div class='box_name'>탭 검사</div>
-                                    <div class='box_data' id='data2_" . ($count02 + 6) . "'></div>
+                                    <div class='box_data' id='data2_" . ($count01 + 6) . "'></div>
                                 </div>
                             </div>
                             ";
-                            $count02 = ($count02 + 6);
-                        }
+                                $count01 = ($count01 + 6);
+                            }
 
-                        ?>
-                    </div>
-                    <div class="tracking3">
-                        <?php
-                        $count03 = 0;
-                        $sql03 = "select * from tracking03 order by id desc limit 50";
-                        $res03 = mysqli_query($conn, $sql03);
+                            ?>
+                        </div>
 
-                        for (; $row03 = mysqli_fetch_array($res03);) {
-                            echo "
+                        <div class="tracking3">
+                            <?php
+                            $count03 = 0;
+                            $sql03 = "select * from tracking03 order by id desc limit 50";
+                            $res03 = mysqli_query($conn, $sql03);
+
+                            for (; $row03 = mysqli_fetch_array($res03);) {
+                                echo "
                             <div class='row'>
-                                <div class='box'>
+                                <div class='box2'>
                                     <div class='box_title' id='color3_" . ($count03 + 1) . "'>W02-A1</div>
                                     <div class='box_name'>
                                         <span>스캔</span>
-                                        <span>스팟 용접</span>
                                     </div>
                                     <div class='box_data' id='data3_" . ($count03 + 1) . "'></div>
                                 </div>
-                                <div class='box'>
+                                <div class='box2'>
                                     <div class='box_title' id='color3_" . ($count03 + 2) . "'>W02-A2</div>
                                     <div class='box_name'>
-                                        <span>스캔</span>
                                         <span>스팟 용접</span>
                                     </div>
                                     <div class='box_data' id='data3_" . ($count03 + 2) . "'></div>
                                 </div>
-                                <div class='box'>
+                                <div class='box2'>
                                     <div class='box_title' id='color3_" . ($count03 + 3) . "'>W02-A3</div>
                                     <div class='box_name'>
-                                        <span>스캔</span>
                                         <span>스팟 용접</span>
                                     </div>
                                     <div class='box_data' id='data3_" . ($count03 + 3) . "'></div>
                                 </div>
-                                <div class='box'>
+                                <div class='box2'>
                                     <div class='box_title' id='color3_" . ($count03 + 4) . "'>W02-A4</div>
                                     <div class='box_name'>
-                                        <span>스캔</span>
                                         <span>스팟 용접</span>
                                     </div>
                                     <div class='box_data' id='data3_" . ($count03 + 4) . "'></div>
                                 </div>
-                                <div class='box'>
-                                    <div class='box_title' id='color3_" . ($count03 + 5) . "'>W02-A5</div>
-                                    <div class='box_name'>
-                                        <span>스캔</span>
-                                        <span>스팟 용접</span>
-                                    </div>
-                                    <div class='box_data' id='data3_" . ($count03 + 5) . "'></div>
-                                </div>
-                                <div class='box'>
-                                    <div class='box_title' id='color3_" . ($count03 + 6) . "'>W02-B</div>
-                                    <div class='box_name'>스캔</div>
-                                    <div class='box_data' id='data3_" . ($count03 + 6) . "'></div>
-                                </div>
-                                <div class='box'>
-                                    <div class='box_title' id='color3_" . ($count03 + 7) . "'>W-04</div>
+                                <div class='box2'>
+                                    <div class='box_title' id='color3_" . ($count03 + 5) . "'>W-04</div>
                                     <div class='box_name'>비전 검사</div>
-                                    <div class='box_data' id='data3_" . ($count03 + 7) . "'></div>
+                                    <div class='box_data' id='data3_" . ($count03 + 5) . "'></div>
                                 </div>
                             </div>
                             ";
-                            $count03 = ($count03 + 7);
-                        }
+                                $count03 = ($count03 + 5);
+                            }
 
-                        ?>
-                    </div>
-                    <div class="tracking4">
-                        <?php
-                        $count04 = 0;
-                        $sql04 = "select * from tracking04 order by id desc limit 50";
-                        $res04 = mysqli_query($conn, $sql04);
+                            ?>
+                        </div>
+                        <div class="tracking4">
+                            <?php
+                            $count04 = 0;
+                            $sql04 = "select * from tracking04 order by id desc limit 50";
+                            $res04 = mysqli_query($conn, $sql04);
 
-                        for (; $row04 = mysqli_fetch_array($res04);) {
-                            echo "
+                            for (; $row04 = mysqli_fetch_array($res04);) {
+                                echo "
                             <div class='row'>
-                                <div class='box'>
+                                <div class='box2'>
                                     <div class='box_title' id='color4_" . ($count04 + 1) . "'>Vision</div>
-                                    <div class='box_name'>스캔</div>
+                                    <div class='box_name'>비전 검사</div>
                                     <div class='box_data' id='data4_" . ($count04 + 1) . "'></div>
                                 </div>
-                                <div class='box'>
+                                <div class='box2'>
                                     <div class='box_title' id='color4_" . ($count04 + 2) . "'>A01</div>
-                                    <div class='box_name'>비전 검사</div>
+                                    <div class='box_name'>스캔</div>
                                     <div class='box_data' id='data4_" . ($count04 + 2) . "'></div>
                                 </div>
-                                <div class='box'>
+                                <div class='box2'>
                                     <div class='box_title' id='color4_" . ($count04 + 3) . "'>A02</div>
                                     <div class='box_name'>탭 검사</div>
                                     <div class='box_data' id='data4_" . ($count04 + 3) . "'></div>
                                 </div>
                             </div>
                             ";
-                            $count04 = ($count04 + 3);
-                        }
+                                $count04 = ($count04 + 3);
+                            }
 
-                        ?>
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -265,6 +432,116 @@ $conn = mysqli_connect("localhost", "server", "dltmxm1234", "dataset");
     });
 
     function updateData() {
+        $.ajax({
+            url: "/get/before_tracking1.php",
+            type: "post",
+            cache: false,
+            success: function(data) {
+
+                var array = JSON.parse(data);
+
+                for (let count = 1; count <= array.length; count++) {
+
+                    var arrvalue = array[count - 1];
+
+                    //값이 있는지 검사
+                    if (arrvalue != null) {
+                        //콤마가 있는지 검사
+                        if (arrvalue.indexOf(',') != -1) {
+                            //합격,불합격 여부를 가져옴
+                            var conclusion = arrvalue.charAt(arrvalue.length - 1);
+                            //콤마로 구분해서 맨앞의 데이터를 가져올것임
+                            var value = arrvalue.split(',');
+
+                            //0이면 정상 -- 파랑
+                            if (conclusion == 0) {
+                                $('#data01_' + count).html(value[0]);
+                                $('#color01_' + count).css('background-color', '#4B89DC');
+                            }
+                            //나머지 불량 -- 빨강
+                            else {
+                                $('#data01_' + count).html(value[0]);
+                                $('#color01_' + count).css('background-color', '#D1180B');
+                            }
+                        }
+                        //콤마 없을경우
+                        else {
+                            //스캔값일 경우 -- 파랑
+                            if ((count % 6) == 1) {
+                                $('#data01_' + count).html(arrvalue);
+                                $('#color01_' + count).css('background-color', '#4B89DC');
+                            }
+                            //(스캔값 제외) 비었으면 빈값으로 취급 -- 회색
+                            else {
+                                $('#data01_' + count).html('결과 없음');
+                                $('#color01_' + count).css('background-color', 'none');
+                            }
+                        }
+                    }
+                    //NULL일 경우 -- 회색
+                    else {
+                        $('#data01_' + count).html('NULL');
+                        $('#color01_' + count).css('background-color', 'none');
+                    }
+                }
+            }
+        });
+
+        $.ajax({
+            url: "/get/before_tracking2.php",
+            type: "post",
+            cache: false,
+            success: function(data) {
+
+                var array = JSON.parse(data);
+
+                for (let count = 1; count <= array.length; count++) {
+
+                    var arrvalue = array[count - 1];
+
+                    //값이 있는지 검사
+                    if (arrvalue != null) {
+                        //콤마가 있는지 검사
+                        if (arrvalue.indexOf(',') != -1) {
+                            //합격,불합격 여부를 가져옴
+                            var conclusion = arrvalue.charAt(arrvalue.length - 1);
+                            //콤마로 구분해서 맨앞의 데이터를 가져올것임
+                            var value = arrvalue.split(',');
+
+                            //0이면 정상 -- 파랑
+                            if (conclusion == 0) {
+                                $('#data02_' + count).html(value[0]);
+                                $('#color02_' + count).css('background-color', '#4B89DC');
+                            }
+                            //나머지 불량 -- 빨강
+                            else {
+                                $('#data02_' + count).html(value[0]);
+                                $('#color02_' + count).css('background-color', '#D1180B');
+                            }
+                        }
+                        //콤마 없을경우
+                        else {
+                            //스캔값일 경우 -- 파랑
+                            if ((count % 6) == 1) {
+                                $('#data02_' + count).html(arrvalue);
+                                $('#color02_' + count).css('background-color', '#4B89DC');
+                            }
+                            //(스캔값 제외) 비었으면 빈값으로 취급 -- 회색
+                            else {
+                                $('#data02_' + count).html('결과 없음');
+                                $('#color02_' + count).css('background-color', 'none');
+                            }
+                        }
+                    }
+                    //NULL일 경우 -- 회색
+                    else {
+                        $('#data02_' + count).html('NULL');
+                        $('#color02_' + count).css('background-color', 'none');
+                    }
+                }
+            }
+        });
+
         $.ajax({
             url: "/get/get_tracking1.php",
             type: "post",
@@ -286,27 +563,35 @@ $conn = mysqli_connect("localhost", "server", "dltmxm1234", "dataset");
                             //콤마로 구분해서 맨앞의 데이터를 가져올것임
                             var value = arrvalue.split(',');
 
-                            //0이면 정상
+                            //0이면 정상 -- 파랑
                             if (conclusion == 0) {
                                 $('#data1_' + count).html(value[0]);
                                 $('#color1_' + count).css('background-color', '#4B89DC');
                             }
-                            //나머지 불량
+                            //나머지 불량 -- 빨강
                             else {
                                 $('#data1_' + count).html(value[0]);
                                 $('#color1_' + count).css('background-color', '#D1180B');
                             }
                         }
-                        //콤마 없을경우 빈값으로 취급 -- 회색
+                        //콤마 없을경우
                         else {
-                            $('#data1_' + count).html('결과 없음');
-                            $('#color1_' + count).css('background-color', '#808080');
+                            //스캔값일 경우 -- 파랑
+                            if ((count % 6) == 1) {
+                                $('#data1_' + count).html(arrvalue);
+                                $('#color1_' + count).css('background-color', '#4B89DC');
+                            }
+                            //(스캔값 제외) 비었으면 빈값으로 취급 -- 회색
+                            else {
+                                $('#data1_' + count).html('결과 없음');
+                                $('#color1_' + count).css('background-color', 'none');
+                            }
                         }
                     }
                     //NULL일 경우 -- 회색
                     else {
                         $('#data1_' + count).html('NULL');
-                        $('#color1_' + count).css('background-color', '#808080');
+                        $('#color1_' + count).css('background-color', 'none');
                     }
                 }
             }
@@ -346,14 +631,22 @@ $conn = mysqli_connect("localhost", "server", "dltmxm1234", "dataset");
                         }
                         //콤마 없을경우 빈값으로 취급 -- 회색
                         else {
-                            $('#data2_' + count).html('결과 없음');
-                            $('#color2_' + count).css('background-color', '#808080');
+                            //스캔값일 경우 -- 파랑
+                            if ((count % 6) == 1) {
+                                $('#data2_' + count).html(arrvalue);
+                                $('#color2_' + count).css('background-color', '#4B89DC');
+                            }
+                            //(스캔값 제외) 비었으면 빈값으로 취급 -- 회색
+                            else {
+                                $('#data2_' + count).html('결과 없음');
+                                $('#color2_' + count).css('background-color', 'none');
+                            }
                         }
                     }
                     //NULL일 경우 -- 회색
                     else {
                         $('#data2_' + count).html('NULL');
-                        $('#color2_' + count).css('background-color', '#808080');
+                        $('#color2_' + count).css('background-color', 'none');
                     }
                 }
             }
@@ -373,12 +666,15 @@ $conn = mysqli_connect("localhost", "server", "dltmxm1234", "dataset");
 
                     //값이 있는지 검사
                     if (arrvalue != null) {
+
+                        //합격,불합격 여부를 가져옴
+                        var conclusion = arrvalue.charAt(arrvalue.length - 1);
+
+                        //콤마로 구분해서 맨앞의 데이터를 가져올것임
+                        var value = arrvalue.split(',');
+
                         //콤마가 있는지 검사
                         if (arrvalue.indexOf(',') != -1) {
-                            //합격,불합격 여부를 가져옴
-                            var conclusion = arrvalue.charAt(arrvalue.length - 1);
-                            //콤마로 구분해서 맨앞의 데이터를 가져올것임
-                            var value = arrvalue.split(',');
 
                             //0이면 정상
                             if (conclusion == 0) {
@@ -388,19 +684,40 @@ $conn = mysqli_connect("localhost", "server", "dltmxm1234", "dataset");
                             //나머지 불량
                             else {
                                 $('#data3_' + count).html(value[0]);
-                                $('#color3_' + count).css('background-color', '#D1180B');
+                                $('#color3_' + count).css('background-color', '#FF4A4A');
                             }
                         }
                         //콤마 없을경우 빈값으로 취급 -- 회색
                         else {
-                            $('#data3_' + count).html('결과 없음');
-                            $('#color3_' + count).css('background-color', '#808080');
+                            //스캔값일 경우 -- 파랑
+                            if ((count % 5) == 1) {
+                                $('#data3_' + count).html(arrvalue);
+                                $('#color3_' + count).css('background-color', '#4B89DC');
+                            }
+                            //비전검사값
+                            else if ((count % 5) == 0) {
+                                //0이면 정상
+                                if (conclusion == 0) {
+                                    $('#data3_' + count).html(value[0]);
+                                    $('#color3_' + count).css('background-color', '#4B89DC');
+                                }
+                                //나머지 불량
+                                else {
+                                    $('#data3_' + count).html(value[0]);
+                                    $('#color3_' + count).css('background-color', '#FF4A4A');
+                                }
+                            }
+                            //(스캔값 제외) 비었으면 빈값으로 취급 -- 회색
+                            else {
+                                $('#data3_' + count).html('결과 없음');
+                                $('#color3_' + count).css('background-color', 'none');
+                            }
                         }
                     }
                     //NULL일 경우 -- 회색
                     else {
                         $('#data3_' + count).html('NULL');
-                        $('#color3_' + count).css('background-color', '#808080');
+                        $('#color3_' + count).css('background-color', 'none');
                     }
                 }
             }
@@ -440,14 +757,22 @@ $conn = mysqli_connect("localhost", "server", "dltmxm1234", "dataset");
                         }
                         //콤마 없을경우 빈값으로 취급 -- 회색
                         else {
-                            $('#data4_' + count).html('결과 없음');
-                            $('#color4_' + count).css('background-color', '#808080');
+                            //스캔값일 경우 -- 파랑
+                            if (((count % 3) == 1) || ((count % 3) == 2)) {
+                                $('#data4_' + count).html(arrvalue);
+                                $('#color4_' + count).css('background-color', '#4B89DC');
+                            }
+                            //(스캔값 제외) 비었으면 빈값으로 취급 -- 회색
+                            else {
+                                $('#data4_' + count).html('결과 없음');
+                                $('#color4_' + count).css('background-color', 'none');
+                            }
                         }
                     }
                     //NULL일 경우 -- 회색
                     else {
                         $('#data4_' + count).html('NULL');
-                        $('#color4_' + count).css('background-color', '#808080');
+                        $('#color4_' + count).css('background-color', 'none');
                     }
                 }
             }

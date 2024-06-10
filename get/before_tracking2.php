@@ -4,14 +4,11 @@ $conn = mysqli_connect("localhost", "server", "dltmxm1234", "dataset");
 
 $data = array();
 
-$sql03 = "select * from tracking03 order by id desc limit 50";
-$res03 = mysqli_query($conn, $sql03);
+$sql = "SELECT * FROM tracking02
+WHERE NOT EXISTS (SELECT `data0` FROM tracking03 WHERE tracking02.data0 = tracking03.data1) ORDER BY id DESC";
+$res = mysqli_query($conn, $sql);
 
-for(; $row03 = mysqli_fetch_array($res03);){
-
-    $sql = "select * from tracking01 WHERE data0 = '".$row03['data0']."'";
-    $res = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_array($res);
+for(; $row = mysqli_fetch_array($res);){
 
     array_push($data, $row['data0']);
     array_push($data, $row['data1']);

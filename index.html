@@ -66,19 +66,20 @@
                     <div class="top_inner">
                         <div class="info">
                             <div class="info_item">
-                                <div class="item_title">현재 시간</div>
+                            <div class="item_title">현재 날짜</div>
+                                <div class="item_text" id='date'></div>
+                            </div>
+                            <div class="info_item">
+                            <div class="item_title">현재 시간</div>
                                 <div class="item_text" id='clock'></div>
+
                             </div>
                             <div class="info_item">
-                                <div class="item_title">제품명</div>
-                                <div class="item_text">V-GEN 1</div>
-                            </div>
-                            <div class="info_item">
-                                <div class="item_title">검사 날짜</div>
+                                <div class="item_title">최근 검사 날짜</div>
                                 <div class="item_text">2024-05-07</div>
                             </div>
                             <div class="info_item">
-                                <div class="item_title">검사 시간</div>
+                                <div class="item_title">최근 검사 시간</div>
                                 <div class="item_text">13:42:30</div>
                             </div>
                         </div>
@@ -1090,6 +1091,28 @@
     </div>
     <!-- /전체 -->
     <script>
+// 시계
+function updateClock() {
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = (now.getMonth() + 1).toString().padStart(2, '0');
+    var day = now.getDate().toString().padStart(2, '0');
+    var hours = now.getHours().toString().padStart(2, '0');
+    var minutes = now.getMinutes().toString().padStart(2, '0');
+    var seconds = now.getSeconds().toString().padStart(2, '0');
+
+    var dateString = `${year}-${month}-${day}`;
+    var timeString = `${hours}:${minutes}:${seconds}`;
+    document.getElementById('date').textContent = dateString;
+    document.getElementById('clock').textContent = timeString;
+}
+
+// 매 초마다 시계 업데이트
+setInterval(updateClock, 1000);
+
+// 페이지 로드 시에도 시계 업데이트
+updateClock();
+
         var data1_1 = {
             labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
             datasets: [{
