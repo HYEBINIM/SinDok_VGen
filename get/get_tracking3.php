@@ -21,4 +21,5 @@ for(; $row = mysqli_fetch_array($res);){
 
 echo json_encode($data);
 
+mysqli_close($conn);
 ?>

@@ -140,3 +140,6 @@ array_push($data, $A07);
 array_push($data, $A08);
 
 echo json_encode($data);
+
+mysqli_close($conn);
+?>
